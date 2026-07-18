@@ -1,0 +1,90 @@
+# Naxi Culture Demo — Cursor 项目规则
+
+本文件是本项目（naxi-game，Godot 4.6）的持久化开发约定。任何时候在本项目里写代码、
+生成文件、做架构决策，都必须遵守以下规则，而不只是本次对话里提到的临时要求。
+
+## 1. 内容与代码严格分离（不可违反）
+
+- 所有中文文本、答案索引、题目内容、素材路径，一律写进 `res://Data/content.json`，
+  **禁止**硬编码进任何 `.gd` 脚本或场景节点属性里。
+- 原因：内容需要和代码解耦，方便非程序员成员（美术/文案）后续直接改 JSON 加题目，
+  不需要碰代码；也方便以后从 1.0 版本升级到"更新版"（拼装挑战等）时只加数据不改架构。
+- 新增题型/字段时，先更新 `content.json` 的 schema 说明并跟我确认，再写读取代码。
+
+## 2. 路径规范（不可违反）
+
+- 所有资源引用一律使用 `res://` 相对路径。
+- **禁止**出现任何绝对路径（如 `E:/...`、`/Users/...`）写死在代码或 `.tscn`/`.tres` 文件里。
+- 原因：项目要在多台机器、多个协作者的系统上运行，绝对路径会直接导致别人机器上报错。
+
+## 3. 素材缺失容错（不可违反）
+
+- 任何加载素材（图片/音频/视频）的地方，都必须通过 `ContentDB` 走 placeholder 兜底
+  逻辑，缺失文件时使用 `Assets/_placeholder/` 下的占位资源，**不允许**因文件不存在
+  直接报错或崩溃。
+- 原因：美术/音频素材会持续陆续到位，占位机制让开发不被素材进度卡住。
+- 真实素材必须遵守既定命名规则（见下），保证到位后可以直接覆盖占位路径生效，
+  不需要改代码。
+
+## 4. Asset 命名与目录约定（默认遵守，特殊情况需说明理由）
+
+```
+Assets/
+  dongba/glyphs/    dongba_{NN}_{slug}.png
+  dongba/audio/     dongba_{NN}_{slug}.ogg
+  dongba/sentence/  dongba_sentence_{NN}.png / .ogg
+  music/dongjing/   dongjing_{NN}.ogv
+  music/baisha/     baisha_{NN}.ogv
+  music/stingers/   stinger_fail_dongjing.ogg / stinger_win_baisha.ogg
+  sfx/              sfx_correct.ogg / sfx_wrong.ogg / sfx_click.ogg
+  vn/backgrounds/   bg_{slug}.png
+  vn/portraits/     char_{name}_{emotion}.png
+  _placeholder/     silent.ogg + 占位贴图
+```
+- 全小写、下划线分隔、2 位数字序号。
+- 素材文件名/路径本身不包含中文；中文内容一律只存在于 `content.json` 里。
+
+## 5. 架构约定：流程统一走 GameManager（不可违反）
+
+- `GameManager` 是唯一的流程调度者，持有有序 step 列表，通过 `advance()` 前进。
+- **禁止**为单个小游戏或剧情节点发明专属信号（如 `start_quiz`）。所有"这一步做完了"
+  的汇报，一律走 `GameManager.advance()` 或统一的通用 `advance` 信号。
+- 新增一个 minigame = 新增一个 step + 一个场景，**不允许**为此修改 `VNStage` 或
+  `GameManager` 的核心跳转逻辑。
+- 原因：保证以后持续加新玩法（"更新版"的拼装挑战、猜句意等）时，扩展成本是线性的
+  "加一个模块"，而不是每次都要改核心调度代码。
+
+## 6. Retry / 通关逻辑（当前版本约定，1.0 范围内不可违反）
+
+- 当前只做"重做错题"，**不做**"整个模块推倒重来"（后者是"更新版"以后的功能，
+  未来加入前需要专门讨论，不要自行实现或替换现有逻辑）。
+- 通关判定 = 本轮所有题目（含重试）的最终正确率 ≥ `pass_ratio`（当前 0.8）。
+- 任何 retry 循环设计都必须提供明确的退出路径（如"返回主菜单"选项），
+  不允许出现玩家无法跳出的死循环。
+
+## 7. 复用旧项目素材的边界
+
+- 只从 `naxi-ancient-music` 复用：Dialogic 插件本体、VN 对话框样式、可用背景、
+  游客/主人角色立绘、可用音效。
+- **不复用**旧项目的剧情/时间线内容、解谜玩法逻辑（故事不同）。
+- 复制过来的文件一律按第 4 条命名规则重命名，不保留原项目的文件名。
+
+## 8. Git 工作流
+
+- 主分支：`develop`。个人开发分支命名：`feature/{姓名}`（例：`feature/Faye`）。
+- 开始新任务前，先 `git pull origin develop` 同步，再从 develop 建/切个人分支。
+- 小步提交：每完成一个可运行的最小功能就 commit 一次，commit message 用
+  `feat: 简短描述` / `fix: 简短描述` 格式，不要攒大量改动一次性提交。
+- 合并回 develop 一律通过 Pull Request，不直接 push 到 develop。
+
+## 9. 任务执行节奏
+
+- 按 plan 里的 todo 顺序**逐项**完成，每完成一项后停下来说明"如何验证这一项做对了"，
+  等待确认后再继续下一项，**不要**连续跑完多个 todo 而不给出中间检查点。
+- 遇到需要做架构/设计取舍的地方（新数据结构、新交互逻辑），先提出方案和理由，
+  等确认后再写代码，不要自行决定后直接实现。
+
+## 10. Dialogic 版本
+
+- 使用的 Dialogic 插件版本以 `addons/dialogic/plugin.cfg` 中实际记录的版本号为准，
+  不要假设或凭空写版本号。如与文档描述不符，以实际文件为准并告知我。

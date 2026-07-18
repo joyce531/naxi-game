@@ -1,11 +1,11 @@
 extends Node
 
+## Handles scene transitions. Fade transitions are added in the "core" phase.
+## This setup-phase stub provides a minimal deferred scene swap.
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func goto_scene(path: String) -> void:
+	call_deferred("_deferred_goto_scene", path)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _deferred_goto_scene(path: String) -> void:
+	get_tree().change_scene_to_file(path)

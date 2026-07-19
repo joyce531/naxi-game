@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnaxidongbaquiz1"]
+
+[ext_resource type="Script" path="res://Scenes/QuizScene.gd" id="1_quizscene"]
+[ext_resource type="PackedScene" uid="uid://bnaxiquizcard01" path="res://Scenes/QuizCard.tscn" id="2_quizcard"]
+
+[node name="DongbaQuiz" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_quizscene")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.113725, 0.141176, 1)
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="Label" parent="VBox"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 28
+
+[node name="QuizCard" parent="VBox" instance=ExtResource("2_quizcard")]
+layout_mode = 2
+size_flags_vertical = 3

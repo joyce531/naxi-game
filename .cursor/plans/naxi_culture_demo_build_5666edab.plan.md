@@ -7,25 +7,25 @@ todos:
     status: completed
   - id: core
     content: "Core framework: implement GameManager flow director (ordered step list + advance()) with quiz session + wrong-only retry tracker (final ratio >= pass_ratio), SceneLoader (deferred swap + fade), ContentDB (load Data/content.json + placeholder fallback). Author Data/content.json using the unified Question schema (4 dongba + 1 music type)."
-    status: pending
+    status: completed
   - id: placeholders
     content: "Placeholder asset system: create Assets/ folder tree + _placeholder/ (silent.ogg, placeholder texture), and a helper that renders labeled boxes for missing glyphs and silent streams for missing audio/video."
-    status: pending
+    status: completed
   - id: vn
     content: "VN system: build VNStage scene hosting Dialogic; on timeline_ended (or generic advance signal) call GameManager.advance(); import/rename reused chatbox style, backgrounds, portraits; author 4 placeholder timelines (opening, dongba_intro with NPC challenge, clear_story, music_intro that plays fail/win stingers) + tourist/host characters."
-    status: pending
+    status: completed
   - id: quizcard
     content: Build the single reusable QuizCard component that renders any question from prompt + options fields (text/image/audio, per-option play button), handles selection, correct/wrong sfx + explanation; used by both quizzes.
-    status: pending
+    status: completed
   - id: dongba_quiz
     content: "Dongba quiz scene: host QuizCard, load dongba questions (5x3 + bonus) from ContentDB via GameManager session, drive the wrong-only retry loop to final ratio >= 80%."
-    status: pending
+    status: completed
   - id: music_quiz
     content: "Music quiz scene: host QuizCard with music_to_text questions (VideoStreamPlayer for .ogv else audio), fixed 洞经/白沙 options, same wrong-only retry loop to final ratio >= 80%."
-    status: pending
+    status: completed
   - id: screens_polish
     content: "Screens & polish: MainMenu, ResultScreen (重做错题 + 放弃返回菜单 escape hatch), EndScreen, fade transitions, audio buses (music/sfx), and end-to-end wiring test of the full flow with placeholders."
-    status: pending
+    status: completed
 isProject: false
 ---
 

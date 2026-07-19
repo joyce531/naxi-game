@@ -30,7 +30,7 @@ horizontal_alignment = 1
 
 [node name="Subtitle" type="Label" parent="CenterContainer/VBox" unique_id=437315943]
 layout_mode = 2
-text = "(setup 占位主菜单)"
+text = "东巴文字 · 纳西古乐"
 horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="CenterContainer/VBox" unique_id=1663748811]

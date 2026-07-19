@@ -24,6 +24,22 @@ ContentDB="*res://Core/ContentDB.gd"
 
 [dialogic]
 
+directories/dch_directory={
+"host": "res://Dialogues/host.dch",
+"tourist": "res://Dialogues/tourist.dch"
+}
+directories/dtl_directory={
+"clear_story": "res://Dialogues/clear_story.dtl",
+"dongba_intro": "res://Dialogues/dongba_intro.dtl",
+"music_intro": "res://Dialogues/music_intro.dtl",
+"opening": "res://Dialogues/opening.dtl"
+}
+layout/style_directory={
+"": "res://Assets/vn/style/naxi_style.tres",
+"naxi_style": "res://Assets/vn/style/naxi_style.tres"
+}
+layout/style_list=["res://Assets/vn/style/naxi_style.tres"]
+layout/default_style="res://Assets/vn/style/naxi_style.tres"
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
 text/text_reveal_skip_delay=0.1
@@ -43,9 +59,6 @@ audio/channel_defaults={
 "volume": 0.0
 }
 }
-directories/dch_directory={}
-directories/dtl_directory={}
-layout/style_directory={}
 
 [display]
 

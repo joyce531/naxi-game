@@ -3,16 +3,25 @@ extends Node
 ## Central flow director + quiz session state.
 ##
 ## Owns the ordered flow (VN timelines, quizzes, end). VN/quiz scenes report
-## completion by calling advance(). A quiz plays all questions once, then one
-## redo round over the wrong ones; the final correctness ratio decides pass
-## (advance) vs fail (fail screen -> restart the entire quiz).
+## completion by calling advance(). A quiz re-asks wrong questions in rounds; a
+## question is removed once answered correctly, or marked "skipped" after 3
+## cumulative wrong answers (with an inline review hint at that moment). The quiz
+## ends when no questions remain pending, then advances to the next flow step.
+## There is no pass/fail judgment.
 
 const MAIN_MENU := "res://Scenes/MainMenu.tscn"
 const VN_STAGE := "res://Scenes/VNStage.tscn"
 const DONGBA_QUIZ := "res://Scenes/DongbaQuiz.tscn"
 const MUSIC_QUIZ := "res://Scenes/MusicQuiz.tscn"
-const RESULT_SCREEN := "res://Scenes/ResultScreen.tscn"
 const END_SCREEN := "res://Scenes/EndScreen.tscn"
+
+## A question is marked "skipped" (explained, then removed) after this many
+## cumulative wrong answers across all rounds.
+const MAX_WRONG := 3
+
+## Save file holds ONLY the current flow step (no quiz details): { version, step }.
+const SAVE_PATH := "user://savegame.json"
+const SAVE_VERSION := 1
 
 # --- Flow state ---
 var _flow: Array = []
@@ -23,16 +32,17 @@ var pending_timeline: String = ""
 
 # --- Quiz session state ---
 # _session = {
-#   quiz_id, title, pass_ratio,
-#   questions: Array[Dictionary],          # full ordered question list
-#   results: { id: bool },                 # latest attempt per question id
-#   queue: Array[int],                     # indices to play this round
-#   pos: int,                              # position within queue
+#   quiz_id, title,
+#   questions: Array[Dictionary],                     # full ordered question list
+#   wrong_counts: { id: int },                        # cumulative wrong count
+#   status: { id: "pending"|"done"|"skipped" },
+#   queue: Array[int],                                # question indices this round
+#   pos: int,                                         # position within queue
 #   round: int
 # }
 var _session: Dictionary = {}
 
-## Summary handed to ResultScreen. { passed, ratio, correct, total, title }
+## Retained for the (now unused) ResultScreen; the flow no longer populates it.
 var last_result: Dictionary = {}
 
 
@@ -65,7 +75,12 @@ func advance() -> void:
 	if _index >= _flow.size():
 		_to_menu()
 		return
-	var step: Dictionary = _flow[_index]
+	_enter_step(_index)
+
+
+## Enter (or re-enter) a specific flow step without changing _index otherwise.
+func _enter_step(i: int) -> void:
+	var step: Dictionary = _flow[i]
 	match step.get("kind", ""):
 		"vn":
 			pending_timeline = step.get("timeline", "")
@@ -83,6 +98,69 @@ func _to_menu() -> void:
 	_index = -1
 	_session = {}
 	SceneLoader.goto_scene(MAIN_MENU)
+
+
+## True while the player is inside the flow (i.e. not on the main menu).
+func is_in_game() -> bool:
+	return _index >= 0 and _index < _flow.size()
+
+
+# ---------------------------------------------------------------------------
+# Save / load (only the current step; quiz progress is intentionally dropped)
+# ---------------------------------------------------------------------------
+
+## Write the current flow step to disk. Returns false if not in a game.
+func save_progress() -> bool:
+	if not is_in_game():
+		return false
+	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	if f == null:
+		push_error("[GameManager] Could not open save file for writing.")
+		return false
+	f.store_string(JSON.stringify({"version": SAVE_VERSION, "step": _index}))
+	f.close()
+	return true
+
+
+## True when a usable save exists.
+func has_save() -> bool:
+	return _read_saved_step() >= 0
+
+
+## Resume from the saved step (quiz steps restart from question 1). Falls back to
+## a fresh game if the save is missing/invalid.
+func continue_game() -> void:
+	var step := _read_saved_step()
+	if step < 0:
+		start_game()
+		return
+	_index = step
+	_session = {}
+	_enter_step(_index)
+
+
+## Delete any existing save file.
+func clear_save() -> void:
+	if FileAccess.file_exists(SAVE_PATH):
+		DirAccess.remove_absolute(SAVE_PATH)
+
+
+## Returns a valid saved step index, or -1 if there is no usable save.
+func _read_saved_step() -> int:
+	if not FileAccess.file_exists(SAVE_PATH):
+		return -1
+	var f := FileAccess.open(SAVE_PATH, FileAccess.READ)
+	if f == null:
+		return -1
+	var text := f.get_as_text()
+	f.close()
+	var parsed: Variant = JSON.parse_string(text)
+	if typeof(parsed) != TYPE_DICTIONARY:
+		return -1
+	var step: int = int(parsed.get("step", -1))
+	if step < 0 or step >= _flow.size():
+		return -1
+	return step
 
 
 # ---------------------------------------------------------------------------
@@ -103,12 +181,15 @@ func _start_quiz(quiz_id: String) -> void:
 	var all_indices: Array = []
 	for i in questions.size():
 		all_indices.append(i)
+	var status := {}
+	for qq in questions:
+		status[qq.get("id", "")] = "pending"
 	_session = {
 		"quiz_id": quiz_id,
 		"title": q.get("title", ""),
-		"pass_ratio": float(q.get("pass_ratio", 0.8)),
 		"questions": questions,
-		"results": {},
+		"wrong_counts": {},
+		"status": status,
 		"queue": all_indices,
 		"pos": 0,
 		"round": 1,
@@ -143,21 +224,43 @@ func session_progress() -> String:
 
 
 ## Record the answer for the current question and return feedback for the card.
+## Sets the question's status and, on the 3rd cumulative wrong, marks it skipped
+## and returns the inline review hint.
 func session_answer(chosen_index: int) -> Dictionary:
 	var q: Dictionary = session_current()
 	if q.is_empty():
 		return {}
+	var id: String = q.get("id", "")
 	var answer_index: int = int(q.get("answer_index", 0))
 	var correct: bool = chosen_index == answer_index
-	var results: Dictionary = _session.get("results", {})
-	results[q.get("id", "")] = correct
-	_session["results"] = results
+	var status: Dictionary = _session.get("status", {})
+	var wrong_counts: Dictionary = _session.get("wrong_counts", {})
+	var just_skipped := false
+	if correct:
+		status[id] = "done"
+	else:
+		wrong_counts[id] = int(wrong_counts.get(id, 0)) + 1
+		if wrong_counts[id] >= MAX_WRONG:
+			status[id] = "skipped"
+			just_skipped = true
+	_session["status"] = status
+	_session["wrong_counts"] = wrong_counts
 	return {
 		"correct": correct,
 		"answer_index": answer_index,
 		"chosen_index": chosen_index,
 		"explanation": q.get("explanation", ""),
+		"skipped": just_skipped,
+		"skip_hint": _skip_hint() if just_skipped else "",
 	}
+
+
+func _skip_hint() -> String:
+	match _session.get("quiz_id", ""):
+		"music":
+			return "这段音乐要注意哟！"
+		_:
+			return "这个文字要注意哟！"
 
 
 func session_has_next() -> bool:
@@ -169,70 +272,40 @@ func session_step() -> void:
 	_session["pos"] = int(_session.get("pos", 0)) + 1
 
 
-## Called when the current round's queue is exhausted. On the first round, if
-## any answers were wrong it starts one redo round over just those questions.
-## Otherwise it ends the session: pass -> advance directly to the next flow
-## step; fail -> route to the fail screen. Returns "next_round", "passed" or
-## "failed" so the quiz scene knows whether to keep showing questions.
+## Called when the current round's queue is exhausted. The next round is every
+## still-"pending" question (correct ones are done, 3x-wrong ones are skipped).
+## When nothing is pending the quiz is finished and we advance to the next flow
+## step. Returns "next_round" or "finished".
 func session_end_round() -> String:
-	var wrong: Array = _wrong_indices()
-	if int(_session.get("round", 1)) == 1 and wrong.size() > 0:
-		_session["queue"] = wrong
-		_session["pos"] = 0
-		_session["round"] = 2
-		return "next_round"
-
-	var ratio: float = _session_ratio()
-	var passed: bool = ratio >= float(_session.get("pass_ratio", 0.8))
-	last_result = {
-		"passed": passed,
-		"ratio": ratio,
-		"correct": _session_correct_count(),
-		"total": _session.get("questions", []).size(),
-		"title": _session.get("title", ""),
-	}
-	if passed:
+	var pending: Array = _pending_indices()
+	if pending.is_empty():
 		advance()
-		return "passed"
-	SceneLoader.goto_scene(RESULT_SCREEN)
-	return "failed"
+		return "finished"
+	_session["queue"] = pending
+	_session["pos"] = 0
+	_session["round"] = int(_session.get("round", 1)) + 1
+	return "next_round"
 
 
-func _wrong_indices() -> Array:
-	var results: Dictionary = _session.get("results", {})
+func _pending_indices() -> Array:
+	var status: Dictionary = _session.get("status", {})
 	var questions: Array = _session.get("questions", [])
-	var wrong: Array = []
+	var pending: Array = []
 	for i in questions.size():
-		if not results.get(questions[i].get("id", ""), false):
-			wrong.append(i)
-	return wrong
-
-
-func _session_correct_count() -> int:
-	var results: Dictionary = _session.get("results", {})
-	var c: int = 0
-	for q in _session.get("questions", []):
-		if results.get(q.get("id", ""), false):
-			c += 1
-	return c
-
-
-func _session_ratio() -> float:
-	var total: int = _session.get("questions", []).size()
-	if total == 0:
-		return 0.0
-	return float(_session_correct_count()) / float(total)
+		if status.get(questions[i].get("id", ""), "pending") == "pending":
+			pending.append(i)
+	return pending
 
 
 # ---------------------------------------------------------------------------
-# Fail screen callbacks
+# Navigation helpers (kept for the unused ResultScreen / upcoming control bar)
 # ---------------------------------------------------------------------------
 
-## Restart the ENTIRE current quiz from scratch (fresh results, all questions).
+## Restart the ENTIRE current quiz from scratch (all questions, fresh state).
 func quiz_restart() -> void:
 	_start_quiz(_session.get("quiz_id", ""))
 
 
-## Escape hatch: abandon the session and return to the main menu.
+## Abandon the session and return to the main menu.
 func result_quit() -> void:
 	_to_menu()

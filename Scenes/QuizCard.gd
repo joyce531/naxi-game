@@ -13,6 +13,7 @@ const SFX_WRONG := "res://Assets/sfx/sfx_wrong.ogg"
 
 const COLOR_CORRECT := Color(0.55, 1.0, 0.6)
 const COLOR_WRONG := Color(1.0, 0.55, 0.55)
+const COLOR_SKIP := Color(1.0, 0.78, 0.25)
 
 var _answered: bool = false
 var _awaiting_continue: bool = false
@@ -21,6 +22,7 @@ var _option_buttons: Array = []
 var _instruction: Label
 var _prompt_box: VBoxContainer
 var _options_box: GridContainer
+var _skip_hint: Label
 var _feedback: Label
 
 var _sfx: AudioStreamPlayer
@@ -73,6 +75,14 @@ func _build_skeleton() -> void:
 	_options_box.add_theme_constant_override("v_separation", 16)
 	vbox.add_child(_options_box)
 
+	_skip_hint = Label.new()
+	_skip_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_skip_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_skip_hint.add_theme_font_size_override("font_size", 30)
+	_skip_hint.add_theme_color_override("font_color", COLOR_SKIP)
+	_skip_hint.visible = false
+	vbox.add_child(_skip_hint)
+
 	_feedback = Label.new()
 	_feedback.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_feedback.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -86,6 +96,7 @@ func setup(question: Dictionary) -> void:
 	_answered = false
 	_awaiting_continue = false
 	_feedback.visible = false
+	_skip_hint.visible = false
 	_instruction.text = str(question.get("instruction", ""))
 	_build_prompt(question.get("prompt", {}))
 	_build_options(question.get("options", []))
@@ -233,6 +244,13 @@ func show_feedback(feedback: Dictionary) -> void:
 	if sfx_stream != null:
 		_sfx.stream = sfx_stream
 		_sfx.play()
+
+	var skipped: bool = bool(feedback.get("skipped", false))
+	if skipped:
+		_skip_hint.text = "⚠ " + str(feedback.get("skip_hint", ""))
+		_skip_hint.visible = true
+	else:
+		_skip_hint.visible = false
 
 	var msg := "回答正确！" if correct else "答错了。"
 	var expl := str(feedback.get("explanation", ""))

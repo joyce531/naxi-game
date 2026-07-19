@@ -33,8 +33,13 @@ layout_mode = 2
 text = "东巴文字 · 纳西古乐"
 horizontal_alignment = 1
 
+[node name="ContinueButton" type="Button" parent="CenterContainer/VBox"]
+layout_mode = 2
+text = "继续游戏"
+
 [node name="StartButton" type="Button" parent="CenterContainer/VBox" unique_id=1663748811]
 layout_mode = 2
 text = "开始游戏"
 
+[connection signal="pressed" from="CenterContainer/VBox/ContinueButton" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="CenterContainer/VBox/StartButton" to="." method="_on_start_pressed"]

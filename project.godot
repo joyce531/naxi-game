@@ -21,6 +21,7 @@ Dialogic="*uid://ds2q0uclmolvu"
 GameManager="*res://Core/GameManager.gd"
 SceneLoader="*res://Core/SceneLoader.gd"
 ContentDB="*res://Core/ContentDB.gd"
+ControlBar="*res://Core/ControlBar.gd"
 
 [dialogic]
 

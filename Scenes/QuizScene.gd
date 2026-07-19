@@ -1,8 +1,9 @@
 extends Control
 
 ## Thin driver shared by both quizzes. Hosts a QuizCard and walks the current
-## GameManager session: show question -> record answer -> feedback -> next, and
-## finishes the round (routing to ResultScreen) when the queue is exhausted.
+## GameManager session: show question -> record answer -> feedback -> next. When
+## the round's queue is exhausted it starts the next round over still-pending
+## questions, or lets GameManager advance to the next flow step when none remain.
 
 @onready var _header: Label = $VBox/Header
 @onready var _card: Control = $VBox/QuizCard
@@ -33,8 +34,8 @@ func _on_continue() -> void:
 		GameManager.session_step()
 		_show_current()
 	else:
-		# Round finished: either continue into the redo round, or the session
-		# ends (GameManager navigates away on pass/fail).
+		# Round finished: start the next round over still-pending questions, or
+		# (when nothing is pending) GameManager advances to the next flow step.
 		var state := GameManager.session_end_round()
 		if state == "next_round":
 			_show_current()

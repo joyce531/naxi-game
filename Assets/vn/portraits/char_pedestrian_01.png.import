@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvyybjqbgp1sh"
-path="res://.godot/imported/bg_at_home_yard.png-56c469d4c7a893eabdfeeea26bbca2a9.ctex"
+uid="uid://2p2nagu0yx2i"
+path="res://.godot/imported/char_pedestrian_01.png-78f95152dc69a2d6310bf3e75dfdc782.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/vn/backgrounds/bg_at_home_yard.png"
-dest_files=["res://.godot/imported/bg_at_home_yard.png-56c469d4c7a893eabdfeeea26bbca2a9.ctex"]
+source_file="res://Assets/vn/portraits/char_pedestrian_01.png"
+dest_files=["res://.godot/imported/char_pedestrian_01.png-78f95152dc69a2d6310bf3e75dfdc782.ctex"]
 
 [params]
 

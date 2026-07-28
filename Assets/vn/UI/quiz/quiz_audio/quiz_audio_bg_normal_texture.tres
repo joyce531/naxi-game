@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_audio/quiz_audio_bg_normal_9p.png" id="1_audio_normal_source"]
+
+[resource]
+atlas = ExtResource("1_audio_normal_source")
+region = Rect2(23, 6, 297, 94)
+filter_clip = true

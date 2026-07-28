@@ -5,8 +5,10 @@ extends Control
 ## the round's queue is exhausted it starts the next round over still-pending
 ## questions, or lets GameManager advance to the next flow step when none remain.
 
-@onready var _header: Label = $VBox/Header
+@onready var _title: Label = $VBox/HeaderBar/TitlePlaque/Title
+@onready var _progress: Label = $VBox/HeaderBar/ProgressRow/Progress
 @onready var _card: Control = $VBox/QuizCard
+@onready var _menu_button: TextureButton = $MenuButton
 
 
 func _ready() -> void:
@@ -16,11 +18,14 @@ func _ready() -> void:
 		return
 	_card.answered.connect(_on_answered)
 	_card.continue_pressed.connect(_on_continue)
+	if _menu_button != null:
+		_menu_button.pressed.connect(_on_menu_pressed)
 	_show_current()
 
 
 func _show_current() -> void:
-	_header.text = "%s    %s" % [GameManager.session_title(), GameManager.session_progress()]
+	_title.text = GameManager.session_title()
+	_progress.text = GameManager.session_progress()
 	_card.setup(GameManager.session_current())
 
 
@@ -39,3 +44,7 @@ func _on_continue() -> void:
 		var state := GameManager.session_end_round()
 		if state == "next_round":
 			_show_current()
+
+
+func _on_menu_pressed() -> void:
+	GameManager.result_quit()

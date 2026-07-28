@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnaxiquizcard01"]
+[gd_scene load_steps=7 format=3 uid="uid://bnaxiquizcard01"]
 
 [ext_resource type="Script" path="res://Scenes/QuizCard.gd" id="1_quizcard"]
+[ext_resource type="Texture2D" uid="uid://cy1qv78haehhb" path="res://Assets/vn/UI/quiz/quiz_paper/quiz_main_panel_9p.png" id="2_paper"]
+[ext_resource type="Texture2D" uid="uid://byodprg4c8h8j" path="res://Assets/vn/UI/quiz/quiz_paper/quiz_cloud_left.png" id="3_cloud_l"]
+[ext_resource type="Texture2D" uid="uid://dabc7hynsmver" path="res://Assets/vn/UI/quiz/quiz_paper/quiz_cloud_right.png" id="4_cloud_r"]
+[ext_resource type="Texture2D" uid="uid://2pn0r2qnf8ej" path="res://Assets/vn/UI/quiz/quiz_paper/quiz_corner_pattern.png" id="5_corner"]
+[ext_resource type="Texture2D" uid="uid://brt4iqtlpf8rt" path="res://Assets/vn/UI/quiz/quiz_paper/quiz_feedback_panel_9p.png" id="6_feedback"]
 
 [node name="QuizCard" type="Control"]
 layout_mode = 3
@@ -10,3 +15,159 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_quizcard")
+
+[node name="PaperLayer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Center" type="CenterContainer" parent="PaperLayer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PaperStack" type="Control" parent="PaperLayer/Center"]
+custom_minimum_size = Vector2(920, 540)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MainPanel" type="NinePatchRect" parent="PaperLayer/Center/PaperStack"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_paper")
+patch_margin_left = 72
+patch_margin_top = 64
+patch_margin_right = 72
+patch_margin_bottom = 64
+mouse_filter = 2
+
+[node name="CloudLeft" type="TextureRect" parent="PaperLayer/Center/PaperStack"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -60.0
+offset_right = 80.0
+offset_bottom = 60.0
+grow_vertical = 2
+texture = ExtResource("3_cloud_l")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="CloudRight" type="TextureRect" parent="PaperLayer/Center/PaperStack"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -60.0
+offset_right = 80.0
+offset_bottom = 60.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("4_cloud_r")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="CornerTL" type="TextureRect" parent="PaperLayer/Center/PaperStack"]
+layout_mode = 1
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 76.0
+offset_bottom = 76.0
+texture = ExtResource("5_corner")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="CornerTR" type="TextureRect" parent="PaperLayer/Center/PaperStack"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -76.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 76.0
+grow_horizontal = 0
+texture = ExtResource("5_corner")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+mouse_filter = 2
+
+[node name="CornerBL" type="TextureRect" parent="PaperLayer/Center/PaperStack"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -76.0
+offset_right = 76.0
+offset_bottom = -12.0
+grow_vertical = 0
+texture = ExtResource("5_corner")
+expand_mode = 1
+stretch_mode = 5
+flip_v = true
+mouse_filter = 2
+
+[node name="CornerBR" type="TextureRect" parent="PaperLayer/Center/PaperStack"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -76.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("5_corner")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+flip_v = true
+mouse_filter = 2
+
+[node name="FeedbackPanel" type="NinePatchRect" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(700, 120)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -150.0
+offset_right = 350.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_feedback")
+patch_margin_left = 48
+patch_margin_top = 36
+patch_margin_right = 48
+patch_margin_bottom = 36
+mouse_filter = 2

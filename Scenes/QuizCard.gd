@@ -46,7 +46,6 @@ func _build_skeleton() -> void:
 	var center := CenterContainer.new()
 	center.set_anchors_preset(Control.PRESET_FULL_RECT)
 	center.offset_bottom = -74.0
-	center.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(center)
 
 	var panel := PanelContainer.new()
@@ -370,11 +369,8 @@ func show_feedback(feedback: Dictionary) -> void:
 
 
 ## After feedback is shown, a click anywhere (or Enter/advance key) proceeds.
-## Clicks on chrome such as the menu button are ignored so they can quit cleanly.
 func _input(event: InputEvent) -> void:
 	if not _awaiting_continue:
-		return
-	if _is_chrome_click():
 		return
 	var advance_now := false
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -385,12 +381,3 @@ func _input(event: InputEvent) -> void:
 		_awaiting_continue = false
 		get_viewport().set_input_as_handled()
 		continue_pressed.emit()
-
-
-func _is_chrome_click() -> bool:
-	var hovered := get_viewport().gui_get_hovered_control()
-	while hovered != null:
-		if hovered.is_in_group("quiz_menu"):
-			return true
-		hovered = hovered.get_parent() as Control
-	return false

@@ -1,14 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnaximusicquiz1"]
+[gd_scene load_steps=13 format=3 uid="uid://bnaximusicquiz1"]
 
 [ext_resource type="Script" path="res://Scenes/QuizScene.gd" id="1_quizscene"]
 [ext_resource type="PackedScene" uid="uid://bnaxiquizcard01" path="res://Scenes/QuizCard.tscn" id="2_quizcard"]
-[ext_resource type="Texture2D" uid="uid://b3v8pdvyc3ha7" path="res://Assets/vn/backgrounds/bg_in_the_room.png" id="3_bg"]
-[ext_resource type="Texture2D" uid="uid://2utya63aex3l" path="res://Assets/vn/UI/quiz/quiz_paper/quiz_title_plaque_9p.png" id="4_title"]
-[ext_resource type="Texture2D" uid="uid://cyaytbxv4vqh6" path="res://Assets/vn/UI/quiz/quiz_paper/quiz_progress_deco.png" id="5_deco"]
-[ext_resource type="Texture2D" uid="uid://bbo5lqgimvftc" path="res://Assets/vn/UI/quiz/quiz_menu/quiz_menu_bg_normal_9p.png" id="6_menu_n"]
-[ext_resource type="Texture2D" uid="uid://c2y7s05fwdi62" path="res://Assets/vn/UI/quiz/quiz_menu/quiz_menu_bg_hover_9p.png" id="7_menu_h"]
-[ext_resource type="Texture2D" uid="uid://c60mljmryw1ta" path="res://Assets/vn/UI/quiz/quiz_menu/quiz_menu_bg_pressed_9p.png" id="8_menu_p"]
-[ext_resource type="Texture2D" uid="uid://dskik8ph5bkkg" path="res://Assets/vn/UI/quiz/quiz_menu/quiz_menu_icon.png" id="9_menu_i"]
+[ext_resource type="Texture2D" uid="uid://b3v8pdvyc3ha7" path="res://Assets/vn/backgrounds/bg_in_the_room.png" id="3_background"]
+[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_paper/quiz_main_panel_9p.png" id="4_main_panel"]
+[ext_resource type="Texture2D" uid="uid://2utya63aex3l" path="res://Assets/vn/UI/quiz/quiz_paper/quiz_title_plaque_9p.png" id="5_title_plaque"]
+[ext_resource type="Texture2D" uid="uid://cyaytbxv4vqh6" path="res://Assets/vn/UI/quiz/quiz_paper/quiz_progress_deco.png" id="6_progress_deco"]
+[ext_resource type="Theme" path="res://Assets/vn/UI/quiz/quiz_theme.tres" id="7_quiz_theme"]
+[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_progress_panel_texture.tres" id="8_progress_panel"]
+[ext_resource type="Texture2D" uid="uid://bbo5lqgimvftc" path="res://Assets/vn/UI/quiz/quiz_menu/quiz_menu_bg_normal_9p.png" id="9_menu_n"]
+[ext_resource type="Texture2D" uid="uid://c2y7s05fwdi62" path="res://Assets/vn/UI/quiz/quiz_menu/quiz_menu_bg_hover_9p.png" id="10_menu_h"]
+[ext_resource type="Texture2D" uid="uid://c60mljmryw1ta" path="res://Assets/vn/UI/quiz/quiz_menu/quiz_menu_bg_pressed_9p.png" id="11_menu_p"]
+[ext_resource type="Texture2D" uid="uid://dskik8ph5bkkg" path="res://Assets/vn/UI/quiz/quiz_menu/quiz_menu_icon.png" id="12_menu_i"]
 
 [node name="MusicQuiz" type="Control"]
 layout_mode = 3
@@ -17,29 +20,59 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_quiz_theme")
 script = ExtResource("1_quizscene")
 
-[node name="BG" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_bg")
+mouse_filter = 2
+texture = ExtResource("3_background")
 expand_mode = 1
 stretch_mode = 6
-mouse_filter = 2
 
-[node name="Dim" type="ColorRect" parent="."]
+[node name="BG" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.08, 0.05, 0.03, 0.35)
 mouse_filter = 2
+color = Color(0.12, 0.08, 0.05, 0.3)
+
+[node name="MainPanelLayer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MainPanel" type="NinePatchRect" parent="MainPanelLayer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -608.5
+offset_top = -326.0
+offset_right = 608.5
+offset_bottom = 466.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_main_panel")
+patch_margin_left = 280
+patch_margin_top = 300
+patch_margin_right = 260
+patch_margin_bottom = 200
 
 [node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -48,68 +81,103 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 8
-offset_left = 48.0
-offset_top = 24.0
-offset_right = -48.0
-offset_bottom = -24.0
+theme_override_constants/separation = 0
 
-[node name="HeaderBar" type="VBoxContainer" parent="VBox"]
+[node name="Header" type="Control" parent="VBox"]
+custom_minimum_size = Vector2(0, 222)
 layout_mode = 2
-theme_override_constants/separation = 4
+mouse_filter = 2
 
-[node name="TitlePlaque" type="NinePatchRect" parent="VBox/HeaderBar"]
-custom_minimum_size = Vector2(520, 96)
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("4_title")
-patch_margin_left = 56
-patch_margin_top = 40
-patch_margin_right = 56
-patch_margin_bottom = 40
+[node name="TitlePlaque" type="NinePatchRect" parent="VBox/Header"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -339.0
+offset_top = 36.0
+offset_right = 339.0
+offset_bottom = 162.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("5_title_plaque")
+patch_margin_left = 110
+patch_margin_top = 52
+patch_margin_right = 110
+patch_margin_bottom = 52
 
-[node name="Title" type="Label" parent="VBox/HeaderBar/TitlePlaque"]
+[node name="TitleLabel" type="Label" parent="VBox/Header/TitlePlaque"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 70.0
+offset_top = 8.0
+offset_right = -70.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.231373, 0.129412, 0.0588235, 1)
+theme_override_font_sizes/font_size = 52
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressRow" type="Control" parent="VBox/Header"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = 154.0
+offset_right = 240.0
+offset_bottom = 222.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="ProgressPanel" type="NinePatchRect" parent="VBox/Header/ProgressRow"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.28, 0.16, 0.08, 1)
+mouse_filter = 2
+texture = ExtResource("8_progress_panel")
+patch_margin_left = 64
+patch_margin_top = 24
+patch_margin_right = 64
+patch_margin_bottom = 24
+
+[node name="ProgressDecoLeft" type="TextureRect" parent="VBox/Header/ProgressRow"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 14.0
+offset_right = 81.0
+offset_bottom = 54.0
+mouse_filter = 2
+texture = ExtResource("6_progress_deco")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ProgressLabel" type="Label" parent="VBox/Header/ProgressRow"]
+layout_mode = 0
+offset_left = 90.0
+offset_right = 390.0
+offset_bottom = 68.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.231373, 0.129412, 0.0588235, 1)
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
-text = ""
 
-[node name="ProgressRow" type="HBoxContainer" parent="VBox/HeaderBar"]
-layout_mode = 2
-alignment = 1
-theme_override_constants/separation = 12
-
-[node name="DecoLeft" type="TextureRect" parent="VBox/HeaderBar/ProgressRow"]
-custom_minimum_size = Vector2(48, 44)
-layout_mode = 2
-texture = ExtResource("5_deco")
+[node name="ProgressDecoRight" type="TextureRect" parent="VBox/Header/ProgressRow"]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 14.0
+offset_right = 435.0
+offset_bottom = 54.0
+mouse_filter = 2
+texture = ExtResource("6_progress_deco")
 expand_mode = 1
 stretch_mode = 5
-mouse_filter = 2
-
-[node name="Progress" type="Label" parent="VBox/HeaderBar/ProgressRow"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.92, 0.88, 0.78, 1)
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-vertical_alignment = 1
-text = ""
-
-[node name="DecoRight" type="TextureRect" parent="VBox/HeaderBar/ProgressRow"]
-custom_minimum_size = Vector2(48, 44)
-layout_mode = 2
-texture = ExtResource("5_deco")
-expand_mode = 1
-stretch_mode = 5
-flip_h = true
-mouse_filter = 2
 
 [node name="QuizCard" parent="VBox" instance=ExtResource("2_quizcard")]
 layout_mode = 2
@@ -126,9 +194,9 @@ offset_top = 24.0
 offset_right = -32.0
 offset_bottom = 104.0
 grow_horizontal = 0
-texture_normal = ExtResource("6_menu_n")
-texture_pressed = ExtResource("8_menu_p")
-texture_hover = ExtResource("7_menu_h")
+texture_normal = ExtResource("9_menu_n")
+texture_pressed = ExtResource("11_menu_p")
+texture_hover = ExtResource("10_menu_h")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -145,7 +213,7 @@ offset_right = 22.0
 offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("9_menu_i")
+texture = ExtResource("12_menu_i")
 expand_mode = 1
 stretch_mode = 5
 mouse_filter = 2

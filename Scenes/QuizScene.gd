@@ -8,7 +8,6 @@ extends Control
 @onready var _title_label: Label = $VBox/Header/TitlePlaque/TitleLabel
 @onready var _progress_label: Label = $VBox/Header/ProgressRow/ProgressLabel
 @onready var _card: Control = $VBox/QuizCard
-@onready var _menu_button: TextureButton = $MenuButton
 
 
 func _ready() -> void:
@@ -18,8 +17,6 @@ func _ready() -> void:
 		return
 	_card.answered.connect(_on_answered)
 	_card.continue_pressed.connect(_on_continue)
-	if _menu_button != null:
-		_menu_button.pressed.connect(_on_menu_pressed)
 	_show_current()
 
 
@@ -44,7 +41,3 @@ func _on_continue() -> void:
 		var state := GameManager.session_end_round()
 		if state == "next_round":
 			_show_current()
-
-
-func _on_menu_pressed() -> void:
-	GameManager.result_quit()

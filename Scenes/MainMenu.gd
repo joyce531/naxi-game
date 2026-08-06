@@ -1,13 +1,36 @@
 extends Control
 
-## Main menu. "继续游戏" only appears when a save exists; it resumes from the saved
-## flow step (quiz steps restart from question 1). "开始游戏" starts a fresh run.
+## Main menu. With no save, one centered "开始旅程" button starts a fresh run.
+## With a save, "继续旅程" resumes the saved flow step and "重新开始" starts over.
 
-@onready var _continue_btn: Button = $CenterContainer/VBox/ContinueButton
+const BUTTON_SIZE := Vector2(560.0, 160.0)
+const BUTTON_Y := 650.0
+const SINGLE_BUTTON_X := 680.0
+const CONTINUE_BUTTON_X := 376.0
+const RESTART_BUTTON_X := 984.0
+
+@onready var _continue_btn: Button = $ButtonLayer/ContinueButton
+@onready var _start_btn: Button = $ButtonLayer/StartButton
 
 
 func _ready() -> void:
-	_continue_btn.visible = GameManager.has_save()
+	_apply_save_layout(GameManager.has_save())
+
+
+func _apply_save_layout(has_saved_game: bool) -> void:
+	_continue_btn.visible = has_saved_game
+	if has_saved_game:
+		_place_button(_continue_btn, CONTINUE_BUTTON_X)
+		_place_button(_start_btn, RESTART_BUTTON_X)
+		_start_btn.text = "重新开始"
+	else:
+		_place_button(_start_btn, SINGLE_BUTTON_X)
+		_start_btn.text = "开始旅程"
+
+
+func _place_button(button: Button, x: float) -> void:
+	button.position = Vector2(x, BUTTON_Y)
+	button.size = BUTTON_SIZE
 
 
 func _on_continue_pressed() -> void:

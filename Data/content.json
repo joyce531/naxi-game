@@ -1,304 +1,304 @@
 {
   "version": "1.0",
   "quizzes": {
-    "dongba": {
-      "title": "东巴文字挑战",
-      "pass_ratio": 0.8,
-      "questions": [
-        {
-          "id": "dongba_t1_person",
-          "type": "image_to_text",
-          "instruction": "这个东巴文字代表什么？",
-          "prompt": { "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": "res://Assets/dongba/audio/dongba_01_person.ogg" },
-          "options": [
-            { "text": "人", "image": null, "audio": null },
-            { "text": "山", "image": null, "audio": null },
-            { "text": "水", "image": null, "audio": null },
-            { "text": "火", "image": null, "audio": null }
-          ],
-          "answer_index": 0,
-          "explanation": "这是‘人’的东巴文，像一个站立的人形。"
-        },
-        {
-          "id": "dongba_t1_mountain",
-          "type": "image_to_text",
-          "instruction": "这个东巴文字代表什么？",
-          "prompt": { "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": "res://Assets/dongba/audio/dongba_02_mountain.ogg" },
-          "options": [
-            { "text": "水", "image": null, "audio": null },
-            { "text": "山", "image": null, "audio": null },
-            { "text": "火", "image": null, "audio": null },
-            { "text": "太阳", "image": null, "audio": null }
-          ],
-          "answer_index": 1,
-          "explanation": "这是‘山’的东巴文，像连绵的山峰。"
-        },
-        {
-          "id": "dongba_t1_water",
-          "type": "image_to_text",
-          "instruction": "这个东巴文字代表什么？",
-          "prompt": { "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": "res://Assets/dongba/audio/dongba_03_water.ogg" },
-          "options": [
-            { "text": "火", "image": null, "audio": null },
-            { "text": "人", "image": null, "audio": null },
-            { "text": "水", "image": null, "audio": null },
-            { "text": "山", "image": null, "audio": null }
-          ],
-          "answer_index": 2,
-          "explanation": "这是‘水’的东巴文，像流动的水波。"
-        },
-        {
-          "id": "dongba_t1_fire",
-          "type": "image_to_text",
-          "instruction": "这个东巴文字代表什么？",
-          "prompt": { "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": "res://Assets/dongba/audio/dongba_04_fire.ogg" },
-          "options": [
-            { "text": "山", "image": null, "audio": null },
-            { "text": "水", "image": null, "audio": null },
-            { "text": "人", "image": null, "audio": null },
-            { "text": "火", "image": null, "audio": null }
-          ],
-          "answer_index": 3,
-          "explanation": "这是‘火’的东巴文，像跳动的火焰。"
-        },
-        {
-          "id": "dongba_t1_sun",
-          "type": "image_to_text",
-          "instruction": "这个东巴文字代表什么？",
-          "prompt": { "text": null, "image": "res://Assets/dongba/glyphs/dongba_05_sun.png", "audio": "res://Assets/dongba/audio/dongba_05_sun.ogg" },
-          "options": [
-            { "text": "人", "image": null, "audio": null },
-            { "text": "太阳", "image": null, "audio": null },
-            { "text": "山", "image": null, "audio": null },
-            { "text": "水", "image": null, "audio": null }
-          ],
-          "answer_index": 1,
-          "explanation": "这是‘日 / 太阳’的东巴文，像一轮圆日。"
-        },
+	"dongba": {
+	  "title": "东巴文字挑战",
+	  "pass_ratio": 0.8,
+	  "questions": [
+		{
+		  "id": "dongba_t1_person",
+		  "type": "image_to_text",
+		  "instruction": "这个东巴文字代表什么？",
+		  "prompt": { "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": "res://Assets/dongba/audio/dongba_01_person.ogg" },
+		  "options": [
+			{ "text": "人", "image": null, "audio": null },
+			{ "text": "山", "image": null, "audio": null },
+			{ "text": "水", "image": null, "audio": null },
+			{ "text": "火", "image": null, "audio": null }
+		  ],
+		  "answer_index": 0,
+		  "explanation": "这是‘人’的东巴文，像一个站立的人形。"
+		},
+		{
+		  "id": "dongba_t1_mountain",
+		  "type": "image_to_text",
+		  "instruction": "这个东巴文字代表什么？",
+		  "prompt": { "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": "res://Assets/dongba/audio/dongba_02_mountain.ogg" },
+		  "options": [
+			{ "text": "水", "image": null, "audio": null },
+			{ "text": "山", "image": null, "audio": null },
+			{ "text": "火", "image": null, "audio": null },
+			{ "text": "太阳", "image": null, "audio": null }
+		  ],
+		  "answer_index": 1,
+		  "explanation": "这是‘山’的东巴文，像连绵的山峰。"
+		},
+		{
+		  "id": "dongba_t1_water",
+		  "type": "image_to_text",
+		  "instruction": "这个东巴文字代表什么？",
+		  "prompt": { "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": "res://Assets/dongba/audio/dongba_03_water.ogg" },
+		  "options": [
+			{ "text": "火", "image": null, "audio": null },
+			{ "text": "人", "image": null, "audio": null },
+			{ "text": "水", "image": null, "audio": null },
+			{ "text": "山", "image": null, "audio": null }
+		  ],
+		  "answer_index": 2,
+		  "explanation": "这是‘水’的东巴文，像流动的水波。"
+		},
+		{
+		  "id": "dongba_t1_fire",
+		  "type": "image_to_text",
+		  "instruction": "这个东巴文字代表什么？",
+		  "prompt": { "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": "res://Assets/dongba/audio/dongba_04_fire.ogg" },
+		  "options": [
+			{ "text": "山", "image": null, "audio": null },
+			{ "text": "水", "image": null, "audio": null },
+			{ "text": "人", "image": null, "audio": null },
+			{ "text": "火", "image": null, "audio": null }
+		  ],
+		  "answer_index": 3,
+		  "explanation": "这是‘火’的东巴文，像跳动的火焰。"
+		},
+		{
+		  "id": "dongba_t1_sun",
+		  "type": "image_to_text",
+		  "instruction": "这个东巴文字代表什么？",
+		  "prompt": { "text": null, "image": "res://Assets/dongba/glyphs/dongba_05_sun.png", "audio": "res://Assets/dongba/audio/dongba_05_sun.ogg" },
+		  "options": [
+			{ "text": "人", "image": null, "audio": null },
+			{ "text": "太阳", "image": null, "audio": null },
+			{ "text": "山", "image": null, "audio": null },
+			{ "text": "水", "image": null, "audio": null }
+		  ],
+		  "answer_index": 1,
+		  "explanation": "这是‘日 / 太阳’的东巴文，像一轮圆日。"
+		},
 
-        {
-          "id": "dongba_t2_person",
-          "type": "audio_to_image",
-          "instruction": "听读音，选择对应的东巴文字。",
-          "prompt": { "text": null, "image": null, "audio": "res://Assets/dongba/audio/dongba_01_person.ogg" },
-          "options": [
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": null }
-          ],
-          "answer_index": 0,
-          "explanation": "这个读音对应‘人’。"
-        },
-        {
-          "id": "dongba_t2_mountain",
-          "type": "audio_to_image",
-          "instruction": "听读音，选择对应的东巴文字。",
-          "prompt": { "text": null, "image": null, "audio": "res://Assets/dongba/audio/dongba_02_mountain.ogg" },
-          "options": [
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_05_sun.png", "audio": null }
-          ],
-          "answer_index": 1,
-          "explanation": "这个读音对应‘山’。"
-        },
-        {
-          "id": "dongba_t2_water",
-          "type": "audio_to_image",
-          "instruction": "听读音，选择对应的东巴文字。",
-          "prompt": { "text": null, "image": null, "audio": "res://Assets/dongba/audio/dongba_03_water.ogg" },
-          "options": [
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": null }
-          ],
-          "answer_index": 2,
-          "explanation": "这个读音对应‘水’。"
-        },
-        {
-          "id": "dongba_t2_fire",
-          "type": "audio_to_image",
-          "instruction": "听读音，选择对应的东巴文字。",
-          "prompt": { "text": null, "image": null, "audio": "res://Assets/dongba/audio/dongba_04_fire.ogg" },
-          "options": [
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": null }
-          ],
-          "answer_index": 3,
-          "explanation": "这个读音对应‘火’。"
-        },
-        {
-          "id": "dongba_t2_sun",
-          "type": "audio_to_image",
-          "instruction": "听读音，选择对应的东巴文字。",
-          "prompt": { "text": null, "image": null, "audio": "res://Assets/dongba/audio/dongba_05_sun.ogg" },
-          "options": [
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_05_sun.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": null },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": null }
-          ],
-          "answer_index": 1,
-          "explanation": "这个读音对应‘日 / 太阳’。"
-        },
+		{
+		  "id": "dongba_t2_person",
+		  "type": "audio_to_image",
+		  "instruction": "听读音，选择对应的东巴文字。",
+		  "prompt": { "text": null, "image": null, "audio": "res://Assets/dongba/audio/dongba_01_person.ogg" },
+		  "options": [
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": null }
+		  ],
+		  "answer_index": 0,
+		  "explanation": "这个读音对应‘人’。"
+		},
+		{
+		  "id": "dongba_t2_mountain",
+		  "type": "audio_to_image",
+		  "instruction": "听读音，选择对应的东巴文字。",
+		  "prompt": { "text": null, "image": null, "audio": "res://Assets/dongba/audio/dongba_02_mountain.ogg" },
+		  "options": [
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_05_sun.png", "audio": null }
+		  ],
+		  "answer_index": 1,
+		  "explanation": "这个读音对应‘山’。"
+		},
+		{
+		  "id": "dongba_t2_water",
+		  "type": "audio_to_image",
+		  "instruction": "听读音，选择对应的东巴文字。",
+		  "prompt": { "text": null, "image": null, "audio": "res://Assets/dongba/audio/dongba_03_water.ogg" },
+		  "options": [
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": null }
+		  ],
+		  "answer_index": 2,
+		  "explanation": "这个读音对应‘水’。"
+		},
+		{
+		  "id": "dongba_t2_fire",
+		  "type": "audio_to_image",
+		  "instruction": "听读音，选择对应的东巴文字。",
+		  "prompt": { "text": null, "image": null, "audio": "res://Assets/dongba/audio/dongba_04_fire.ogg" },
+		  "options": [
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": null }
+		  ],
+		  "answer_index": 3,
+		  "explanation": "这个读音对应‘火’。"
+		},
+		{
+		  "id": "dongba_t2_sun",
+		  "type": "audio_to_image",
+		  "instruction": "听读音，选择对应的东巴文字。",
+		  "prompt": { "text": null, "image": null, "audio": "res://Assets/dongba/audio/dongba_05_sun.ogg" },
+		  "options": [
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_05_sun.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": null },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": null }
+		  ],
+		  "answer_index": 1,
+		  "explanation": "这个读音对应‘日 / 太阳’。"
+		},
 
-        {
-          "id": "dongba_t3_person",
-          "type": "text_to_image",
-          "instruction": "请选择‘人’对应的东巴文字。",
-          "prompt": { "text": "人", "image": null, "audio": null },
-          "options": [
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": "res://Assets/dongba/audio/dongba_01_person.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": "res://Assets/dongba/audio/dongba_02_mountain.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": "res://Assets/dongba/audio/dongba_03_water.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": "res://Assets/dongba/audio/dongba_04_fire.ogg" }
-          ],
-          "answer_index": 0,
-          "explanation": "‘人’的东巴文像站立的人形。"
-        },
-        {
-          "id": "dongba_t3_mountain",
-          "type": "text_to_image",
-          "instruction": "请选择‘山’对应的东巴文字。",
-          "prompt": { "text": "山", "image": null, "audio": null },
-          "options": [
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": "res://Assets/dongba/audio/dongba_03_water.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": "res://Assets/dongba/audio/dongba_02_mountain.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": "res://Assets/dongba/audio/dongba_04_fire.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_05_sun.png", "audio": "res://Assets/dongba/audio/dongba_05_sun.ogg" }
-          ],
-          "answer_index": 1,
-          "explanation": "‘山’的东巴文像连绵的山峰。"
-        },
-        {
-          "id": "dongba_t3_water",
-          "type": "text_to_image",
-          "instruction": "请选择‘水’对应的东巴文字。",
-          "prompt": { "text": "水", "image": null, "audio": null },
-          "options": [
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": "res://Assets/dongba/audio/dongba_04_fire.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": "res://Assets/dongba/audio/dongba_01_person.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": "res://Assets/dongba/audio/dongba_03_water.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": "res://Assets/dongba/audio/dongba_02_mountain.ogg" }
-          ],
-          "answer_index": 2,
-          "explanation": "‘水’的东巴文像流动的水波。"
-        },
-        {
-          "id": "dongba_t3_fire",
-          "type": "text_to_image",
-          "instruction": "请选择‘火’对应的东巴文字。",
-          "prompt": { "text": "火", "image": null, "audio": null },
-          "options": [
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": "res://Assets/dongba/audio/dongba_02_mountain.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": "res://Assets/dongba/audio/dongba_03_water.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": "res://Assets/dongba/audio/dongba_01_person.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": "res://Assets/dongba/audio/dongba_04_fire.ogg" }
-          ],
-          "answer_index": 3,
-          "explanation": "‘火’的东巴文像跳动的火焰。"
-        },
-        {
-          "id": "dongba_t3_sun",
-          "type": "text_to_image",
-          "instruction": "请选择‘太阳’对应的东巴文字。",
-          "prompt": { "text": "太阳", "image": null, "audio": null },
-          "options": [
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": "res://Assets/dongba/audio/dongba_01_person.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_05_sun.png", "audio": "res://Assets/dongba/audio/dongba_05_sun.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": "res://Assets/dongba/audio/dongba_02_mountain.ogg" },
-            { "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": "res://Assets/dongba/audio/dongba_03_water.ogg" }
-          ],
-          "answer_index": 1,
-          "explanation": "‘日 / 太阳’的东巴文像一轮圆日。"
-        },
+		{
+		  "id": "dongba_t3_person",
+		  "type": "text_to_image",
+		  "instruction": "请选择‘人’对应的东巴文字。",
+		  "prompt": { "text": "人", "image": null, "audio": null },
+		  "options": [
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": "res://Assets/dongba/audio/dongba_01_person.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": "res://Assets/dongba/audio/dongba_02_mountain.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": "res://Assets/dongba/audio/dongba_03_water.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": "res://Assets/dongba/audio/dongba_04_fire.ogg" }
+		  ],
+		  "answer_index": 0,
+		  "explanation": "‘人’的东巴文像站立的人形。"
+		},
+		{
+		  "id": "dongba_t3_mountain",
+		  "type": "text_to_image",
+		  "instruction": "请选择‘山’对应的东巴文字。",
+		  "prompt": { "text": "山", "image": null, "audio": null },
+		  "options": [
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": "res://Assets/dongba/audio/dongba_03_water.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": "res://Assets/dongba/audio/dongba_02_mountain.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": "res://Assets/dongba/audio/dongba_04_fire.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_05_sun.png", "audio": "res://Assets/dongba/audio/dongba_05_sun.ogg" }
+		  ],
+		  "answer_index": 1,
+		  "explanation": "‘山’的东巴文像连绵的山峰。"
+		},
+		{
+		  "id": "dongba_t3_water",
+		  "type": "text_to_image",
+		  "instruction": "请选择‘水’对应的东巴文字。",
+		  "prompt": { "text": "水", "image": null, "audio": null },
+		  "options": [
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": "res://Assets/dongba/audio/dongba_04_fire.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": "res://Assets/dongba/audio/dongba_01_person.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": "res://Assets/dongba/audio/dongba_03_water.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": "res://Assets/dongba/audio/dongba_02_mountain.ogg" }
+		  ],
+		  "answer_index": 2,
+		  "explanation": "‘水’的东巴文像流动的水波。"
+		},
+		{
+		  "id": "dongba_t3_fire",
+		  "type": "text_to_image",
+		  "instruction": "请选择‘火’对应的东巴文字。",
+		  "prompt": { "text": "火", "image": null, "audio": null },
+		  "options": [
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": "res://Assets/dongba/audio/dongba_02_mountain.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": "res://Assets/dongba/audio/dongba_03_water.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": "res://Assets/dongba/audio/dongba_01_person.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_04_fire.png", "audio": "res://Assets/dongba/audio/dongba_04_fire.ogg" }
+		  ],
+		  "answer_index": 3,
+		  "explanation": "‘火’的东巴文像跳动的火焰。"
+		},
+		{
+		  "id": "dongba_t3_sun",
+		  "type": "text_to_image",
+		  "instruction": "请选择‘太阳’对应的东巴文字。",
+		  "prompt": { "text": "太阳", "image": null, "audio": null },
+		  "options": [
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_01_person.png", "audio": "res://Assets/dongba/audio/dongba_01_person.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_05_sun.png", "audio": "res://Assets/dongba/audio/dongba_05_sun.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_02_mountain.png", "audio": "res://Assets/dongba/audio/dongba_02_mountain.ogg" },
+			{ "text": null, "image": "res://Assets/dongba/glyphs/dongba_03_water.png", "audio": "res://Assets/dongba/audio/dongba_03_water.ogg" }
+		  ],
+		  "answer_index": 1,
+		  "explanation": "‘日 / 太阳’的东巴文像一轮圆日。"
+		},
 
-        {
-          "id": "dongba_t4_sentence",
-          "type": "sentence_to_text",
-          "instruction": "这句东巴文表达的意思是？",
-          "prompt": { "text": null, "image": "res://Assets/dongba/sentence/dongba_sentence_01.png", "audio": "res://Assets/dongba/sentence/dongba_sentence_01.ogg" },
-          "options": [
-            { "text": "人依山傍水，向火望日", "image": null, "audio": null },
-            { "text": "厚德载物", "image": null, "audio": null },
-            { "text": "上善若水", "image": null, "audio": null },
-            { "text": "日出东方", "image": null, "audio": null }
-          ],
-          "answer_index": 0,
-          "explanation": "这句话由‘人、山、水、火、日’五个字组成。"
-        }
-      ]
-    },
-    "music": {
-      "title": "纳西古乐辨识",
-      "pass_ratio": 0.8,
-      "questions": [
-        {
-          "id": "music_q1",
-          "type": "music_to_text",
-          "instruction": "这段音乐属于哪一种？",
-          "prompt": { "text": null, "image": null, "audio": "res://Assets/music/dongjing/dongjing_01.ogv" },
-          "options": [
-            { "text": "洞经音乐", "image": null, "audio": null },
-            { "text": "白沙细乐", "image": null, "audio": null }
-          ],
-          "answer_index": 0,
-          "explanation": "这段是洞经音乐。"
-        },
-        {
-          "id": "music_q2",
-          "type": "music_to_text",
-          "instruction": "这段音乐属于哪一种？",
-          "prompt": { "text": null, "image": null, "audio": "res://Assets/music/baisha/baisha_01.ogv" },
-          "options": [
-            { "text": "洞经音乐", "image": null, "audio": null },
-            { "text": "白沙细乐", "image": null, "audio": null }
-          ],
-          "answer_index": 1,
-          "explanation": "这段是白沙细乐。"
-        },
-        {
-          "id": "music_q3",
-          "type": "music_to_text",
-          "instruction": "这段音乐属于哪一种？",
-          "prompt": { "text": null, "image": null, "audio": "res://Assets/music/dongjing/dongjing_02.ogv" },
-          "options": [
-            { "text": "洞经音乐", "image": null, "audio": null },
-            { "text": "白沙细乐", "image": null, "audio": null }
-          ],
-          "answer_index": 0,
-          "explanation": "这段是洞经音乐。"
-        },
-        {
-          "id": "music_q4",
-          "type": "music_to_text",
-          "instruction": "这段音乐属于哪一种？",
-          "prompt": { "text": null, "image": null, "audio": "res://Assets/music/baisha/baisha_02.ogv" },
-          "options": [
-            { "text": "洞经音乐", "image": null, "audio": null },
-            { "text": "白沙细乐", "image": null, "audio": null }
-          ],
-          "answer_index": 1,
-          "explanation": "这段是白沙细乐。"
-        },
-        {
-          "id": "music_q5",
-          "type": "music_to_text",
-          "instruction": "这段音乐属于哪一种？",
-          "prompt": { "text": null, "image": null, "audio": "res://Assets/music/dongjing/dongjing_03.ogv" },
-          "options": [
-            { "text": "洞经音乐", "image": null, "audio": null },
-            { "text": "白沙细乐", "image": null, "audio": null }
-          ],
-          "answer_index": 0,
-          "explanation": "这段是洞经音乐。"
-        }
-      ]
-    }
+		{
+		  "id": "dongba_t4_sentence",
+		  "type": "sentence_to_text",
+		  "instruction": "这句东巴文表达的意思是？",
+		  "prompt": { "text": null, "image": "res://Assets/dongba/sentence/dongba_sentence_01.png", "audio": "res://Assets/dongba/sentence/dongba_sentence_01.ogg" },
+		  "options": [
+			{ "text": "人依山傍水，向火望日", "image": null, "audio": null },
+			{ "text": "厚德载物", "image": null, "audio": null },
+			{ "text": "上善若水", "image": null, "audio": null },
+			{ "text": "日出东方", "image": null, "audio": null }
+		  ],
+		  "answer_index": 0,
+		  "explanation": "这句话由‘人、山、水、火、日’五个字组成。"
+		}
+	  ]
+	},
+	"music": {
+	  "title": "纳西古乐辨识",
+	  "pass_ratio": 0.8,
+	  "questions": [
+		{
+		  "id": "music_q1",
+		  "type": "music_to_text",
+		  "instruction": "这段音乐属于哪一种？",
+		  "prompt": { "text": null, "image": null, "audio": "res://Assets/music/dongjing/dongjing_01.ogv" },
+		  "options": [
+			{ "text": "洞经音乐", "image": null, "audio": null },
+			{ "text": "白沙细乐", "image": null, "audio": null }
+		  ],
+		  "answer_index": 0,
+		  "explanation": "这段是洞经音乐。"
+		},
+		{
+		  "id": "music_q2",
+		  "type": "music_to_text",
+		  "instruction": "这段音乐属于哪一种？",
+		  "prompt": { "text": null, "image": null, "audio": "res://Assets/music/baisha/baisha_01.ogv" },
+		  "options": [
+			{ "text": "洞经音乐", "image": null, "audio": null },
+			{ "text": "白沙细乐", "image": null, "audio": null }
+		  ],
+		  "answer_index": 1,
+		  "explanation": "这段是白沙细乐。"
+		},
+		{
+		  "id": "music_q3",
+		  "type": "music_to_text",
+		  "instruction": "这段音乐属于哪一种？",
+		  "prompt": { "text": null, "image": null, "audio": "res://Assets/music/dongjing/dongjing_02.ogv" },
+		  "options": [
+			{ "text": "洞经音乐", "image": null, "audio": null },
+			{ "text": "白沙细乐", "image": null, "audio": null }
+		  ],
+		  "answer_index": 0,
+		  "explanation": "这段是洞经音乐。"
+		},
+		{
+		  "id": "music_q4",
+		  "type": "music_to_text",
+		  "instruction": "这段音乐属于哪一种？",
+		  "prompt": { "text": null, "image": null, "audio": "res://Assets/music/baisha/baisha_02.ogv" },
+		  "options": [
+			{ "text": "洞经音乐", "image": null, "audio": null },
+			{ "text": "白沙细乐", "image": null, "audio": null }
+		  ],
+		  "answer_index": 1,
+		  "explanation": "这段是白沙细乐。"
+		},
+		{
+		  "id": "music_q5",
+		  "type": "music_to_text",
+		  "instruction": "这段音乐属于哪一种？",
+		  "prompt": { "text": null, "image": null, "audio": "res://Assets/music/dongjing/dongjing_03.ogv" },
+		  "options": [
+			{ "text": "洞经音乐", "image": null, "audio": null },
+			{ "text": "白沙细乐", "image": null, "audio": null }
+		  ],
+		  "answer_index": 0,
+		  "explanation": "这段是洞经音乐。"
+		}
+	  ]
+	}
   }
 }

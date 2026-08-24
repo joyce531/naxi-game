@@ -1,136 +1,111 @@
-[gd_resource type="Theme" load_steps=38 format=3]
+[gd_resource type="Theme" format=3 uid="uid://di8ud5baqvnjt"]
 
 [ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_audio/quiz_audio_bg_normal_texture.tres" id="1_audio_normal"]
 [ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_audio/quiz_audio_bg_hover_texture.tres" id="2_audio_hover"]
 [ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_audio/quiz_audio_bg_pressed_texture.tres" id="3_audio_pressed"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_option/quiz_option_bg_normal_9p.png" id="4_option_normal"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_option/quiz_option_bg_hover_9p.png" id="5_option_hover"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_option/quiz_option_bg_pressed_9p.png" id="6_option_pressed"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_option/quiz_option_bg_disabled_9p.png" id="7_option_disabled"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_option/quiz_option_bg_correct_9p.png" id="8_option_correct"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_option/quiz_option_bg_wrong_9p.png" id="9_option_wrong"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_option/quiz_option_bg_skipped_9p.png" id="10_option_skipped"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_menu/quiz_menu_bg_normal_9p.png" id="11_menu_trigger_normal"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_menu/quiz_menu_bg_hover_9p.png" id="12_menu_trigger_hover"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_menu/quiz_menu_bg_pressed_9p.png" id="13_menu_trigger_pressed"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_menu/menu_action_normal_9p.png" id="14_menu_action_normal"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_menu/menu_action_hover_9p.png" id="15_menu_action_hover"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_menu/menu_action_pressed_9p.png" id="16_menu_action_pressed"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_menu/menu_action_disabled_9p.png" id="17_menu_action_disabled"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/quiz/quiz_menu/menu_popup_panel_9p.png" id="18_menu_panel"]
-
-[sub_resource type="SystemFont" id="SystemFont_quiz_chinese"]
-font_names = PackedStringArray("Kaiti SC", "STKaiti", "KaiTi", "Songti SC")
+[ext_resource type="Texture2D" uid="uid://dcl1evvdsgant" path="res://Assets/vn/UI/quiz/quiz_option/quiz_option_bg_normal_9p.png" id="4_option_normal"]
+[ext_resource type="Texture2D" uid="uid://r7ewloh7x5hu" path="res://Assets/vn/UI/quiz/quiz_option/quiz_option_bg_hover_9p.png" id="5_option_hover"]
+[ext_resource type="Texture2D" uid="uid://dod0bmpj7gl2a" path="res://Assets/vn/UI/quiz/quiz_option/quiz_option_bg_pressed_9p.png" id="6_option_pressed"]
+[ext_resource type="Texture2D" uid="uid://cq7jo7f7hcdts" path="res://Assets/vn/UI/quiz/quiz_option/quiz_option_bg_disabled_9p.png" id="7_option_disabled"]
+[ext_resource type="Texture2D" uid="uid://bxtfeol3injr0" path="res://Assets/vn/UI/quiz/quiz_option/quiz_option_bg_correct_9p.png" id="8_option_correct"]
+[ext_resource type="Texture2D" uid="uid://cj5wysey0yi2d" path="res://Assets/vn/UI/quiz/quiz_option/quiz_option_bg_wrong_9p.png" id="9_option_wrong"]
+[ext_resource type="Texture2D" uid="uid://btag1iu1dh8kt" path="res://Assets/vn/UI/quiz/quiz_option/quiz_option_bg_skipped_9p.png" id="10_option_skipped"]
+[ext_resource type="Texture2D" uid="uid://bbo5lqgimvftc" path="res://Assets/vn/UI/quiz/quiz_menu/quiz_menu_bg_normal_9p.png" id="11_menu_trigger_normal"]
+[ext_resource type="Texture2D" uid="uid://c2y7s05fwdi62" path="res://Assets/vn/UI/quiz/quiz_menu/quiz_menu_bg_hover_9p.png" id="12_menu_trigger_hover"]
+[ext_resource type="Texture2D" uid="uid://c60mljmryw1ta" path="res://Assets/vn/UI/quiz/quiz_menu/quiz_menu_bg_pressed_9p.png" id="13_menu_trigger_pressed"]
+[ext_resource type="Texture2D" uid="uid://cwjnj6ns1l8hl" path="res://Assets/vn/UI/quiz/quiz_menu/menu_action_normal_9p.png" id="14_menu_action_normal"]
+[ext_resource type="Texture2D" uid="uid://cvql6l5khjv73" path="res://Assets/vn/UI/quiz/quiz_menu/menu_action_hover_9p.png" id="15_menu_action_hover"]
+[ext_resource type="Texture2D" uid="uid://bjninfo0134kj" path="res://Assets/vn/UI/quiz/quiz_menu/menu_action_pressed_9p.png" id="16_menu_action_pressed"]
+[ext_resource type="Texture2D" uid="uid://i7yiaunrxv5q" path="res://Assets/vn/UI/quiz/quiz_menu/menu_action_disabled_9p.png" id="17_menu_action_disabled"]
+[ext_resource type="Texture2D" uid="uid://cd53n40pmrn1s" path="res://Assets/vn/UI/quiz/quiz_menu/menu_popup_panel_9p.png" id="18_menu_panel"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_audio_normal"]
+content_margin_left = 18.0
+content_margin_top = 8.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
 texture = ExtResource("1_audio_normal")
 texture_margin_left = 68.0
 texture_margin_top = 24.0
 texture_margin_right = 64.0
 texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_audio_hover"]
 content_margin_left = 18.0
 content_margin_top = 8.0
 content_margin_right = 18.0
 content_margin_bottom = 8.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_audio_hover"]
 texture = ExtResource("2_audio_hover")
 texture_margin_left = 68.0
 texture_margin_top = 24.0
 texture_margin_right = 64.0
 texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_audio_pressed"]
 content_margin_left = 18.0
 content_margin_top = 8.0
 content_margin_right = 18.0
 content_margin_bottom = 8.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_audio_pressed"]
 texture = ExtResource("3_audio_pressed")
 texture_margin_left = 68.0
 texture_margin_top = 24.0
 texture_margin_right = 64.0
 texture_margin_bottom = 24.0
-content_margin_left = 18.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_menu_action_disabled"]
+content_margin_left = 16.0
 content_margin_top = 8.0
-content_margin_right = 18.0
+content_margin_right = 16.0
 content_margin_bottom = 8.0
+texture = ExtResource("17_menu_action_disabled")
+texture_margin_left = 40.0
+texture_margin_top = 24.0
+texture_margin_right = 40.0
+texture_margin_bottom = 24.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option_normal"]
-texture = ExtResource("4_option_normal")
-texture_margin_left = 34.0
-texture_margin_top = 38.0
-texture_margin_right = 34.0
-texture_margin_bottom = 38.0
-content_margin_left = 24.0
-content_margin_top = 12.0
-content_margin_right = 24.0
-content_margin_bottom = 12.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_menu_action_hover"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+texture = ExtResource("15_menu_action_hover")
+texture_margin_left = 40.0
+texture_margin_top = 24.0
+texture_margin_right = 40.0
+texture_margin_bottom = 24.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option_hover"]
-texture = ExtResource("5_option_hover")
-texture_margin_left = 34.0
-texture_margin_top = 38.0
-texture_margin_right = 34.0
-texture_margin_bottom = 38.0
-content_margin_left = 24.0
-content_margin_top = 12.0
-content_margin_right = 24.0
-content_margin_bottom = 12.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_menu_action_pressed"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+texture = ExtResource("16_menu_action_pressed")
+texture_margin_left = 40.0
+texture_margin_top = 24.0
+texture_margin_right = 40.0
+texture_margin_bottom = 24.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option_pressed"]
-texture = ExtResource("6_option_pressed")
-texture_margin_left = 34.0
-texture_margin_top = 38.0
-texture_margin_right = 34.0
-texture_margin_bottom = 38.0
-content_margin_left = 24.0
-content_margin_top = 12.0
-content_margin_right = 24.0
-content_margin_bottom = 12.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_menu_action_normal"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+texture = ExtResource("14_menu_action_normal")
+texture_margin_left = 40.0
+texture_margin_top = 24.0
+texture_margin_right = 40.0
+texture_margin_bottom = 24.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option_disabled"]
-texture = ExtResource("7_option_disabled")
-texture_margin_left = 34.0
-texture_margin_top = 38.0
-texture_margin_right = 34.0
-texture_margin_bottom = 38.0
-content_margin_left = 24.0
-content_margin_top = 12.0
-content_margin_right = 24.0
-content_margin_bottom = 12.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option_correct"]
-texture = ExtResource("8_option_correct")
-texture_margin_left = 34.0
-texture_margin_top = 38.0
-texture_margin_right = 34.0
-texture_margin_bottom = 38.0
-content_margin_left = 24.0
-content_margin_top = 12.0
-content_margin_right = 24.0
-content_margin_bottom = 12.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option_wrong"]
-texture = ExtResource("9_option_wrong")
-texture_margin_left = 34.0
-texture_margin_top = 38.0
-texture_margin_right = 34.0
-texture_margin_bottom = 38.0
-content_margin_left = 24.0
-content_margin_top = 12.0
-content_margin_right = 24.0
-content_margin_bottom = 12.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option_skipped"]
-texture = ExtResource("10_option_skipped")
-texture_margin_left = 34.0
-texture_margin_top = 38.0
-texture_margin_right = 34.0
-texture_margin_bottom = 38.0
-content_margin_left = 24.0
-content_margin_top = 12.0
-content_margin_right = 24.0
-content_margin_bottom = 12.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_menu_panel"]
+content_margin_left = 36.0
+content_margin_top = 60.0
+content_margin_right = 36.0
+content_margin_bottom = 60.0
+texture = ExtResource("18_menu_panel")
+texture_margin_left = 48.0
+texture_margin_top = 48.0
+texture_margin_right = 48.0
+texture_margin_bottom = 48.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_menu_trigger_normal"]
 texture = ExtResource("11_menu_trigger_normal")
@@ -141,151 +116,176 @@ texture = ExtResource("12_menu_trigger_hover")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_menu_trigger_pressed"]
 texture = ExtResource("13_menu_trigger_pressed")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_menu_action_normal"]
-texture = ExtResource("14_menu_action_normal")
-texture_margin_left = 40.0
-texture_margin_top = 24.0
-texture_margin_right = 40.0
-texture_margin_bottom = 24.0
-content_margin_left = 16.0
-content_margin_top = 8.0
-content_margin_right = 16.0
-content_margin_bottom = 8.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option_disabled"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+texture = ExtResource("7_option_disabled")
+texture_margin_left = 34.0
+texture_margin_top = 38.0
+texture_margin_right = 34.0
+texture_margin_bottom = 38.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_menu_action_hover"]
-texture = ExtResource("15_menu_action_hover")
-texture_margin_left = 40.0
-texture_margin_top = 24.0
-texture_margin_right = 40.0
-texture_margin_bottom = 24.0
-content_margin_left = 16.0
-content_margin_top = 8.0
-content_margin_right = 16.0
-content_margin_bottom = 8.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option_hover"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+texture = ExtResource("5_option_hover")
+texture_margin_left = 34.0
+texture_margin_top = 38.0
+texture_margin_right = 34.0
+texture_margin_bottom = 38.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_menu_action_pressed"]
-texture = ExtResource("16_menu_action_pressed")
-texture_margin_left = 40.0
-texture_margin_top = 24.0
-texture_margin_right = 40.0
-texture_margin_bottom = 24.0
-content_margin_left = 16.0
-content_margin_top = 8.0
-content_margin_right = 16.0
-content_margin_bottom = 8.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option_pressed"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+texture = ExtResource("6_option_pressed")
+texture_margin_left = 34.0
+texture_margin_top = 38.0
+texture_margin_right = 34.0
+texture_margin_bottom = 38.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_menu_action_disabled"]
-texture = ExtResource("17_menu_action_disabled")
-texture_margin_left = 40.0
-texture_margin_top = 24.0
-texture_margin_right = 40.0
-texture_margin_bottom = 24.0
-content_margin_left = 16.0
-content_margin_top = 8.0
-content_margin_right = 16.0
-content_margin_bottom = 8.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option_normal"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+texture = ExtResource("4_option_normal")
+texture_margin_left = 34.0
+texture_margin_top = 38.0
+texture_margin_right = 34.0
+texture_margin_bottom = 38.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_menu_panel"]
-texture = ExtResource("18_menu_panel")
-texture_margin_left = 48.0
-texture_margin_top = 48.0
-texture_margin_right = 48.0
-texture_margin_bottom = 48.0
-content_margin_left = 36.0
-content_margin_top = 60.0
-content_margin_right = 36.0
-content_margin_bottom = 60.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option_correct"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+texture = ExtResource("8_option_correct")
+texture_margin_left = 34.0
+texture_margin_top = 38.0
+texture_margin_right = 34.0
+texture_margin_bottom = 38.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option_skipped"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+texture = ExtResource("10_option_skipped")
+texture_margin_left = 34.0
+texture_margin_top = 38.0
+texture_margin_right = 34.0
+texture_margin_bottom = 38.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option_wrong"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+texture = ExtResource("9_option_wrong")
+texture_margin_left = 34.0
+texture_margin_top = 38.0
+texture_margin_right = 34.0
+texture_margin_bottom = 38.0
+
+[sub_resource type="SystemFont" id="SystemFont_quiz_chinese"]
+font_names = PackedStringArray("Kaiti SC", "STKaiti", "KaiTi", "Songti SC")
 
 [resource]
 default_font = SubResource("SystemFont_quiz_chinese")
 default_font_size = 30
-Label/colors/font_color = Color(0.227451, 0.129412, 0.0705882, 1)
 Button/colors/font_color = Color(0.227451, 0.129412, 0.0705882, 1)
-Button/colors/font_hover_color = Color(0.14902, 0.0705882, 0.027451, 1)
-Button/colors/font_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
-Button/colors/font_hover_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
-Button/colors/font_focus_color = Color(0.227451, 0.129412, 0.0705882, 1)
 Button/colors/font_disabled_color = Color(0.501961, 0.427451, 0.345098, 1)
+Button/colors/font_focus_color = Color(0.227451, 0.129412, 0.0705882, 1)
+Button/colors/font_hover_color = Color(0.14902, 0.0705882, 0.027451, 1)
+Button/colors/font_hover_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
+Button/colors/font_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
+Label/colors/font_color = Color(0.227451, 0.129412, 0.0705882, 1)
 QuizAudioButton/base_type = &"Button"
 QuizAudioButton/colors/font_color = Color(0.227451, 0.129412, 0.0705882, 1)
-QuizAudioButton/colors/font_hover_color = Color(0.14902, 0.0705882, 0.027451, 1)
-QuizAudioButton/colors/font_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
-QuizAudioButton/colors/font_hover_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
-QuizAudioButton/colors/font_focus_color = Color(0.227451, 0.129412, 0.0705882, 1)
 QuizAudioButton/colors/font_disabled_color = Color(0.501961, 0.427451, 0.345098, 1)
+QuizAudioButton/colors/font_focus_color = Color(0.227451, 0.129412, 0.0705882, 1)
+QuizAudioButton/colors/font_hover_color = Color(0.14902, 0.0705882, 0.027451, 1)
+QuizAudioButton/colors/font_hover_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
+QuizAudioButton/colors/font_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
 QuizAudioButton/constants/h_separation = 10
 QuizAudioButton/constants/icon_max_width = 32
 QuizAudioButton/font_sizes/font_size = 28
-QuizAudioButton/styles/normal = SubResource("StyleBoxTexture_audio_normal")
-QuizAudioButton/styles/hover = SubResource("StyleBoxTexture_audio_hover")
-QuizAudioButton/styles/pressed = SubResource("StyleBoxTexture_audio_pressed")
-QuizAudioButton/styles/hover_pressed = SubResource("StyleBoxTexture_audio_pressed")
-QuizAudioButton/styles/focus = SubResource("StyleBoxTexture_audio_hover")
 QuizAudioButton/styles/disabled = SubResource("StyleBoxTexture_audio_normal")
+QuizAudioButton/styles/focus = SubResource("StyleBoxTexture_audio_hover")
+QuizAudioButton/styles/hover = SubResource("StyleBoxTexture_audio_hover")
+QuizAudioButton/styles/hover_pressed = SubResource("StyleBoxTexture_audio_pressed")
+QuizAudioButton/styles/normal = SubResource("StyleBoxTexture_audio_normal")
+QuizAudioButton/styles/pressed = SubResource("StyleBoxTexture_audio_pressed")
+QuizMenuAction/base_type = &"Button"
+QuizMenuAction/colors/font_color = Color(0.227451, 0.129412, 0.0705882, 1)
+QuizMenuAction/colors/font_disabled_color = Color(0.501961, 0.427451, 0.345098, 1)
+QuizMenuAction/colors/font_focus_color = Color(0.227451, 0.129412, 0.0705882, 1)
+QuizMenuAction/colors/font_hover_color = Color(0.14902, 0.0705882, 0.027451, 1)
+QuizMenuAction/colors/font_hover_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
+QuizMenuAction/colors/font_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
+QuizMenuAction/font_sizes/font_size = 36
+QuizMenuAction/styles/disabled = SubResource("StyleBoxTexture_menu_action_disabled")
+QuizMenuAction/styles/focus = SubResource("StyleBoxTexture_menu_action_hover")
+QuizMenuAction/styles/hover = SubResource("StyleBoxTexture_menu_action_hover")
+QuizMenuAction/styles/hover_pressed = SubResource("StyleBoxTexture_menu_action_pressed")
+QuizMenuAction/styles/normal = SubResource("StyleBoxTexture_menu_action_normal")
+QuizMenuAction/styles/pressed = SubResource("StyleBoxTexture_menu_action_pressed")
+QuizMenuPanel/base_type = &"PanelContainer"
+QuizMenuPanel/styles/panel = SubResource("StyleBoxTexture_menu_panel")
+QuizMenuTrigger/base_type = &"Button"
+QuizMenuTrigger/styles/disabled = SubResource("StyleBoxTexture_menu_trigger_normal")
+QuizMenuTrigger/styles/focus = SubResource("StyleBoxTexture_menu_trigger_hover")
+QuizMenuTrigger/styles/hover = SubResource("StyleBoxTexture_menu_trigger_hover")
+QuizMenuTrigger/styles/hover_pressed = SubResource("StyleBoxTexture_menu_trigger_pressed")
+QuizMenuTrigger/styles/normal = SubResource("StyleBoxTexture_menu_trigger_normal")
+QuizMenuTrigger/styles/pressed = SubResource("StyleBoxTexture_menu_trigger_pressed")
 QuizOptionButton/base_type = &"Button"
 QuizOptionButton/colors/font_color = Color(0.227451, 0.129412, 0.0705882, 1)
-QuizOptionButton/colors/font_hover_color = Color(0.14902, 0.0705882, 0.027451, 1)
-QuizOptionButton/colors/font_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
-QuizOptionButton/colors/font_hover_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
-QuizOptionButton/colors/font_focus_color = Color(0.227451, 0.129412, 0.0705882, 1)
 QuizOptionButton/colors/font_disabled_color = Color(0.501961, 0.427451, 0.345098, 1)
+QuizOptionButton/colors/font_focus_color = Color(0.227451, 0.129412, 0.0705882, 1)
+QuizOptionButton/colors/font_hover_color = Color(0.14902, 0.0705882, 0.027451, 1)
+QuizOptionButton/colors/font_hover_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
+QuizOptionButton/colors/font_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
 QuizOptionButton/font_sizes/font_size = 36
-QuizOptionButton/styles/normal = SubResource("StyleBoxTexture_option_normal")
-QuizOptionButton/styles/hover = SubResource("StyleBoxTexture_option_hover")
-QuizOptionButton/styles/pressed = SubResource("StyleBoxTexture_option_pressed")
-QuizOptionButton/styles/hover_pressed = SubResource("StyleBoxTexture_option_pressed")
-QuizOptionButton/styles/focus = SubResource("StyleBoxTexture_option_hover")
 QuizOptionButton/styles/disabled = SubResource("StyleBoxTexture_option_disabled")
+QuizOptionButton/styles/focus = SubResource("StyleBoxTexture_option_hover")
+QuizOptionButton/styles/hover = SubResource("StyleBoxTexture_option_hover")
+QuizOptionButton/styles/hover_pressed = SubResource("StyleBoxTexture_option_pressed")
+QuizOptionButton/styles/normal = SubResource("StyleBoxTexture_option_normal")
+QuizOptionButton/styles/pressed = SubResource("StyleBoxTexture_option_pressed")
 QuizOptionCorrect/base_type = &"Button"
 QuizOptionCorrect/colors/font_color = Color(0.117647, 0.2, 0.0705882, 1)
 QuizOptionCorrect/colors/font_disabled_color = Color(0.117647, 0.2, 0.0705882, 1)
 QuizOptionCorrect/font_sizes/font_size = 36
-QuizOptionCorrect/styles/normal = SubResource("StyleBoxTexture_option_correct")
-QuizOptionCorrect/styles/hover = SubResource("StyleBoxTexture_option_correct")
-QuizOptionCorrect/styles/pressed = SubResource("StyleBoxTexture_option_correct")
-QuizOptionCorrect/styles/hover_pressed = SubResource("StyleBoxTexture_option_correct")
-QuizOptionCorrect/styles/focus = SubResource("StyleBoxTexture_option_correct")
 QuizOptionCorrect/styles/disabled = SubResource("StyleBoxTexture_option_correct")
-QuizOptionWrong/base_type = &"Button"
-QuizOptionWrong/colors/font_color = Color(0.278431, 0.054902, 0.0431373, 1)
-QuizOptionWrong/colors/font_disabled_color = Color(0.278431, 0.054902, 0.0431373, 1)
-QuizOptionWrong/font_sizes/font_size = 36
-QuizOptionWrong/styles/normal = SubResource("StyleBoxTexture_option_wrong")
-QuizOptionWrong/styles/hover = SubResource("StyleBoxTexture_option_wrong")
-QuizOptionWrong/styles/pressed = SubResource("StyleBoxTexture_option_wrong")
-QuizOptionWrong/styles/hover_pressed = SubResource("StyleBoxTexture_option_wrong")
-QuizOptionWrong/styles/focus = SubResource("StyleBoxTexture_option_wrong")
-QuizOptionWrong/styles/disabled = SubResource("StyleBoxTexture_option_wrong")
+QuizOptionCorrect/styles/focus = SubResource("StyleBoxTexture_option_correct")
+QuizOptionCorrect/styles/hover = SubResource("StyleBoxTexture_option_correct")
+QuizOptionCorrect/styles/hover_pressed = SubResource("StyleBoxTexture_option_correct")
+QuizOptionCorrect/styles/normal = SubResource("StyleBoxTexture_option_correct")
+QuizOptionCorrect/styles/pressed = SubResource("StyleBoxTexture_option_correct")
 QuizOptionSkipped/base_type = &"Button"
 QuizOptionSkipped/colors/font_color = Color(0.278431, 0.164706, 0.0156863, 1)
 QuizOptionSkipped/colors/font_disabled_color = Color(0.278431, 0.164706, 0.0156863, 1)
 QuizOptionSkipped/font_sizes/font_size = 36
-QuizOptionSkipped/styles/normal = SubResource("StyleBoxTexture_option_skipped")
-QuizOptionSkipped/styles/hover = SubResource("StyleBoxTexture_option_skipped")
-QuizOptionSkipped/styles/pressed = SubResource("StyleBoxTexture_option_skipped")
-QuizOptionSkipped/styles/hover_pressed = SubResource("StyleBoxTexture_option_skipped")
-QuizOptionSkipped/styles/focus = SubResource("StyleBoxTexture_option_skipped")
 QuizOptionSkipped/styles/disabled = SubResource("StyleBoxTexture_option_skipped")
-QuizMenuTrigger/base_type = &"Button"
-QuizMenuTrigger/styles/normal = SubResource("StyleBoxTexture_menu_trigger_normal")
-QuizMenuTrigger/styles/hover = SubResource("StyleBoxTexture_menu_trigger_hover")
-QuizMenuTrigger/styles/pressed = SubResource("StyleBoxTexture_menu_trigger_pressed")
-QuizMenuTrigger/styles/hover_pressed = SubResource("StyleBoxTexture_menu_trigger_pressed")
-QuizMenuTrigger/styles/focus = SubResource("StyleBoxTexture_menu_trigger_hover")
-QuizMenuTrigger/styles/disabled = SubResource("StyleBoxTexture_menu_trigger_normal")
-QuizMenuAction/base_type = &"Button"
-QuizMenuAction/colors/font_color = Color(0.227451, 0.129412, 0.0705882, 1)
-QuizMenuAction/colors/font_hover_color = Color(0.14902, 0.0705882, 0.027451, 1)
-QuizMenuAction/colors/font_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
-QuizMenuAction/colors/font_hover_pressed_color = Color(0.14902, 0.0705882, 0.027451, 1)
-QuizMenuAction/colors/font_focus_color = Color(0.227451, 0.129412, 0.0705882, 1)
-QuizMenuAction/colors/font_disabled_color = Color(0.501961, 0.427451, 0.345098, 1)
-QuizMenuAction/font_sizes/font_size = 36
-QuizMenuAction/styles/normal = SubResource("StyleBoxTexture_menu_action_normal")
-QuizMenuAction/styles/hover = SubResource("StyleBoxTexture_menu_action_hover")
-QuizMenuAction/styles/pressed = SubResource("StyleBoxTexture_menu_action_pressed")
-QuizMenuAction/styles/hover_pressed = SubResource("StyleBoxTexture_menu_action_pressed")
-QuizMenuAction/styles/focus = SubResource("StyleBoxTexture_menu_action_hover")
-QuizMenuAction/styles/disabled = SubResource("StyleBoxTexture_menu_action_disabled")
-QuizMenuPanel/base_type = &"PanelContainer"
-QuizMenuPanel/styles/panel = SubResource("StyleBoxTexture_menu_panel")
+QuizOptionSkipped/styles/focus = SubResource("StyleBoxTexture_option_skipped")
+QuizOptionSkipped/styles/hover = SubResource("StyleBoxTexture_option_skipped")
+QuizOptionSkipped/styles/hover_pressed = SubResource("StyleBoxTexture_option_skipped")
+QuizOptionSkipped/styles/normal = SubResource("StyleBoxTexture_option_skipped")
+QuizOptionSkipped/styles/pressed = SubResource("StyleBoxTexture_option_skipped")
+QuizOptionWrong/base_type = &"Button"
+QuizOptionWrong/colors/font_color = Color(0.278431, 0.054902, 0.0431373, 1)
+QuizOptionWrong/colors/font_disabled_color = Color(0.278431, 0.054902, 0.0431373, 1)
+QuizOptionWrong/font_sizes/font_size = 36
+QuizOptionWrong/styles/disabled = SubResource("StyleBoxTexture_option_wrong")
+QuizOptionWrong/styles/focus = SubResource("StyleBoxTexture_option_wrong")
+QuizOptionWrong/styles/hover = SubResource("StyleBoxTexture_option_wrong")
+QuizOptionWrong/styles/hover_pressed = SubResource("StyleBoxTexture_option_wrong")
+QuizOptionWrong/styles/normal = SubResource("StyleBoxTexture_option_wrong")
+QuizOptionWrong/styles/pressed = SubResource("StyleBoxTexture_option_wrong")

@@ -1,0 +1,13 @@
+[background arg="res://Assets/vn/backgrounds/bg_in_the_room.png"]
+join tourist (default) left
+join host (default) right
+host: 你有没有发现，刚才答题的时候，不同结果播放的音乐不一样？
+host: 来，听听这两段。
+audio "res://Assets/_placeholder/silent.wav"
+[wait time="1.0"]
+host: 这是失败时的音乐——洞经音乐。
+audio "res://Assets/_placeholder/silent.wav"
+[wait time="1.0"]
+host: 这是胜利时的音乐——白沙细乐。
+host: 它们都属于纳西古乐，是纳西族传统音乐的重要组成部分。
+host: 要不要来分辨一下这两种音乐？

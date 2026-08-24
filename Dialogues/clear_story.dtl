@@ -1,0 +1,5 @@
+[background arg="res://Assets/vn/backgrounds/bg_in_the_room.png"]
+join tourist (default) left
+join host (default) right
+host: 厉害！没想到你这么快就认识了这几个字。
+host: 其实在东巴文的背后，纳西族还有更悠久、更动人的文化。

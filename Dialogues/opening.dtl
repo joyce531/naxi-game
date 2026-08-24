@@ -1,0 +1,9 @@
+[background arg="res://Assets/vn/backgrounds/bg_at_home_yard.png"]
+join tourist (default) left
+join host (default) right
+host: 欢迎欢迎，快进来坐！
+tourist: 谢谢！你们家真有味道。
+tourist: 咦，墙上这幅作品是什么？像画，又不像画；像文字，又不像文字。
+host: 这是纳西族的传统文字——东巴文。
+host: 这幅作品写的是“厚德载物”。
+tourist: 为什么这些文字看起来像图画呢？

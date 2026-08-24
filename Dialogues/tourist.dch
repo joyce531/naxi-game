@@ -1,0 +1,85 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+&"_translation_id": "",
+&"color": Color(1, 0.85, 0.5, 1),
+&"custom_info": {
+"prefix": "",
+"sound_mood_default": "",
+"sound_moods": {},
+"style": "",
+"suffix": ""
+},
+&"default_portrait": "default",
+&"description": "",
+&"display_name": "游客",
+&"mirror": false,
+&"nicknames": [""],
+&"offset": Vector2(0, 0),
+&"portraits": {
+"default": {
+"export_overrides": {
+"image": "res://Assets/vn/portraits/char_female_neutral.png"
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1.0,
+"scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn"
+},
+"happy_01": {
+"export_overrides": {
+"image": "res://Assets/vn/portraits/char_female_happy_01.png"
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1.0,
+"scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn"
+},
+"happy_02": {
+"export_overrides": {
+"image": "res://Assets/vn/portraits/char_female_happy_02.png"
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1.0,
+"scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn"
+},
+"happy_03": {
+"export_overrides": {
+"image": "res://Assets/vn/portraits/char_female_happy_03.png"
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1.0,
+"scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn"
+},
+"sad_01": {
+"export_overrides": {
+"image": "res://Assets/vn/portraits/char_female_sad_01.png"
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1.0,
+"scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn"
+},
+"sad_02": {
+"export_overrides": {
+"image": "res://Assets/vn/portraits/char_female_sad_02.png"
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1.0,
+"scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn"
+},
+"sad_03": {
+"export_overrides": {
+"image": "res://Assets/vn/portraits/char_female_sad_03.png"
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1.0,
+"scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn"
+}
+},
+&"scale": 1.0
+}

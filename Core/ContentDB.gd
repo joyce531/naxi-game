@@ -44,6 +44,13 @@ func get_quiz(quiz_id: String) -> Dictionary:
 	}
 
 
+## Returns one dance definition from the shared content manifest.
+func get_dance(dance_id: String) -> Dictionary:
+	var dances: Dictionary = _data.get("dances", {})
+	var dance: Variant = dances.get(dance_id, {})
+	return dance if typeof(dance) == TYPE_DICTIONARY else {}
+
+
 func _is_usable(path: Variant) -> bool:
 	return typeof(path) == TYPE_STRING and path != "" and ResourceLoader.exists(path)
 

@@ -30,6 +30,7 @@ const VISIBLE_SCENES := [
 	"res://Scenes/VNStage.tscn",
 	"res://Scenes/DongbaQuiz.tscn",
 	"res://Scenes/MusicQuiz.tscn",
+	"res://Scenes/DanceLearning.tscn",
 ]
 
 

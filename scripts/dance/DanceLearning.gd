@@ -350,7 +350,7 @@ func _build_cue_list(actions: Array) -> void:
 
 func _semantic_input(event: InputEvent) -> String:
 	if event is InputEventKey:
-		if event.keycode == KEY_LEFT or event.keycode == KEY_A: return "left"
-		if event.keycode == KEY_RIGHT or event.keycode == KEY_D: return "right"
-		if event.keycode == KEY_UP or event.keycode == KEY_W: return "up"
+		if event.keycode == KEY_LEFT: return "left"
+		if event.keycode == KEY_RIGHT: return "right"
+		if event.keycode == KEY_UP: return "up"
 	return ""

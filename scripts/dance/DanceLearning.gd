@@ -39,6 +39,14 @@ func _ready() -> void:
 	_ui = _dance.get("ui", {})
 	_build_ui()
 	_show_phase(Phase.OVERVIEW)
+	# DanceLearning builds its controls at runtime, so explicitly refresh the
+	# shared ControlBar here. This keeps pause, restart, save-and-quit, and
+	# quit-without-saving available as soon as the dance scene appears.
+	call_deferred("_refresh_shared_menu")
+
+
+func _refresh_shared_menu() -> void:
+	ControlBar.refresh_for_current_scene()
 
 
 func _process(_delta: float) -> void:

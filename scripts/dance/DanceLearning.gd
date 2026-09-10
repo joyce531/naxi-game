@@ -164,6 +164,11 @@ func _show_phase(phase: Phase) -> void:
 	_clear.visible = phase == Phase.CUE_ARRANGE
 	_token_source.visible = phase == Phase.CUE_ARRANGE
 	_answer_box.visible = phase == Phase.CUE_ARRANGE
+	# The keyboard practice follows the three demonstrations but does not replay
+	# a fourth dance video. It is a cue-only memory exercise.
+	var show_video := phase != Phase.ACTION_PRACTICE
+	_video.visible = show_video
+	_placeholder.visible = show_video
 	match phase:
 		Phase.OVERVIEW:
 			_phase_title.text = _text("overview")
@@ -181,9 +186,9 @@ func _show_phase(phase: Phase) -> void:
 		Phase.ACTION_PRACTICE:
 			_phase_title.text = _text("practice")
 			_primary.text = _text("next")
-			_secondary.text = _text("replay")
+			_secondary.visible = false
+			_video.stop()
 			_action_index = 0
-			_load_step_video(_current_step())
 			_refresh_practice()
 		Phase.CUE_ARRANGE:
 			_phase_title.text = _text("arrange")

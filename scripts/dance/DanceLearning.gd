@@ -71,23 +71,23 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func _build_ui() -> void:
-	var bg := ColorRect.new()
-	bg.color = Color("#20170f")
-	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
-	add_child(bg)
 	var margin := MarginContainer.new()
 	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
-	for side in ["margin_left", "margin_right", "margin_top", "margin_bottom"]:
-		margin.add_theme_constant_override(side, 48)
+	margin.add_theme_constant_override("margin_left", 128)
+	margin.add_theme_constant_override("margin_right", 128)
+	margin.add_theme_constant_override("margin_top", 36)
+	margin.add_theme_constant_override("margin_bottom", 62)
 	add_child(margin)
 	var root := VBoxContainer.new()
 	root.add_theme_constant_override("separation", 16)
 	margin.add_child(root)
 	_title = _label(46)
+	_title.add_theme_color_override("font_color", Color("#3b210f"))
 	_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_title.text = str(_dance.get("title", ""))
 	root.add_child(_title)
 	_phase_title = _label(28)
+	_phase_title.add_theme_color_override("font_color", Color("#7a4827"))
 	_phase_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	root.add_child(_phase_title)
 	var body := HBoxContainer.new()
@@ -98,7 +98,7 @@ func _build_ui() -> void:
 	media.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	body.add_child(media)
 	_video = VideoStreamPlayer.new()
-	_video.custom_minimum_size = Vector2(960, 540)
+	_video.custom_minimum_size = Vector2(900, 506)
 	_video.expand = true
 	media.add_child(_video)
 	_placeholder = _label(20)
@@ -113,6 +113,7 @@ func _build_ui() -> void:
 	_detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	info.add_child(_detail)
 	_cue_current = _label(42)
+	_cue_current.add_theme_color_override("font_color", Color("#a84d19"))
 	_cue_current.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	info.add_child(_cue_current)
 	_cue_next = _label(26)
@@ -133,14 +134,17 @@ func _build_ui() -> void:
 	controls.add_theme_constant_override("separation", 16)
 	root.add_child(controls)
 	_secondary = Button.new()
+	_secondary.theme_type_variation = &"QuizMenuAction"
 	_secondary.custom_minimum_size = Vector2(200, 60)
 	_secondary.pressed.connect(_on_secondary)
 	controls.add_child(_secondary)
 	_clear = Button.new()
+	_clear.theme_type_variation = &"QuizMenuAction"
 	_clear.custom_minimum_size = Vector2(150, 60)
 	_clear.pressed.connect(_clear_answer)
 	controls.add_child(_clear)
 	_primary = Button.new()
+	_primary.theme_type_variation = &"QuizMenuAction"
 	_primary.custom_minimum_size = Vector2(260, 60)
 	_primary.pressed.connect(_on_primary)
 	controls.add_child(_primary)
@@ -258,11 +262,22 @@ func _start_arrangement() -> void:
 
 
 func _refresh_tokens() -> void:
-	for node in _token_source.get_children() + _answer_box.get_children(): node.queue_free()
+	for node in _token_source.get_children() + _answer_box.get_children():
+		node.queue_free()
 	for token: Dictionary in _available_tokens:
-		var button := Button.new(); button.text = str(token.get("cue", "")); button.pressed.connect(func() -> void: _choose_token(token)); _token_source.add_child(button)
+		var button := Button.new()
+		button.theme_type_variation = &"QuizOptionButton"
+		button.custom_minimum_size = Vector2(112, 68)
+		button.text = str(token.get("cue", ""))
+		button.pressed.connect(func() -> void: _choose_token(token))
+		_token_source.add_child(button)
 	for token: Dictionary in _answer_tokens:
-		var button := Button.new(); button.text = str(token.get("cue", "")); button.pressed.connect(func() -> void: _remove_token(token)); _answer_box.add_child(button)
+		var button := Button.new()
+		button.theme_type_variation = &"QuizOptionButton"
+		button.custom_minimum_size = Vector2(112, 68)
+		button.text = str(token.get("cue", ""))
+		button.pressed.connect(func() -> void: _remove_token(token))
+		_answer_box.add_child(button)
 
 
 func _choose_token(token: Dictionary) -> void:
@@ -316,8 +331,15 @@ func _label(size: int) -> Label:
 
 
 func _build_cue_list(actions: Array) -> void:
-	for node in _cue_list.get_children(): node.queue_free()
-	for action: Dictionary in actions: var label := _label(22); label.text = str(action.get("cue", "")); _cue_list.add_child(label)
+	for node in _cue_list.get_children():
+		node.queue_free()
+	for action: Dictionary in actions:
+		var label := _label(22)
+		label.text = str(action.get("cue", ""))
+		label.add_theme_color_override("font_color", Color("#6b3d20"))
+		_cue_list.add_child(label)
+
+
 func _semantic_input(event: InputEvent) -> String:
 	if event is InputEventKey:
 		if event.keycode == KEY_LEFT or event.keycode == KEY_A: return "left"

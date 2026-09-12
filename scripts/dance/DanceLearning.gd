@@ -10,6 +10,7 @@ var _dance: Dictionary = {}
 var _ui: Dictionary = {}
 var _phase := Phase.OVERVIEW
 var _step_index := 0
+var _action_index := 0
 var _arrange_step: Dictionary = {}
 var _available_tokens: Array = []
 var _answer_tokens: Array = []

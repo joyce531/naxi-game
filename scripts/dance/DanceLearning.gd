@@ -230,7 +230,9 @@ func _submit_arrangement() -> void:
 		_feedback.text = _text("wrong")
 		return
 	for i in expected.size():
-		correct = correct and str(expected[i].get("id", "")) == str(_answer_tokens[i].get("id", ""))
+		# Judge the learner by the visible cue, not the token's internal action ID.
+		# Tiles with the same repeated cue are intentionally interchangeable.
+		correct = correct and str(expected[i].get("cue", "")) == str(_answer_tokens[i].get("cue", ""))
 	_feedback.text = _text("correct") if correct else _text("wrong")
 	if correct: _show_phase(Phase.COMPLETE)
 

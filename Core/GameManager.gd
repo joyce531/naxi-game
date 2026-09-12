@@ -13,6 +13,7 @@ const MAIN_MENU := "res://Scenes/MainMenu.tscn"
 const VN_STAGE := "res://Scenes/VNStage.tscn"
 const DONGBA_QUIZ := "res://Scenes/DongbaQuiz.tscn"
 const MUSIC_QUIZ := "res://Scenes/MusicQuiz.tscn"
+const DANCE_LEARNING := "res://Scenes/DanceLearning.tscn"
 const END_SCREEN := "res://Scenes/EndScreen.tscn"
 
 ## A question is marked "skipped" (explained, then removed) after this many
@@ -58,6 +59,8 @@ func _build_flow() -> void:
 		{"kind": "vn", "timeline": "clear_story"},
 		{"kind": "vn", "timeline": "music_intro"},
 		{"kind": "quiz", "quiz_id": "music"},
+		{"kind": "dance", "dance_id": "datiao_01"},
+		{"kind": "vn", "timeline": "dance_transition"},
 		{"kind": "end"},
 	]
 
@@ -87,6 +90,8 @@ func _enter_step(i: int) -> void:
 			SceneLoader.goto_scene(VN_STAGE)
 		"quiz":
 			_start_quiz(step.get("quiz_id", ""))
+		"dance":
+			SceneLoader.goto_scene(DANCE_LEARNING)
 		"end":
 			SceneLoader.goto_scene(END_SCREEN)
 		_:

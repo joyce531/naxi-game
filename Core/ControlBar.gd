@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-## Persistent top control bar shown only during VN and quiz scenes. A single
+## Persistent top control bar shown during VN, quiz, and dance-learning scenes. A single
 ## "菜单" button opens a small panel with four actions: pause/resume, restart the
 ## whole run from the beginning, save & quit, and quit without saving. Built
 ## entirely in code and registered as an autoload.
@@ -30,6 +30,7 @@ const VISIBLE_SCENES := [
 	"res://Scenes/VNStage.tscn",
 	"res://Scenes/DongbaQuiz.tscn",
 	"res://Scenes/MusicQuiz.tscn",
+	"res://Scenes/DanceLearning.tscn",
 ]
 
 
@@ -47,6 +48,12 @@ func _process(_delta: float) -> void:
 		return
 	_last_scene_path = scene_path
 	_apply_scene_visibility(scene_path)
+
+
+## Public refresh hook for scenes created dynamically at runtime, such as DanceLearning.
+## It makes the menu available immediately rather than waiting for the next frame.
+func refresh_for_current_scene() -> void:
+	_refresh_scene_visibility()
 
 
 func _refresh_scene_visibility() -> void:

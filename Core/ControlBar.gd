@@ -30,6 +30,7 @@ const VISIBLE_SCENES := [
 	"res://Scenes/VNStage.tscn",
 	"res://Scenes/DongbaQuiz.tscn",
 	"res://Scenes/MusicQuiz.tscn",
+	"res://Scenes/DanceLearning.tscn",
 ]
 
 
@@ -211,10 +212,10 @@ func _set_menu_open(value: bool) -> void:
 
 ## Enable game-only actions only while a game is in progress.
 func _refresh_panel() -> void:
-	var in_game: bool = GameManager.is_in_game()
-	_pause_btn.disabled = not in_game
-	_restart_btn.disabled = not in_game
-	_save_quit_btn.disabled = not in_game
+	_pause_btn.disabled = false
+	_restart_btn.disabled = false
+	_save_quit_btn.disabled = false
+	_nosave_quit_btn.disabled = false
 	_pause_btn.text = "恢复" if _paused else "暂停"
 
 
@@ -227,7 +228,10 @@ func _on_restart_pressed() -> void:
 	_set_menu_open(false)
 	if _paused:
 		_set_paused(false)
-	GameManager.start_game()
+	if GameManager.is_in_game():
+		GameManager.start_game()
+	else:
+		get_tree().reload_current_scene()
 
 
 func _on_save_quit_pressed() -> void:

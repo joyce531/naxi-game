@@ -32,7 +32,8 @@ directories/dch_directory={
 directories/dtl_directory={
 "clear_story": "res://Dialogues/clear_story.dtl",
 "dongba_intro": "res://Dialogues/dongba_intro.dtl",
-"music_intro": "res://Dialogues/music_intro.dtl",
+	"music_intro": "res://Dialogues/music_intro.dtl",
+	"dance_transition": "res://Dialogues/dance_transition.dtl",
 "opening": "res://Dialogues/opening.dtl"
 }
 layout/style_directory={

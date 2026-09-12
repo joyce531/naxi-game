@@ -300,5 +300,21 @@
 		}
 	  ]
 	}
+  },
+  "dances": {
+    "datiao_01": {
+      "id": "datiao_01",
+      "title": "纳西族打跳学习",
+      "introduction": "通过视频示范、口诀记忆和轻量练习学习三个舞步。",
+      "full_video": "res://Assets/dance/datiao/video/datiao_01_full.ogv",
+      "ui": {
+        "overview": "完整舞蹈展示", "learn": "开始学习", "lesson": "舞步拆解与口诀", "practice": "跟着口诀练习", "arrange": "口诀排列小游戏", "complete": "学习完成", "previous": "上一个舞步", "next": "下一个舞步", "replay": "重新播放", "submit": "提交答案", "clear": "清空", "correct": "正确！", "wrong": "顺序不对，请参考示范后再试一次。", "input_correct": "很好，继续下一个动作。", "input_wrong": "方向不对，请看示范后再试一次。", "current": "当前", "next_cue": "下一步", "missing_video": "示范视频尚未提供；请将 .ogv 文件放到数据指定路径。", "video_replay": "回放这个舞步后，排列正确的口诀。", "done": "已完成三个舞步的学习。"
+      },
+      "steps": [
+        {"id":"step_01","title":"舞步一","video":"res://Assets/dance/datiao/video/datiao_01_step_01.ogv","actions":[{"id":"01","start":null,"end":null,"cue":"左","instruction":"","input":"left"},{"id":"02","start":null,"end":null,"cue":"左","instruction":"","input":"left"},{"id":"03","start":null,"end":null,"cue":"右","instruction":"","input":"right"},{"id":"04","start":null,"end":null,"cue":"右","instruction":"","input":"right"},{"id":"05","start":null,"end":null,"cue":"左踢","instruction":"","input":"left"},{"id":"06","start":null,"end":null,"cue":"右踢","instruction":"","input":"right"}]},
+        {"id":"step_02","title":"舞步二","video":"res://Assets/dance/datiao/video/datiao_01_step_02.ogv","actions":[{"id":"01","start":null,"end":null,"cue":"左","instruction":"","input":"left"},{"id":"02","start":null,"end":null,"cue":"前","instruction":"","input":"up"},{"id":"03","start":null,"end":null,"cue":"左","instruction":"","input":"left"},{"id":"04","start":null,"end":null,"cue":"右","instruction":"","input":"right"},{"id":"05","start":null,"end":null,"cue":"右","instruction":"","input":"right"},{"id":"06","start":null,"end":null,"cue":"前","instruction":"","input":"up"},{"id":"07","start":null,"end":null,"cue":"左","instruction":"","input":"left"},{"id":"08","start":null,"end":null,"cue":"左","instruction":"","input":"left"}]},
+        {"id":"step_03","title":"舞步三","video":"res://Assets/dance/datiao/video/datiao_01_step_03.ogv","actions":[{"id":"01","start":null,"end":null,"cue":"左","instruction":"","input":"left"},{"id":"02","start":null,"end":null,"cue":"右","instruction":"","input":"right"},{"id":"03","start":null,"end":null,"cue":"左踢","instruction":"","input":"left"},{"id":"04","start":null,"end":null,"cue":"右踢","instruction":"","input":"right"},{"id":"05","start":null,"end":null,"cue":"左踢","instruction":"","input":"left"},{"id":"06","start":null,"end":null,"cue":"右","instruction":"","input":"right"},{"id":"07","start":null,"end":null,"cue":"左","instruction":"","input":"left"},{"id":"08","start":null,"end":null,"cue":"右踢","instruction":"","input":"right"},{"id":"09","start":null,"end":null,"cue":"左踢","instruction":"","input":"left"},{"id":"10","start":null,"end":null,"cue":"右踢","instruction":"","input":"right"}]}
+      ]
+    }
   }
 }

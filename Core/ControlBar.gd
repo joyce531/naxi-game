@@ -57,6 +57,14 @@ func _refresh_scene_visibility() -> void:
 	_apply_scene_visibility(scene_path)
 
 
+## Lets runtime-built scenes refresh menu visibility and button state after all
+## of their controls have entered the tree.
+func refresh_for_current_scene() -> void:
+	_refresh_scene_visibility()
+	if _menu_btn.visible:
+		_refresh_panel()
+
+
 func _apply_scene_visibility(scene_path: String) -> void:
 	var should_show := scene_path in VISIBLE_SCENES
 	_menu_btn.visible = should_show

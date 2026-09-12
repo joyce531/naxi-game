@@ -36,6 +36,14 @@ func _ready() -> void:
 	_ui = _dance.get("ui", {})
 	_build_ui()
 	_show_phase(Phase.OVERVIEW)
+	# The dance UI is constructed at runtime, so refresh the shared menu once the
+	# scene is fully ready. Keep this integration without restoring the removed
+	# cue-only practice page from the conflicting branch.
+	call_deferred("_refresh_shared_menu")
+
+
+func _refresh_shared_menu() -> void:
+	ControlBar.refresh_for_current_scene()
 
 
 func _build_ui() -> void:

@@ -11,6 +11,8 @@ var _ui: Dictionary = {}
 var _phase := Phase.OVERVIEW
 var _step_index := 0
 var _arrange_step: Dictionary = {}
+var _arrange_steps: Array = []
+var _arrange_index := 0
 var _available_tokens: Array = []
 var _answer_tokens: Array = []
 
@@ -140,9 +142,9 @@ func _show_phase(phase: Phase) -> void:
 			_secondary.text = _text("previous")
 			_show_lesson_step()
 		Phase.CUE_ARRANGE:
-			_phase_title.text = _text("arrange")
 			_primary.text = _text("submit")
 			_secondary.text = _text("replay")
+			_prepare_arrangements()
 			_start_arrangement()
 		Phase.COMPLETE:
 			_phase_title.text = _text("complete")
@@ -182,8 +184,18 @@ func _on_secondary() -> void:
 		_video.play()
 
 
+func _prepare_arrangements() -> void:
+	_arrange_steps = _steps().duplicate(true)
+	_arrange_steps.shuffle()
+	_arrange_index = 0
+
+
 func _start_arrangement() -> void:
-	_arrange_step = _steps().pick_random()
+	if _arrange_steps.is_empty() or _arrange_index >= _arrange_steps.size():
+		_show_phase(Phase.COMPLETE)
+		return
+	_arrange_step = _arrange_steps[_arrange_index]
+	_phase_title.text = "%s  %d/%d" % [_text("arrange"), _arrange_index + 1, _arrange_steps.size()]
 	_load_step_video(_arrange_step)
 	_detail.text = _text("video_replay")
 	_available_tokens = _arrange_step.get("actions", []).duplicate(true)
@@ -234,7 +246,9 @@ func _submit_arrangement() -> void:
 		# Tiles with the same repeated cue are intentionally interchangeable.
 		correct = correct and str(expected[i].get("cue", "")) == str(_answer_tokens[i].get("cue", ""))
 	_feedback.text = _text("correct") if correct else _text("wrong")
-	if correct: _show_phase(Phase.COMPLETE)
+	if correct:
+		_arrange_index += 1
+		_start_arrangement()
 
 
 func _load_step_video(step: Dictionary) -> void:

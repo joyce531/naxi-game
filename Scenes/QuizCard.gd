@@ -8,8 +8,8 @@ extends Control
 signal answered(index: int)
 signal continue_pressed
 
-const SFX_CORRECT := "res://Assets/sfx/sfx_correct.ogg"
-const SFX_WRONG := "res://Assets/sfx/sfx_wrong.ogg"
+const SFX_CORRECT := "res://Assets/music/stingers/stinger_win_baisha.ogg"
+const SFX_WRONG := "res://Assets/music/stingers/stinger_fail_dongjing.ogg"
 const AUDIO_PLAY_ICON: Texture2D = preload("res://Assets/vn/UI/quiz/quiz_audio/quiz_audio_play_icon_texture.tres")
 const FEEDBACK_PANEL_TEXTURE: Texture2D = preload("res://Assets/vn/UI/quiz/quiz_feedback_panel_texture.tres")
 

@@ -216,12 +216,16 @@ func _set_menu_open(value: bool) -> void:
 	_menu_connector.visible = value
 
 
-## Enable game-only actions only while a game is in progress.
+## Enable game-only actions while a playable section is on screen.
 func _refresh_panel() -> void:
-	var in_game: bool = GameManager.is_in_game()
-	_pause_btn.disabled = not in_game
-	_restart_btn.disabled = not in_game
-	_save_quit_btn.disabled = not in_game
+	# Match the trigger's scene-based availability so all actions also work when
+	# a playable section is launched directly from the editor.
+	var current_scene := get_tree().current_scene
+	var scene_path := current_scene.scene_file_path if current_scene != null else ""
+	var in_playable_scene := scene_path in VISIBLE_SCENES
+	_pause_btn.disabled = not in_playable_scene
+	_restart_btn.disabled = not in_playable_scene
+	_save_quit_btn.disabled = not in_playable_scene
 	_pause_btn.text = "恢复" if _paused else "暂停"
 
 

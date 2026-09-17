@@ -22,7 +22,7 @@
 "image": "res://Assets/vn/portraits/char_male_casual.png"
 },
 "mirror": false,
-"offset": Vector2(0, 0),
+"offset": Vector2(0, -20),
 "scale": 1.0,
 "scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn"
 },

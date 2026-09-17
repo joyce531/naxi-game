@@ -57,7 +57,7 @@ func _build_ui() -> void:
 	margin.add_theme_constant_override("margin_bottom", 62)
 	add_child(margin)
 	var root := VBoxContainer.new()
-	root.add_theme_constant_override("separation", 16)
+	root.add_theme_constant_override("separation", 10)
 	margin.add_child(root)
 	_title = _label(46)
 	_title.add_theme_color_override("font_color", Color("#3b210f"))
@@ -68,37 +68,48 @@ func _build_ui() -> void:
 	_phase_title.add_theme_color_override("font_color", Color("#7a4827"))
 	_phase_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	root.add_child(_phase_title)
-	var body := HBoxContainer.new()
-	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	body.add_theme_constant_override("separation", 30)
-	root.add_child(body)
-	var media := VBoxContainer.new()
+	var media := CenterContainer.new()
 	media.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	body.add_child(media)
+	media.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	root.add_child(media)
 	_video = VideoStreamPlayer.new()
-	_video.custom_minimum_size = Vector2(900, 506)
+	_video.custom_minimum_size = Vector2(760, 428)
 	_video.expand = true
 	media.add_child(_video)
 	_placeholder = _label(20)
 	_placeholder.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_placeholder.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	media.add_child(_placeholder)
+	root.add_child(_placeholder)
 	var info := VBoxContainer.new()
-	info.custom_minimum_size = Vector2(620, 0)
-	info.add_theme_constant_override("separation", 14)
-	body.add_child(info)
-	_detail = _label(26)
+	info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	info.add_theme_constant_override("separation", 8)
+	root.add_child(info)
+	_detail = _label(24)
 	_detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_detail.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	info.add_child(_detail)
 	_cue_list = HBoxContainer.new()
+	_cue_list.alignment = BoxContainer.ALIGNMENT_CENTER
+	_cue_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_cue_list.add_theme_constant_override("separation", 8)
 	info.add_child(_cue_list)
 	_answer_box = FlowContainer.new()
+	_answer_box.alignment = FlowContainer.ALIGNMENT_CENTER
+	_answer_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_answer_box.custom_minimum_size = Vector2(0, 58)
+	_answer_box.add_theme_constant_override("h_separation", 8)
+	_answer_box.add_theme_constant_override("v_separation", 6)
 	info.add_child(_answer_box)
 	_token_source = FlowContainer.new()
+	_token_source.alignment = FlowContainer.ALIGNMENT_CENTER
+	_token_source.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_token_source.custom_minimum_size = Vector2(0, 58)
+	_token_source.add_theme_constant_override("h_separation", 8)
+	_token_source.add_theme_constant_override("v_separation", 6)
 	info.add_child(_token_source)
-	_feedback = _label(22)
+	_feedback = _label(20)
 	_feedback.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_feedback.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	info.add_child(_feedback)
 	var controls := HBoxContainer.new()
 	controls.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -210,14 +221,14 @@ func _refresh_tokens() -> void:
 	for token: Dictionary in _available_tokens:
 		var button := Button.new()
 		button.theme_type_variation = &"QuizOptionButton"
-		button.custom_minimum_size = Vector2(112, 68)
+		button.custom_minimum_size = Vector2(96, 58)
 		button.text = str(token.get("cue", ""))
 		button.pressed.connect(func() -> void: _choose_token(token))
 		_token_source.add_child(button)
 	for token: Dictionary in _answer_tokens:
 		var button := Button.new()
 		button.theme_type_variation = &"QuizOptionButton"
-		button.custom_minimum_size = Vector2(112, 68)
+		button.custom_minimum_size = Vector2(96, 58)
 		button.text = str(token.get("cue", ""))
 		button.pressed.connect(func() -> void: _remove_token(token))
 		_answer_box.add_child(button)

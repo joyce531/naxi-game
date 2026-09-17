@@ -28,7 +28,7 @@ func _show_current() -> void:
 
 func _on_answered(index: int) -> void:
 	var feedback: Dictionary = GameManager.session_answer(index)
-	_card.show_feedback(feedback)
+	_card.show_feedback(feedback, GameManager.session_quiz_id() == "dongba")
 
 
 func _on_continue() -> void:

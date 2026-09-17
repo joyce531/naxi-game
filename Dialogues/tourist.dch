@@ -19,7 +19,7 @@
 &"portraits": {
 "default": {
 "export_overrides": {
-"image": "res://Assets/vn/portraits/char_female_neutral.png"
+"image": "res://Assets/vn/portraits/char_tourist_camera.png"
 },
 "mirror": false,
 "offset": Vector2(0, 0),

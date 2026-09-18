@@ -1,0 +1,8 @@
+[background arg="res://Assets/vn/backgrounds/bg_in_the_room.png"]
+join tourist (default) left
+join host (default) right
+host: 纳西族是一个能歌善舞的民族。了解完了纳西古乐，让我来教你纳西族特色打跳吧！
+tourist: 好呀好呀，纳西族的打跳已经火遍全国，走出国门，走向世界了。
+tourist: 这次来我正想去古城好好的体验一下呢，但我感觉打跳的舞步好复杂。
+host: 其实，纳西族的打跳舞步大多源自百姓日常务农劳作的动作和自然界动物的动作，一点也不复杂。
+host: 跟着我用口诀记忆，你一定能学会的，来试试吧！

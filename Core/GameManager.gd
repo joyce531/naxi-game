@@ -59,6 +59,7 @@ func _build_flow() -> void:
 		{"kind": "vn", "timeline": "clear_story"},
 		{"kind": "vn", "timeline": "music_intro"},
 		{"kind": "quiz", "quiz_id": "music"},
+		{"kind": "vn", "timeline": "dance_intro"},
 		{"kind": "dance", "dance_id": "datiao_01"},
 		{"kind": "vn", "timeline": "dance_transition"},
 		{"kind": "end"},
@@ -208,6 +209,10 @@ func has_active_session() -> bool:
 
 func session_title() -> String:
 	return _session.get("title", "")
+
+
+func session_quiz_id() -> String:
+	return str(_session.get("quiz_id", ""))
 
 
 ## The question at the current queue position.

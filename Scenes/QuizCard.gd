@@ -8,8 +8,8 @@ extends Control
 signal answered(index: int)
 signal continue_pressed
 
-const SFX_CORRECT := "res://Assets/sfx/sfx_correct.ogg"
-const SFX_WRONG := "res://Assets/sfx/sfx_wrong.ogg"
+const SFX_CORRECT := "res://Assets/music/stingers/stinger_win_baisha.ogg"
+const SFX_WRONG := "res://Assets/music/stingers/stinger_fail_dongjing.ogg"
 const AUDIO_PLAY_ICON: Texture2D = preload("res://Assets/vn/UI/quiz/quiz_audio/quiz_audio_play_icon_texture.tres")
 const FEEDBACK_PANEL_TEXTURE: Texture2D = preload("res://Assets/vn/UI/quiz/quiz_feedback_panel_texture.tres")
 
@@ -156,6 +156,7 @@ func _build_skeleton() -> void:
 
 ## Populate the card with a question. Safe to call repeatedly.
 func setup(question: Dictionary) -> void:
+	_sfx.stop()
 	_answered = false
 	_awaiting_continue = false
 	_feedback_overlay.visible = false
@@ -334,8 +335,9 @@ func _on_option_selected(index: int) -> void:
 	answered.emit(index)
 
 
-## Called by the quiz scene after it records the answer.
-func show_feedback(feedback: Dictionary) -> void:
+## Called by the quiz scene after it records the answer. Only the Dongba quiz
+## requests feedback audio; other quiz types keep their media uninterrupted.
+func show_feedback(feedback: Dictionary, play_feedback_sfx: bool = false) -> void:
 	var correct: bool = bool(feedback.get("correct", false))
 	var ans: int = int(feedback.get("answer_index", -1))
 	var chosen: int = int(feedback.get("chosen_index", -1))
@@ -348,10 +350,11 @@ func show_feedback(feedback: Dictionary) -> void:
 	if not correct and chosen >= 0 and chosen < _option_buttons.size():
 		_option_buttons[chosen].theme_type_variation = &"QuizOptionSkipped" if skipped else &"QuizOptionWrong"
 
-	var sfx_stream := ContentDB.load_audio(SFX_CORRECT if correct else SFX_WRONG)
-	if sfx_stream != null:
-		_sfx.stream = sfx_stream
-		_sfx.play()
+	if play_feedback_sfx:
+		var sfx_stream := ContentDB.load_audio(SFX_CORRECT if correct else SFX_WRONG)
+		if sfx_stream != null:
+			_sfx.stream = sfx_stream
+			_sfx.play()
 
 	if skipped:
 		_skip_hint.text = "⚠ " + str(feedback.get("skip_hint", ""))
@@ -379,5 +382,6 @@ func _input(event: InputEvent) -> void:
 		advance_now = true
 	if advance_now:
 		_awaiting_continue = false
+		_sfx.stop()
 		get_viewport().set_input_as_handled()
 		continue_pressed.emit()

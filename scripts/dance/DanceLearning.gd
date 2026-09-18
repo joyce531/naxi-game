@@ -4,14 +4,15 @@ extends Control
 ## Data/content.json; this scene never treats key presses as rhythm scores.
 
 const DANCE_ID := "datiao_01"
-enum Phase { OVERVIEW, LESSON, ACTION_PRACTICE, CUE_ARRANGE, COMPLETE }
+enum Phase { OVERVIEW, LESSON, CUE_ARRANGE, COMPLETE }
 
 var _dance: Dictionary = {}
 var _ui: Dictionary = {}
 var _phase := Phase.OVERVIEW
 var _step_index := 0
-var _action_index := 0
 var _arrange_step: Dictionary = {}
+var _arrange_steps: Array = []
+var _arrange_index := 0
 var _available_tokens: Array = []
 var _answer_tokens: Array = []
 
@@ -20,8 +21,6 @@ var _phase_title: Label
 var _video: VideoStreamPlayer
 var _placeholder: Label
 var _detail: Label
-var _cue_current: Label
-var _cue_next: Label
 var _cue_list: HBoxContainer
 var _token_source: FlowContainer
 var _answer_box: FlowContainer
@@ -49,35 +48,6 @@ func _refresh_shared_menu() -> void:
 	ControlBar.refresh_for_current_scene()
 
 
-func _process(_delta: float) -> void:
-	if _phase == Phase.LESSON:
-		_sync_cue_from_video()
-
-
-func _unhandled_key_input(event: InputEvent) -> void:
-	if _phase != Phase.ACTION_PRACTICE or not event.is_pressed() or event.is_echo():
-		return
-	var input := _semantic_input(event)
-	if input.is_empty():
-		return
-	var actions: Array = _current_step().get("actions", [])
-	if _action_index >= actions.size():
-		return
-	if input == str(actions[_action_index].get("input", "")):
-		_action_index += 1
-		_feedback.text = _text("input_correct")
-		if _action_index >= actions.size():
-			if _step_index + 1 < _steps().size():
-				_step_index += 1
-				_show_phase(Phase.ACTION_PRACTICE)
-			else:
-				_show_phase(Phase.CUE_ARRANGE)
-		else:
-			_refresh_practice()
-	else:
-		_feedback.text = _text("input_wrong")
-
-
 func _build_ui() -> void:
 	var margin := MarginContainer.new()
 	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -87,7 +57,7 @@ func _build_ui() -> void:
 	margin.add_theme_constant_override("margin_bottom", 62)
 	add_child(margin)
 	var root := VBoxContainer.new()
-	root.add_theme_constant_override("separation", 16)
+	root.add_theme_constant_override("separation", 10)
 	margin.add_child(root)
 	_title = _label(46)
 	_title.add_theme_color_override("font_color", Color("#3b210f"))
@@ -98,44 +68,48 @@ func _build_ui() -> void:
 	_phase_title.add_theme_color_override("font_color", Color("#7a4827"))
 	_phase_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	root.add_child(_phase_title)
-	var body := HBoxContainer.new()
-	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	body.add_theme_constant_override("separation", 30)
-	root.add_child(body)
-	var media := VBoxContainer.new()
+	var media := CenterContainer.new()
 	media.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	body.add_child(media)
+	media.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	root.add_child(media)
 	_video = VideoStreamPlayer.new()
-	_video.custom_minimum_size = Vector2(900, 506)
+	_video.custom_minimum_size = Vector2(760, 428)
 	_video.expand = true
 	media.add_child(_video)
 	_placeholder = _label(20)
 	_placeholder.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_placeholder.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	media.add_child(_placeholder)
+	root.add_child(_placeholder)
 	var info := VBoxContainer.new()
-	info.custom_minimum_size = Vector2(620, 0)
-	info.add_theme_constant_override("separation", 14)
-	body.add_child(info)
-	_detail = _label(26)
+	info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	info.add_theme_constant_override("separation", 8)
+	root.add_child(info)
+	_detail = _label(24)
 	_detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_detail.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	info.add_child(_detail)
-	_cue_current = _label(42)
-	_cue_current.add_theme_color_override("font_color", Color("#a84d19"))
-	_cue_current.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	info.add_child(_cue_current)
-	_cue_next = _label(26)
-	_cue_next.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	info.add_child(_cue_next)
 	_cue_list = HBoxContainer.new()
+	_cue_list.alignment = BoxContainer.ALIGNMENT_CENTER
+	_cue_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_cue_list.add_theme_constant_override("separation", 8)
 	info.add_child(_cue_list)
 	_answer_box = FlowContainer.new()
+	_answer_box.alignment = FlowContainer.ALIGNMENT_CENTER
+	_answer_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_answer_box.custom_minimum_size = Vector2(0, 58)
+	_answer_box.add_theme_constant_override("h_separation", 8)
+	_answer_box.add_theme_constant_override("v_separation", 6)
 	info.add_child(_answer_box)
 	_token_source = FlowContainer.new()
+	_token_source.alignment = FlowContainer.ALIGNMENT_CENTER
+	_token_source.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_token_source.custom_minimum_size = Vector2(0, 58)
+	_token_source.add_theme_constant_override("h_separation", 8)
+	_token_source.add_theme_constant_override("v_separation", 6)
 	info.add_child(_token_source)
-	_feedback = _label(22)
+	_feedback = _label(20)
 	_feedback.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_feedback.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	info.add_child(_feedback)
 	var controls := HBoxContainer.new()
 	controls.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -164,36 +138,24 @@ func _show_phase(phase: Phase) -> void:
 	_clear.visible = phase == Phase.CUE_ARRANGE
 	_token_source.visible = phase == Phase.CUE_ARRANGE
 	_answer_box.visible = phase == Phase.CUE_ARRANGE
-	# The keyboard practice follows the three demonstrations but does not replay
-	# a fourth dance video. It is a cue-only memory exercise.
-	var show_video := phase != Phase.ACTION_PRACTICE
-	_video.visible = show_video
-	_placeholder.visible = show_video
+	# Never reveal the complete answer above the selectable arrangement tiles.
+	_cue_list.visible = phase == Phase.LESSON
 	match phase:
 		Phase.OVERVIEW:
 			_phase_title.text = _text("overview")
 			_detail.text = str(_dance.get("introduction", ""))
 			_primary.text = _text("learn")
 			_secondary.text = _text("replay")
-			_cue_current.text = ""
-			_cue_next.text = ""
 			_load_video(str(_dance.get("full_video", "")))
 		Phase.LESSON:
 			_phase_title.text = _text("lesson")
 			_primary.text = _text("next")
 			_secondary.text = _text("previous")
 			_show_lesson_step()
-		Phase.ACTION_PRACTICE:
-			_phase_title.text = _text("practice")
-			_primary.text = _text("next")
-			_secondary.visible = false
-			_video.stop()
-			_action_index = 0
-			_refresh_practice()
 		Phase.CUE_ARRANGE:
-			_phase_title.text = _text("arrange")
 			_primary.text = _text("submit")
 			_secondary.text = _text("replay")
+			_prepare_arrangements()
 			_start_arrangement()
 		Phase.COMPLETE:
 			_phase_title.text = _text("complete")
@@ -208,9 +170,7 @@ func _show_lesson_step() -> void:
 	var step := _current_step()
 	_detail.text = str(step.get("title", ""))
 	_load_step_video(step)
-	_action_index = 0
 	_build_cue_list(step.get("actions", []))
-	_refresh_lesson_cue()
 
 
 func _on_primary() -> void:
@@ -221,9 +181,7 @@ func _on_primary() -> void:
 				_step_index += 1
 				_show_lesson_step()
 			else:
-				_step_index = 0
-				_show_phase(Phase.ACTION_PRACTICE)
-		Phase.ACTION_PRACTICE: _show_phase(Phase.CUE_ARRANGE)
+				_show_phase(Phase.CUE_ARRANGE)
 		Phase.CUE_ARRANGE: _submit_arrangement()
 		Phase.COMPLETE: GameManager.advance()
 
@@ -237,37 +195,20 @@ func _on_secondary() -> void:
 		_video.play()
 
 
-func _sync_cue_from_video() -> void:
-	var actions: Array = _current_step().get("actions", [])
-	for index in actions.size():
-		var action: Dictionary = actions[index]
-		if action.get("start", null) != null and _video.stream_position >= float(action.get("start", 0.0)) and _video.stream_position < float(action.get("end", 0.0)):
-			_action_index = index
-			_refresh_lesson_cue()
-			return
-
-
-func _refresh_lesson_cue() -> void:
-	var actions: Array = _current_step().get("actions", [])
-	if actions.is_empty(): return
-	var current: Dictionary = actions[clampi(_action_index, 0, actions.size() - 1)]
-	_cue_current.text = str(current.get("cue", ""))
-	_cue_next.text = str(actions[_action_index + 1].get("cue", "")) if _action_index + 1 < actions.size() else ""
-
-
-func _refresh_practice() -> void:
-	var actions: Array = _current_step().get("actions", [])
-	_cue_current.text = "%s：%s" % [_text("current"), str(actions[_action_index].get("cue", ""))]
-	_cue_next.text = "%s：%s" % [_text("next_cue"), str(actions[_action_index + 1].get("cue", ""))] if _action_index + 1 < actions.size() else ""
-	_detail.text = str(_current_step().get("title", ""))
+func _prepare_arrangements() -> void:
+	_arrange_steps = _steps().duplicate(true)
+	_arrange_steps.shuffle()
+	_arrange_index = 0
 
 
 func _start_arrangement() -> void:
-	_arrange_step = _steps().pick_random()
+	if _arrange_steps.is_empty() or _arrange_index >= _arrange_steps.size():
+		_show_phase(Phase.COMPLETE)
+		return
+	_arrange_step = _arrange_steps[_arrange_index]
+	_phase_title.text = "%s  %d/%d" % [_text("arrange"), _arrange_index + 1, _arrange_steps.size()]
 	_load_step_video(_arrange_step)
 	_detail.text = _text("video_replay")
-	_cue_current.text = ""
-	_cue_next.text = ""
 	_available_tokens = _arrange_step.get("actions", []).duplicate(true)
 	_available_tokens.shuffle()
 	_answer_tokens.clear()
@@ -280,14 +221,14 @@ func _refresh_tokens() -> void:
 	for token: Dictionary in _available_tokens:
 		var button := Button.new()
 		button.theme_type_variation = &"QuizOptionButton"
-		button.custom_minimum_size = Vector2(112, 68)
+		button.custom_minimum_size = Vector2(96, 58)
 		button.text = str(token.get("cue", ""))
 		button.pressed.connect(func() -> void: _choose_token(token))
 		_token_source.add_child(button)
 	for token: Dictionary in _answer_tokens:
 		var button := Button.new()
 		button.theme_type_variation = &"QuizOptionButton"
-		button.custom_minimum_size = Vector2(112, 68)
+		button.custom_minimum_size = Vector2(96, 58)
 		button.text = str(token.get("cue", ""))
 		button.pressed.connect(func() -> void: _remove_token(token))
 		_answer_box.add_child(button)
@@ -308,10 +249,17 @@ func _clear_answer() -> void:
 func _submit_arrangement() -> void:
 	var expected: Array = _arrange_step.get("actions", [])
 	var correct := expected.size() == _answer_tokens.size()
+	if not correct:
+		_feedback.text = _text("wrong")
+		return
 	for i in expected.size():
-		correct = correct and str(expected[i].get("id", "")) == str(_answer_tokens[i].get("id", ""))
+		# Judge the learner by the visible cue, not the token's internal action ID.
+		# Tiles with the same repeated cue are intentionally interchangeable.
+		correct = correct and str(expected[i].get("cue", "")) == str(_answer_tokens[i].get("cue", ""))
 	_feedback.text = _text("correct") if correct else _text("wrong")
-	if correct: _show_phase(Phase.COMPLETE)
+	if correct:
+		_arrange_index += 1
+		_start_arrangement()
 
 
 func _load_step_video(step: Dictionary) -> void:
@@ -351,11 +299,3 @@ func _build_cue_list(actions: Array) -> void:
 		label.text = str(action.get("cue", ""))
 		label.add_theme_color_override("font_color", Color("#6b3d20"))
 		_cue_list.add_child(label)
-
-
-func _semantic_input(event: InputEvent) -> String:
-	if event is InputEventKey:
-		if event.keycode == KEY_LEFT: return "left"
-		if event.keycode == KEY_RIGHT: return "right"
-		if event.keycode == KEY_UP: return "up"
-	return ""

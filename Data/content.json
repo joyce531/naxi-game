@@ -424,7 +424,49 @@
 		}
 	  ]
 	},
-	"dance": { "prototype": "test_book" }
+	"dance": {
+	  "title": "围成一圈，把生活跳进舞步",
+	  "book_texture": "res://Assets/culture_book/book/open_book.png",
+	  "page_turn_sfx": "res://Assets/culture_book/audio/page_turn.ogg",
+	  "start_button": "开始学打跳",
+	  "spreads": [
+		{
+		  "title": "围成一圈，把生活跳进舞步",
+		  "body": "纳西民间打跳",
+		  "illustration": "",
+		  "caption": "",
+		  "layout": "text_only"
+		},
+		{
+		  "title": "大家，一起来跳",
+		  "body": "在丽江部分地区，以笛子或葫芦笙等伴奏的群众舞蹈常被称为“打跳”。\n\n音乐响起，参与者围在一起，共同进入舞步与节奏。",
+		  "illustration": "",
+		  "caption": "",
+		  "layout": "text_only"
+		},
+		{
+		  "title": "民间打跳 ≠ 东巴法仪舞蹈",
+		  "body": "本关学习的是群众共同参与的民间“打跳”。\n\n它与东巴在特定宗教仪式中进行的法仪舞蹈并不是同一个概念。\n\n所以这一次，我们不是观看仪式，而是加入舞圈。",
+		  "illustration": "",
+		  "caption": "",
+		  "layout": "text_only"
+		},
+		{
+		  "title": "脚下，也藏着生活",
+		  "body": "打跳中可以看到踏步、踢腿、甩手、摇摆等身体动作。\n\n不同地区和舞种形成了不同的动作组合，舞者在共同节奏中不断配合。",
+		  "illustration": "",
+		  "caption": "",
+		  "layout": "text_only"
+		},
+		{
+		  "title": "文化，也可以用身体记住",
+		  "body": "打跳强调参与和配合。踏步、踢腿、摇摆与队形变化，需要舞者不断协调自己的身体与节奏。\n\n学习传统舞步，不只是“看见”一种文化，也是亲自加入它、体验它。\n\n接下来，不只是看——跟着口诀，把舞步真正跳起来。",
+		  "illustration": "",
+		  "caption": "",
+		  "layout": "text_only"
+		}
+	  ]
+	}
   },
   "completion_pages": {
 	"test_page": {
@@ -448,7 +490,13 @@
 	  "illustration": "",
 	  "button_text": "继续旅程"
 	},
-	"dance": { "prototype": "test_page" }
+	"dance": {
+	  "title": "打跳学习完成！",
+	  "summary": "从观看到模仿，从口诀到舞步，你已经用身体体验了一段纳西族的文化记忆。",
+	  "background": "res://Assets/vn/backgrounds/bg_snow_mountain.png",
+	  "illustration": "",
+	  "button_text": "继续旅程"
+	}
   },
   "dances": {
 	"datiao_01": {

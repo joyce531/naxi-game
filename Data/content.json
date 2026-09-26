@@ -331,7 +331,49 @@
 		}
 	  ]
 	},
-	"dongba": { "prototype": "test_book" },
+	"dongba": {
+	  "title": "图画会说话",
+	  "book_texture": "res://Assets/culture_book/book/open_book.png",
+	  "page_turn_sfx": "res://Assets/culture_book/audio/page_turn.ogg",
+	  "start_button": "开始识字",
+	  "spreads": [
+		{
+		  "title": "图画会说话",
+		  "body": "东巴文 · 写在图画里的文化记忆\n\n翻开书页，认识一种至今仍令人着迷的古老文字。",
+		  "illustration": "res://Assets/vn/decorations/deco_dongba_painting.png",
+		  "caption": "东巴文装饰画",
+		  "layout": "image_right"
+		},
+		{
+		  "title": "一笔一画，皆有形",
+		  "body": "人、鸟、山川、器物……都可以成为表达意义的线索。\n\n东巴文具有鲜明的图画象形特征。读懂一个符号，有时就像读懂一幅小小的画。",
+		  "illustration": "res://Assets/dongba/sentence/dongba_sentence_01.png",
+		  "caption": "人、山、水、火、太阳等东巴文字形",
+		  "layout": "image_left"
+		},
+		{
+		  "title": "东巴文 × 甲骨文",
+		  "body": "东巴文与甲骨文都具有鲜明的象形特征，因此研究者常将二者放在一起比较。\n\n但东巴文并不是由甲骨文直接演变而来的。\n\n它们为我们观察文字如何从“形象”走向“符号”，提供了不同的珍贵材料。",
+		  "illustration": "",
+		  "caption": "",
+		  "layout": "text_only"
+		},
+		{
+		  "title": "一部写在古籍里的文化记忆",
+		  "body": "大量东巴文保存在东巴古籍之中。\n\n一页页古籍不仅留下文字，也保存着纳西族关于自然、社会、信仰与生活的文化记忆。",
+		  "illustration": "",
+		  "caption": "",
+		  "layout": "text_only"
+		},
+		{
+		  "title": "从丽江，到世界记忆",
+		  "body": "2003年，纳西东巴古籍文献被列入联合国教科文组织《世界记忆名录》。\n\n今天，这些古老文字已经不仅属于一座古城，也成为值得共同珍视的人类文化记忆。\n\n现在，你能从这些“图画”中读懂多少？",
+		  "illustration": "",
+		  "caption": "",
+		  "layout": "text_only"
+		}
+	  ]
+	},
 	"music": { "prototype": "test_book" },
 	"dance": { "prototype": "test_book" }
   },
@@ -343,7 +385,13 @@
 	  "illustration": "res://Assets/vn/decorations/deco_dongba_painting.png",
 	  "button_text": "继续"
 	},
-	"dongba": { "prototype": "test_page" },
+	"dongba": {
+	  "title": "东巴文学习完成！",
+	  "summary": "从图画到文字，你已经读懂了纳西文化留下的一些古老符号。",
+	  "background": "res://Assets/vn/backgrounds/bg_snow_mountain.png",
+	  "illustration": "res://Assets/vn/decorations/deco_dongba_painting.png",
+	  "button_text": "继续旅程"
+	},
 	"music": { "prototype": "test_page" },
 	"dance": { "prototype": "test_page" }
   },

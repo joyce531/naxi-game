@@ -51,6 +51,21 @@ func get_dance(dance_id: String) -> Dictionary:
 	return dance if typeof(dance) == TYPE_DICTIONARY else {}
 
 
+## Returns one culture-book definition. Each entry contains shared presentation
+## settings and an ordered `spreads` array consumed by CultureBook.
+func get_culture_book(book_id: String) -> Dictionary:
+	var culture_books: Dictionary = _data.get("culture_books", {})
+	var book: Variant = culture_books.get(book_id, {})
+	return book if typeof(book) == TYPE_DICTIONARY else {}
+
+
+## Returns one reusable completion-page definition.
+func get_completion_page(page_id: String) -> Dictionary:
+	var completion_pages: Dictionary = _data.get("completion_pages", {})
+	var page: Variant = completion_pages.get(page_id, {})
+	return page if typeof(page) == TYPE_DICTIONARY else {}
+
+
 func _is_usable(path: Variant) -> bool:
 	return typeof(path) == TYPE_STRING and path != "" and ResourceLoader.exists(path)
 

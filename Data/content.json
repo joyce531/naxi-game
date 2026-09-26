@@ -301,6 +301,37 @@
 	  ]
 	}
   },
+  "culture_books": {
+	"test_book": {
+	  "title": "文化介绍书测试",
+	  "book_texture": "res://Assets/culture_book/book/open_book.png",
+	  "page_turn_sfx": "res://Assets/culture_book/audio/page_turn.ogg",
+	  "start_button": "开始学习",
+	  "spreads": [
+		{
+		  "title": "第一页：纯文字",
+		  "body": "这是文化介绍书的纯文字测试页。每一屏都是一个完整的跨页，正文会保持简短，方便阅读。",
+		  "illustration": "",
+		  "caption": "",
+		  "layout": "text_only"
+		},
+		{
+		  "title": "第二页：图文混排",
+		  "body": "这一页使用项目中已有的东巴文字图片，测试插图位于左页、文字位于右页的布局。",
+		  "illustration": "res://Assets/dongba/glyphs/dongba_02_mountain.png",
+		  "caption": "东巴文字“山”",
+		  "layout": "image_left"
+		},
+		{
+		  "title": "第三页：最后一页",
+		  "body": "这一页故意引用不存在的测试插图，用来确认缺少图片时页面仍可安全显示。",
+		  "illustration": "res://Assets/culture_book/illustrations/test_missing.png",
+		  "caption": "",
+		  "layout": "image_right"
+		}
+	  ]
+	}
+  },
   "dances": {
 	"datiao_01": {
 	  "id": "datiao_01",

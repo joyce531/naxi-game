@@ -14,15 +14,18 @@ const VN_STAGE := "res://Scenes/VNStage.tscn"
 const DONGBA_QUIZ := "res://Scenes/DongbaQuiz.tscn"
 const MUSIC_QUIZ := "res://Scenes/MusicQuiz.tscn"
 const DANCE_LEARNING := "res://Scenes/DanceLearning.tscn"
+const CULTURE_BOOK := "res://Scenes/CultureBook.tscn"
+const COMPLETION_PAGE := "res://Scenes/CompletionPage.tscn"
 const END_SCREEN := "res://Scenes/EndScreen.tscn"
 
 ## A question is marked "skipped" (explained, then removed) after this many
 ## cumulative wrong answers across all rounds.
 const MAX_WRONG := 3
 
-## Save file holds ONLY the current flow step (no quiz details): { version, step }.
+## Save files use a stable flow-step ID rather than an array index, so inserting
+## or reordering steps cannot silently resume at unrelated content.
 const SAVE_PATH := "user://savegame.json"
-const SAVE_VERSION := 1
+const SAVE_VERSION := 2
 
 # --- Flow state ---
 var _flow: Array = []
@@ -30,6 +33,9 @@ var _index: int = -1
 
 ## The timeline name a freshly-loaded VNStage should start. Read by VNStage._ready().
 var pending_timeline: String = ""
+## IDs read by the reusable CultureBook and CompletionPage scenes.
+var pending_book_id: String = ""
+var pending_completion_id: String = ""
 
 # --- Quiz session state ---
 # _session = {
@@ -53,16 +59,22 @@ func _ready() -> void:
 
 func _build_flow() -> void:
 	_flow = [
-		{"kind": "vn", "timeline": "opening"},
-		{"kind": "vn", "timeline": "dongba_intro"},
-		{"kind": "quiz", "quiz_id": "dongba"},
-		{"kind": "vn", "timeline": "clear_story"},
-		{"kind": "vn", "timeline": "music_intro"},
-		{"kind": "quiz", "quiz_id": "music"},
-		{"kind": "vn", "timeline": "dance_intro"},
-		{"kind": "dance", "dance_id": "datiao_01"},
-		{"kind": "vn", "timeline": "dance_transition"},
-		{"kind": "end"},
+		{"id": "opening", "kind": "vn", "timeline": "opening"},
+		{"id": "dongba_intro", "kind": "vn", "timeline": "dongba_intro"},
+		{"id": "dongba_book", "kind": "book", "book_id": "dongba"},
+		{"id": "dongba_quiz", "kind": "quiz", "quiz_id": "dongba"},
+		{"id": "dongba_complete", "kind": "complete", "completion_id": "dongba"},
+		{"id": "clear_story", "kind": "vn", "timeline": "clear_story"},
+		{"id": "music_intro", "kind": "vn", "timeline": "music_intro"},
+		{"id": "music_book", "kind": "book", "book_id": "music"},
+		{"id": "music_quiz", "kind": "quiz", "quiz_id": "music"},
+		{"id": "music_complete", "kind": "complete", "completion_id": "music"},
+		{"id": "dance_intro", "kind": "vn", "timeline": "dance_intro"},
+		{"id": "dance_book", "kind": "book", "book_id": "dance"},
+		{"id": "dance_learning", "kind": "dance", "dance_id": "datiao_01"},
+		{"id": "dance_complete", "kind": "complete", "completion_id": "dance"},
+		{"id": "dance_transition", "kind": "vn", "timeline": "dance_transition"},
+		{"id": "end", "kind": "end"},
 	]
 
 
@@ -85,6 +97,9 @@ func advance() -> void:
 ## Enter (or re-enter) a specific flow step without changing _index otherwise.
 func _enter_step(i: int) -> void:
 	var step: Dictionary = _flow[i]
+	pending_timeline = ""
+	pending_book_id = ""
+	pending_completion_id = ""
 	match step.get("kind", ""):
 		"vn":
 			pending_timeline = step.get("timeline", "")
@@ -93,6 +108,12 @@ func _enter_step(i: int) -> void:
 			_start_quiz(step.get("quiz_id", ""))
 		"dance":
 			SceneLoader.goto_scene(DANCE_LEARNING)
+		"book":
+			pending_book_id = step.get("book_id", "")
+			SceneLoader.goto_scene(CULTURE_BOOK)
+		"complete":
+			pending_completion_id = step.get("completion_id", "")
+			SceneLoader.goto_scene(COMPLETION_PAGE)
 		"end":
 			SceneLoader.goto_scene(END_SCREEN)
 		_:
@@ -123,7 +144,12 @@ func save_progress() -> bool:
 	if f == null:
 		push_error("[GameManager] Could not open save file for writing.")
 		return false
-	f.store_string(JSON.stringify({"version": SAVE_VERSION, "step": _index}))
+	var step_id: String = str(_flow[_index].get("id", ""))
+	if step_id.is_empty():
+		f.close()
+		push_error("[GameManager] Current flow step has no stable ID.")
+		return false
+	f.store_string(JSON.stringify({"version": SAVE_VERSION, "step_id": step_id}))
 	f.close()
 	return true
 
@@ -163,10 +189,20 @@ func _read_saved_step() -> int:
 	var parsed: Variant = JSON.parse_string(text)
 	if typeof(parsed) != TYPE_DICTIONARY:
 		return -1
-	var step: int = int(parsed.get("step", -1))
-	if step < 0 or step >= _flow.size():
+	# Version 1 stored a numeric array index. The expanded flow makes those values
+	# ambiguous, so old saves are deliberately rejected rather than misdirected.
+	if int(parsed.get("version", -1)) != SAVE_VERSION:
 		return -1
-	return step
+	return _step_index_for_id(str(parsed.get("step_id", "")))
+
+
+func _step_index_for_id(step_id: String) -> int:
+	if step_id.is_empty():
+		return -1
+	for i in _flow.size():
+		if str(_flow[i].get("id", "")) == step_id:
+			return i
+	return -1
 
 
 # ---------------------------------------------------------------------------

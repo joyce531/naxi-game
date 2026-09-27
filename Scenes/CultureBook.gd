@@ -9,18 +9,25 @@ const VALID_LAYOUTS := [&"text_only", &"image_left", &"image_right"]
 const FADE_OUT_TIME := 0.18
 const FADE_IN_TIME := 0.20
 const SLIDE_DISTANCE := 28.0
+const TEXT_SPLIT_THRESHOLD := 90
 
 @export var book_id := "test_book"
 
 @onready var _book_texture: TextureRect = $BookFrame/BookTexture
 @onready var _fallback_book: Panel = $BookFrame/FallbackBook
 @onready var _content: Control = $BookFrame/PageContent
-@onready var _text_panel: VBoxContainer = $BookFrame/PageContent/TextPanel
-@onready var _title: Label = $BookFrame/PageContent/TextPanel/Title
-@onready var _body: Label = $BookFrame/PageContent/TextPanel/Body
-@onready var _illustration_panel: VBoxContainer = $BookFrame/PageContent/IllustrationPanel
-@onready var _illustration: TextureRect = $BookFrame/PageContent/IllustrationPanel/Illustration
-@onready var _caption: Label = $BookFrame/PageContent/IllustrationPanel/Caption
+@onready var _left_text_panel: VBoxContainer = $BookFrame/PageContent/LeftPage/TextPanel
+@onready var _left_title: Label = $BookFrame/PageContent/LeftPage/TextPanel/Title
+@onready var _left_body: Label = $BookFrame/PageContent/LeftPage/TextPanel/Body
+@onready var _left_illustration_panel: VBoxContainer = $BookFrame/PageContent/LeftPage/IllustrationPanel
+@onready var _left_illustration: TextureRect = $BookFrame/PageContent/LeftPage/IllustrationPanel/Illustration
+@onready var _left_caption: Label = $BookFrame/PageContent/LeftPage/IllustrationPanel/Caption
+@onready var _right_text_panel: VBoxContainer = $BookFrame/PageContent/RightPage/TextPanel
+@onready var _right_title: Label = $BookFrame/PageContent/RightPage/TextPanel/Title
+@onready var _right_body: Label = $BookFrame/PageContent/RightPage/TextPanel/Body
+@onready var _right_illustration_panel: VBoxContainer = $BookFrame/PageContent/RightPage/IllustrationPanel
+@onready var _right_illustration: TextureRect = $BookFrame/PageContent/RightPage/IllustrationPanel/Illustration
+@onready var _right_caption: Label = $BookFrame/PageContent/RightPage/IllustrationPanel/Caption
 @onready var _previous_button: Button = $PreviousButton
 @onready var _next_button: Button = $NextButton
 @onready var _page_number: Label = $PageNumber
@@ -62,9 +69,10 @@ func _load_optional_assets() -> void:
 
 
 func _show_empty_state() -> void:
-	_title.text = "文化介绍书暂无内容"
-	_body.text = "请检查 Data/content.json 中的 culture_books 配置。"
-	_illustration_panel.visible = false
+	_clear_pages()
+	_left_text_panel.visible = true
+	_left_title.text = "文化介绍书暂无内容"
+	_left_body.text = "请检查 Data/content.json 中的 culture_books 配置。"
 	_page_number.text = "0 / 0"
 	_previous_button.visible = false
 	_next_button.disabled = true
@@ -72,19 +80,11 @@ func _show_empty_state() -> void:
 
 func _render_spread() -> void:
 	var spread: Dictionary = _spreads[_spread_index]
-	_title.text = str(spread.get("title", ""))
-	_body.text = str(spread.get("body", ""))
-
 	var layout := StringName(str(spread.get("layout", "text_only")))
 	if layout not in VALID_LAYOUTS:
 		layout = &"text_only"
-	_apply_layout(layout)
-
 	var illustration_texture := ContentDB.load_texture(spread.get("illustration", ""))
-	_illustration.texture = illustration_texture
-	_illustration_panel.visible = layout != &"text_only" and illustration_texture != null
-	_caption.text = str(spread.get("caption", ""))
-	_caption.visible = _illustration_panel.visible and not _caption.text.is_empty()
+	_apply_layout(spread, layout, illustration_texture)
 
 	_page_number.text = "%d / %d" % [_spread_index + 1, _spreads.size()]
 	_previous_button.visible = _spread_index > 0
@@ -92,23 +92,96 @@ func _render_spread() -> void:
 	_update_button_lock()
 
 
-func _apply_layout(layout: StringName) -> void:
+func _apply_layout(spread: Dictionary, layout: StringName, texture: Texture2D) -> void:
+	_clear_pages()
+	var title := str(spread.get("title", ""))
+	var body := str(spread.get("body", ""))
+	var caption := str(spread.get("caption", ""))
 	if layout == &"text_only":
-		_set_horizontal_region(_text_panel, 0.12, 0.88)
-		_set_horizontal_region(_illustration_panel, 0.08, 0.45)
+		var body_pages := _body_for_pages(spread, body)
+		_show_text(_left_text_panel, _left_title, _left_body, title, body_pages[0])
+		if not body_pages[1].is_empty():
+			_show_text(_right_text_panel, _right_title, _right_body, "", body_pages[1])
 	elif layout == &"image_left":
-		_set_horizontal_region(_illustration_panel, 0.08, 0.45)
-		_set_horizontal_region(_text_panel, 0.55, 0.92)
+		_show_illustration(_left_illustration_panel, _left_illustration, _left_caption, texture, caption)
+		_show_text(_right_text_panel, _right_title, _right_body, title, body)
 	else:
-		_set_horizontal_region(_text_panel, 0.08, 0.45)
-		_set_horizontal_region(_illustration_panel, 0.55, 0.92)
+		_show_text(_left_text_panel, _left_title, _left_body, title, body)
+		_show_illustration(_right_illustration_panel, _right_illustration, _right_caption, texture, caption)
 
 
-func _set_horizontal_region(control: Control, left: float, right: float) -> void:
-	control.anchor_left = left
-	control.anchor_right = right
-	control.offset_left = 0.0
-	control.offset_right = 0.0
+func _clear_pages() -> void:
+	_left_text_panel.visible = false
+	_right_text_panel.visible = false
+	_left_illustration_panel.visible = false
+	_right_illustration_panel.visible = false
+	_left_illustration.texture = null
+	_right_illustration.texture = null
+
+
+func _show_text(panel: VBoxContainer, title_label: Label, body_label: Label, title: String, body: String) -> void:
+	panel.visible = true
+	title_label.text = title
+	title_label.visible = not title.is_empty()
+	body_label.text = body
+
+
+func _show_illustration(panel: VBoxContainer, image: TextureRect, caption_label: Label, texture: Texture2D, caption: String) -> void:
+	if texture == null:
+		return
+	panel.visible = true
+	image.texture = texture
+	caption_label.text = caption
+	caption_label.visible = not caption.is_empty()
+
+
+func _body_for_pages(spread: Dictionary, body: String) -> PackedStringArray:
+	# Optional explicit page fields take precedence while the original `body` field
+	# remains fully compatible for every existing CultureBook entry.
+	if spread.has("left_body") or spread.has("right_body"):
+		return PackedStringArray([
+			str(spread.get("left_body", body)),
+			str(spread.get("right_body", "")),
+		])
+	if body.length() <= TEXT_SPLIT_THRESHOLD:
+		return PackedStringArray([body, ""])
+	return _split_body(body)
+
+
+func _split_body(body: String) -> PackedStringArray:
+	var paragraphs := body.split("\n\n", false)
+	if paragraphs.size() > 1:
+		var best_index := 1
+		var best_difference := body.length()
+		for i in range(1, paragraphs.size()):
+			var left := "\n\n".join(paragraphs.slice(0, i))
+			var right := "\n\n".join(paragraphs.slice(i))
+			var difference := abs(left.length() - right.length())
+			if difference < best_difference:
+				best_index = i
+				best_difference = difference
+		return PackedStringArray([
+			"\n\n".join(paragraphs.slice(0, best_index)),
+			"\n\n".join(paragraphs.slice(best_index)),
+		])
+
+	var midpoint := int(body.length() / 2.0)
+	var split_at := -1
+	for i in range(midpoint, body.length()):
+		if "。！？；".contains(body.substr(i, 1)):
+			split_at = i + 1
+			break
+	if split_at < 0:
+		for i in range(midpoint - 1, -1, -1):
+			if "。！？；".contains(body.substr(i, 1)):
+				split_at = i + 1
+				break
+	if split_at < 0:
+		split_at = midpoint
+	return PackedStringArray([
+		body.substr(0, split_at).strip_edges(),
+		body.substr(split_at).strip_edges(),
+	])
 
 
 func _on_previous_pressed() -> void:

@@ -123,6 +123,7 @@ func _build_ui() -> void:
 	_clear = Button.new()
 	_clear.theme_type_variation = &"QuizMenuAction"
 	_clear.custom_minimum_size = Vector2(150, 60)
+	_clear.text = _text("clear")
 	_clear.pressed.connect(_clear_answer)
 	controls.add_child(_clear)
 	_primary = Button.new()

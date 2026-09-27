@@ -156,7 +156,7 @@ func _split_body(body: String) -> PackedStringArray:
 		for i in range(1, paragraphs.size()):
 			var left := "\n\n".join(paragraphs.slice(0, i))
 			var right := "\n\n".join(paragraphs.slice(i))
-			var difference := abs(left.length() - right.length())
+			var difference: int = int(abs(left.length() - right.length()))
 			if difference < best_difference:
 				best_index = i
 				best_difference = difference

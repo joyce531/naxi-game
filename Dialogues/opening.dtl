@@ -1,8 +1,24 @@
 [background arg="res://Assets/vn/backgrounds/bg_at_home_yard.png"]
 join tourist (default) left
 join host (default) right
-host: 欢迎欢迎，快进来坐！
-tourist: 谢谢！你们家真有味道。
+host: 欢迎欢迎！快进来吧。
+tourist: 哇，你家真有味道！和我平时见到的院子完全不一样。
+host: 这是纳西式的四合院。院子不算大，不过一家人平时生活、聊天、晒太阳，都在这里。
+tourist: 等等——你家这些木门也太特别了吧！
+tourist: 上面这些“涂鸦”是什么？像画又不像画，像字又不像字。
+host: 你看到的是东巴文。
+host: 它是纳西族特有的象形文字，很多符号都保留着很鲜明的图画特征。
+host: 它既可以用来表意，本身也有很强的审美价值。
+tourist: 难怪，我刚才差点以为这些只是木门上的装饰画。
+host: 哈哈，进屋吧。里面还有个东西，你应该会更感兴趣。
+[clear time="0.2" music="false"]
+[background arg="#000000"]
+吱呀——推开门
+[wait time="0.8"]
+[clear time="0.15" music="false"]
+[background arg="res://Assets/vn/backgrounds/bg_in_the_room.png"]
+join tourist (default) left
+join host (default) right
 tourist: 咦，墙上这幅作品是什么？像画，又不像画；像文字，又不像文字。
 host: 这是纳西族的传统文字——东巴文。
 host: 这幅作品写的是“厚德载物”。

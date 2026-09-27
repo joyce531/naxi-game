@@ -60,7 +60,6 @@ func _ready() -> void:
 func _build_flow() -> void:
 	_flow = [
 		{"id": "opening", "kind": "vn", "timeline": "opening"},
-		{"id": "dongba_intro", "kind": "vn", "timeline": "dongba_intro"},
 		{"id": "dongba_book", "kind": "book", "book_id": "dongba"},
 		{"id": "dongba_quiz", "kind": "quiz", "quiz_id": "dongba"},
 		{"id": "dongba_complete", "kind": "complete", "completion_id": "dongba"},

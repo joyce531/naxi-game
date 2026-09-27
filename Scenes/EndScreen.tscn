@@ -1,13 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnaxiendscreen01"]
+[gd_scene format=3 uid="uid://cueqnyy70ocay"]
 
-[ext_resource type="Script" path="res://Scenes/EndScreen.gd" id="1_end"]
-[ext_resource type="Texture2D" path="res://Assets/vn/backgrounds/bg_snow_mountain.png" id="2_background"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/screens/shared/screen_info_panel_9p.png" id="3_info_panel"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/screens/shared/screen_divider.png" id="4_divider"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/screens/shared/screen_deco_diamond.png" id="5_diamond"]
-[ext_resource type="Theme" path="res://Assets/vn/UI/screens/shared/screen_theme.tres" id="6_screen_theme"]
+[ext_resource type="Script" uid="uid://dj7nyjsipdy21" path="res://Scenes/EndScreen.gd" id="1_end"]
+[ext_resource type="Texture2D" uid="uid://dvwyg8jhl6w1n" path="res://Assets/vn/backgrounds/bg_snow_mountain.png" id="2_background"]
+[ext_resource type="Texture2D" uid="uid://c3et7bucbwimm" path="res://Assets/vn/UI/screens/shared/screen_info_panel_9p.png" id="3_info_panel"]
+[ext_resource type="Texture2D" uid="uid://djmr3mi1yy3hr" path="res://Assets/vn/UI/screens/shared/screen_divider.png" id="4_divider"]
+[ext_resource type="Texture2D" uid="uid://dvotb8ruexnns" path="res://Assets/vn/UI/screens/shared/screen_deco_diamond.png" id="5_diamond"]
+[ext_resource type="Theme" uid="uid://d1v5u6pm70qvk" path="res://Assets/vn/UI/screens/shared/screen_theme.tres" id="6_screen_theme"]
 
-[node name="EndScreen" type="Control"]
+[node name="EndScreen" type="Control" unique_id=124101473]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,7 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_end")
 
-[node name="BG" type="TextureRect" parent="."]
+[node name="BG" type="TextureRect" parent="." unique_id=193587445]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,8 +28,8 @@ texture = ExtResource("2_background")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="TitleFrame" type="Control" parent="."]
-layout_mode = 0
+[node name="TitleFrame" type="Control" parent="." unique_id=112314911]
+anchors_preset = 0
 offset_left = 480.0
 offset_top = 350.0
 offset_right = 1440.0
@@ -37,21 +37,20 @@ offset_bottom = 686.0
 mouse_filter = 2
 theme = ExtResource("6_screen_theme")
 
-[node name="Panel" type="NinePatchRect" parent="TitleFrame"]
+[node name="Panel" type="NinePatchRect" parent="TitleFrame" unique_id=1964068087]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 texture = ExtResource("3_info_panel")
 patch_margin_left = 96
 patch_margin_top = 72
 patch_margin_right = 96
 patch_margin_bottom = 72
 
-[node name="Divider" type="TextureRect" parent="TitleFrame"]
+[node name="Divider" type="TextureRect" parent="TitleFrame" unique_id=561116585]
 layout_mode = 0
 offset_left = 200.0
 offset_top = 152.0
@@ -61,7 +60,7 @@ mouse_filter = 2
 texture = ExtResource("4_divider")
 expand_mode = 1
 
-[node name="DiamondLeft" type="TextureRect" parent="TitleFrame"]
+[node name="DiamondLeft" type="TextureRect" parent="TitleFrame" unique_id=1752862907]
 layout_mode = 0
 offset_left = 176.0
 offset_top = 252.0
@@ -71,7 +70,7 @@ mouse_filter = 2
 texture = ExtResource("5_diamond")
 expand_mode = 1
 
-[node name="DiamondRight" type="TextureRect" parent="TitleFrame"]
+[node name="DiamondRight" type="TextureRect" parent="TitleFrame" unique_id=652383938]
 layout_mode = 0
 offset_left = 736.0
 offset_top = 252.0
@@ -81,43 +80,40 @@ mouse_filter = 2
 texture = ExtResource("5_diamond")
 expand_mode = 1
 
-[node name="JourneyTitle" type="Label" parent="TitleFrame"]
+[node name="JourneyTitle" type="Label" parent="TitleFrame" unique_id=1319638265]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 30.0
 offset_right = 848.0
 offset_bottom = 142.0
-mouse_filter = 2
 theme_override_font_sizes/font_size = 88
 text = "纳西文化之旅"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ClosingTitle" type="Label" parent="TitleFrame"]
+[node name="ClosingTitle" type="Label" parent="TitleFrame" unique_id=582396360]
 layout_mode = 0
 offset_left = 200.0
 offset_top = 166.0
 offset_right = 760.0
 offset_bottom = 242.0
-mouse_filter = 2
 theme_override_font_sizes/font_size = 56
 text = "暂告一段落"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ThanksLabel" type="Label" parent="TitleFrame"]
+[node name="ThanksLabel" type="Label" parent="TitleFrame" unique_id=2019875275]
 layout_mode = 0
 offset_left = 224.0
 offset_top = 246.0
 offset_right = 736.0
 offset_bottom = 306.0
-mouse_filter = 2
 theme_override_font_sizes/font_size = 38
 text = "感谢体验东巴文字与纳西古乐"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonLayer" type="Control" parent="."]
+[node name="ButtonLayer" type="Control" parent="." unique_id=88314886]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -126,7 +122,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("6_screen_theme")
 
-[node name="BackButton" type="Button" parent="ButtonLayer"]
+[node name="BackButton" type="Button" parent="ButtonLayer" unique_id=1130355804]
 layout_mode = 0
 offset_left = 680.0
 offset_top = 744.0

@@ -361,9 +361,9 @@
 		{
 		  "title": "一部写在古籍里的文化记忆",
 		  "body": "大量东巴文保存在东巴古籍之中。\n\n一页页古籍不仅留下文字，也保存着纳西族关于自然、社会、信仰与生活的文化记忆。",
-		  "illustration": "",
+		  "illustration": "res://Assets/culture_book/illustrations/dongba/dongba_manuscript.png",
 		  "caption": "",
-		  "layout": "text_only"
+		  "layout": "image_left"
 		},
 		{
 		  "title": "从丽江，到世界记忆",
@@ -397,23 +397,23 @@
 		{
 		  "title": "洞经音乐",
 		  "body": "庄重 · 礼仪 · 秩序\n\n洞经音乐与道教经典及礼仪音乐传统关系密切。传入丽江后，它又不断融入当地音乐元素，逐渐形成具有地方特色的音乐传统。",
-		  "illustration": "",
+		  "illustration": "res://Assets/culture_book/illustrations/music/dongjing_performance.png",
 		  "caption": "",
-		  "layout": "text_only"
+		  "layout": "image_left"
 		},
 		{
 		  "title": "乐器中的古老回声",
 		  "body": "洞经音乐的演奏中，可以听见吹管、拉弦、弹拨与打击乐器共同形成丰富的声响。\n\n苏古笃、波伯、曲项琵琶等乐器，也体现了丽江音乐长期交流与本土化的痕迹。",
-		  "illustration": "",
+		  "illustration": "res://Assets/culture_book/illustrations/music/naxi_instruments.png",
 		  "caption": "",
-		  "layout": "text_only"
+		  "layout": "image_right"
 		},
 		{
 		  "title": "白沙细乐",
 		  "body": "哀婉 · 追思 · 低回\n\n白沙细乐与祭奠、送葬和追思传统有着密切联系。它的音乐常呈现缠绵、低回、如泣如诉的情感色彩。",
-		  "illustration": "",
+		  "illustration": "res://Assets/culture_book/illustrations/music/baisha_performance.png",
 		  "caption": "",
-		  "layout": "text_only"
+		  "layout": "image_left"
 		},
 		{
 		  "title": "听得出它们的不同吗？",
@@ -440,9 +440,9 @@
 		{
 		  "title": "大家一起跳",
 		  "body": "在丽江部分地区，以笛子或葫芦笙等伴奏的群众舞蹈常被称为“打跳”。\n\n音乐响起，参与者围在一起，共同进入舞步与节奏。",
-		  "illustration": "",
+		  "illustration": "res://Assets/culture_book/illustrations/dance/datiao_circle.png",
 		  "caption": "",
-		  "layout": "text_only"
+		  "layout": "image_left"
 		},
 		{
 		  "title": "民间打跳 ≠ 东巴法仪舞蹈",
@@ -454,16 +454,16 @@
 		{
 		  "title": "生活在脚下",
 		  "body": "打跳中可以看到踏步、踢腿、甩手、摇摆等身体动作。\n\n不同地区和舞种形成了不同的动作组合，舞者在共同节奏中不断配合。",
-		  "illustration": "",
+		  "illustration": "res://Assets/culture_book/illustrations/dance/datiao_step.png",
 		  "caption": "",
-		  "layout": "text_only"
+		  "layout": "image_right"
 		},
 		{
 		  "title": "身体里的文化记忆",
 		  "body": "打跳强调参与和配合。踏步、踢腿、摇摆与队形变化，需要舞者不断协调自己的身体与节奏。\n\n学习传统舞步，不只是“看见”一种文化，也是亲自加入它、体验它。\n\n接下来，不只是看——跟着口诀，把舞步真正跳起来。",
-		  "illustration": "",
+		  "illustration": "res://Assets/culture_book/illustrations/dance/datiao_together.png",
 		  "caption": "",
-		  "layout": "text_only"
+		  "layout": "image_left"
 		}
 	  ]
 	}

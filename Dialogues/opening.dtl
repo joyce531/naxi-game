@@ -11,7 +11,8 @@ host: 它是纳西族特有的象形文字，很多符号都保留着很鲜明�
 host: 它既可以用来表意，本身也有很强的审美价值。
 tourist: 难怪，我刚才差点以为这些只是木门上的装饰画。
 host: 哈哈，进屋吧。里面还有个东西，你应该会更感兴趣。
-[clear time="0.2" music="false"]
+leave --All-- [animation="Instant" length="0" wait="true"]
+[clear time="0.2" portraits="false" music="false"]
 [background arg="#000000"]
 吱呀——推开门
 [wait time="0.8"]

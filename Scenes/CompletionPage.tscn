@@ -1,12 +1,12 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene format=3 uid="uid://c686ud5gb4m1k"]
 
-[ext_resource type="Script" path="res://Scenes/CompletionPage.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/screens/shared/screen_info_panel_9p.png" id="2_panel"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/screens/shared/screen_divider.png" id="3_divider"]
-[ext_resource type="Texture2D" path="res://Assets/vn/UI/screens/shared/screen_deco_diamond.png" id="4_diamond"]
-[ext_resource type="Theme" path="res://Assets/vn/UI/screens/shared/screen_theme.tres" id="5_theme"]
+[ext_resource type="Script" uid="uid://c0i18liek5s1x" path="res://Scenes/CompletionPage.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://c3et7bucbwimm" path="res://Assets/vn/UI/screens/shared/screen_info_panel_9p.png" id="2_panel"]
+[ext_resource type="Texture2D" uid="uid://djmr3mi1yy3hr" path="res://Assets/vn/UI/screens/shared/screen_divider.png" id="3_divider"]
+[ext_resource type="Texture2D" uid="uid://dvotb8ruexnns" path="res://Assets/vn/UI/screens/shared/screen_deco_diamond.png" id="4_diamond"]
+[ext_resource type="Theme" uid="uid://d1v5u6pm70qvk" path="res://Assets/vn/UI/screens/shared/screen_theme.tres" id="5_theme"]
 
-[node name="CompletionPage" type="Control"]
+[node name="CompletionPage" type="Control" unique_id=1373153947]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,7 +16,7 @@ grow_vertical = 2
 theme = ExtResource("5_theme")
 script = ExtResource("1_script")
 
-[node name="FallbackBackground" type="ColorRect" parent="."]
+[node name="FallbackBackground" type="ColorRect" parent="." unique_id=1168030588]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +26,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.12, 0.09, 0.07, 1)
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=23529613]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,7 +37,7 @@ mouse_filter = 2
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Dimmer" type="ColorRect" parent="."]
+[node name="Dimmer" type="ColorRect" parent="." unique_id=577005048]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,7 +47,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.08, 0.045, 0.025, 0.38)
 
-[node name="InfoFrame" type="Control" parent="."]
+[node name="InfoFrame" type="Control" parent="." unique_id=1906180809]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -61,26 +61,24 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="NinePatchRect" parent="InfoFrame"]
+[node name="Panel" type="NinePatchRect" parent="InfoFrame" unique_id=44638555]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 texture = ExtResource("2_panel")
 patch_margin_left = 96
 patch_margin_top = 72
 patch_margin_right = 96
 patch_margin_bottom = 72
 
-[node name="DiamondLeft" type="TextureRect" parent="InfoFrame"]
+[node name="DiamondLeft" type="TextureRect" parent="InfoFrame" unique_id=1300775627]
 layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.0
 anchor_right = 0.5
-anchor_bottom = 0.0
 offset_left = -520.0
 offset_top = 62.0
 offset_right = -472.0
@@ -90,12 +88,11 @@ mouse_filter = 2
 texture = ExtResource("4_diamond")
 expand_mode = 1
 
-[node name="DiamondRight" type="TextureRect" parent="InfoFrame"]
+[node name="DiamondRight" type="TextureRect" parent="InfoFrame" unique_id=866899118]
 layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.0
 anchor_right = 0.5
-anchor_bottom = 0.0
 offset_left = 472.0
 offset_top = 62.0
 offset_right = 520.0
@@ -105,7 +102,7 @@ mouse_filter = 2
 texture = ExtResource("4_diamond")
 expand_mode = 1
 
-[node name="Content" type="VBoxContainer" parent="InfoFrame"]
+[node name="Content" type="VBoxContainer" parent="InfoFrame" unique_id=768677761]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -119,7 +116,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 22
 
-[node name="Title" type="Label" parent="InfoFrame/Content"]
+[node name="Title" type="Label" parent="InfoFrame/Content" unique_id=701830364]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 58
@@ -128,7 +125,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Divider" type="TextureRect" parent="InfoFrame/Content"]
+[node name="Divider" type="TextureRect" parent="InfoFrame/Content" unique_id=572384287]
 custom_minimum_size = Vector2(560, 18)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -137,12 +134,12 @@ texture = ExtResource("3_divider")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="BodyRow" type="HBoxContainer" parent="InfoFrame/Content"]
+[node name="BodyRow" type="HBoxContainer" parent="InfoFrame/Content" unique_id=647488737]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 36
 
-[node name="Summary" type="Label" parent="InfoFrame/Content/BodyRow"]
+[node name="Summary" type="Label" parent="InfoFrame/Content/BodyRow" unique_id=199829730]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -150,9 +147,9 @@ theme_override_font_sizes/font_size = 34
 text = "文化学习总结"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 1
 
-[node name="Illustration" type="TextureRect" parent="InfoFrame/Content/BodyRow"]
+[node name="Illustration" type="TextureRect" parent="InfoFrame/Content/BodyRow" unique_id=2026330401]
 custom_minimum_size = Vector2(400, 260)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -161,8 +158,9 @@ mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ContinueButton" type="Button" parent="."]
+[node name="ContinueButton" type="Button" parent="." unique_id=1913212587]
 layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -176,8 +174,9 @@ grow_vertical = 0
 theme_type_variation = &"ScreenPrimaryButton"
 text = "继续"
 
-[node name="Status" type="Label" parent="."]
+[node name="Status" type="Label" parent="." unique_id=1069480634]
 layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5

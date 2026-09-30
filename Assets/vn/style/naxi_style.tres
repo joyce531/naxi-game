@@ -32,11 +32,17 @@ scene = ExtResource("5_rrjwq")
 script = ExtResource("2_krcb2")
 scene = ExtResource("6_3p3xh")
 overrides = {
+"bold_font": "\"res://Assets/fonts/MaShanZheng-Regular.ttf\"",
+"bold_italics_font": "\"res://Assets/fonts/MaShanZheng-Regular.ttf\"",
 "box_margin_bottom": "0.0",
 "box_size": "Vector2(1906, 200)",
+"italics_font": "\"res://Assets/fonts/MaShanZheng-Regular.ttf\"",
 "name_label_alignment": "1",
+"name_label_font": "\"res://Assets/fonts/MaShanZheng-Regular.ttf\"",
+"normal_font": "\"res://Assets/fonts/MaShanZheng-Regular.ttf\"",
 "text_alignment": "1",
 "text_size": "20.0",
+"text_use_global_font": "false",
 "text_use_global_size": "false"
 }
 

@@ -98,17 +98,17 @@ offset_top = 232.0
 offset_right = 760.0
 offset_bottom = 288.0
 theme_override_font_sizes/font_size = 32
-text = "东巴文字，纳西古乐，密瀑纳西美。"
+text = "东巴文字 纳西古乐 密瀑纳西美"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Credits" type="Label" parent="TitleFrame"]
 layout_mode = 0
-offset_left = 120.0
+offset_left = 80.0
 offset_top = 300.0
-offset_right = 840.0
+offset_right = 880.0
 offset_bottom = 388.0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 30
 text = "制作人：北京理工大学 赵雨姣 罗晨菲 常婧萱\n指导教师：张祥（教授）"
 horizontal_alignment = 1
 vertical_alignment = 1

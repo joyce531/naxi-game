@@ -14,6 +14,9 @@ const AUDIO_PLAY_ICON: Texture2D = preload("res://Assets/vn/UI/quiz/quiz_audio/q
 const FEEDBACK_PANEL_TEXTURE: Texture2D = preload("res://Assets/vn/UI/quiz/quiz_feedback_panel_texture.tres")
 
 const COLOR_SKIP := Color(0.78, 0.43, 0.02)
+const INSTRUCTION_FONT_SIZE := 38
+const FEEDBACK_FONT_SIZE := 18
+const MNEMONIC_FEEDBACK_FONT_SIZE := 38
 
 var _answered: bool = false
 var _awaiting_continue: bool = false
@@ -26,6 +29,7 @@ var _skip_hint: Label
 var _feedback: Label
 var _continue_hint: Label
 var _feedback_overlay: Control
+var _feedback_panel: NinePatchRect
 
 var _sfx: AudioStreamPlayer
 var _audio: AudioStreamPlayer
@@ -67,7 +71,7 @@ func _build_skeleton() -> void:
 	_instruction.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_instruction.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	_instruction.custom_minimum_size = Vector2(0, 52)
-	_instruction.add_theme_font_size_override("font_size", 38)
+	_instruction.add_theme_font_size_override("font_size", INSTRUCTION_FONT_SIZE)
 	_instruction.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	vbox.add_child(_instruction)
 
@@ -102,23 +106,17 @@ func _build_skeleton() -> void:
 	_skip_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_skip_hint.visible = false
 
-	var feedback_panel := NinePatchRect.new()
-	feedback_panel.anchor_left = 0.5
-	feedback_panel.anchor_top = 1.0
-	feedback_panel.anchor_right = 0.5
-	feedback_panel.anchor_bottom = 1.0
-	feedback_panel.offset_left = -419.0
-	feedback_panel.offset_top = -226.0
-	feedback_panel.offset_right = 419.0
-	feedback_panel.offset_bottom = -118.0
-	feedback_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	feedback_panel.texture = FEEDBACK_PANEL_TEXTURE
-	feedback_panel.patch_margin_left = 70
-	feedback_panel.patch_margin_top = 28
-	feedback_panel.patch_margin_right = 70
-	feedback_panel.patch_margin_bottom = 28
-	feedback_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_feedback_overlay.add_child(feedback_panel)
+	_feedback_panel = NinePatchRect.new()
+	_feedback_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_feedback_panel.grow_vertical = Control.GROW_DIRECTION_BOTH
+	_feedback_panel.texture = FEEDBACK_PANEL_TEXTURE
+	_feedback_panel.patch_margin_left = 70
+	_feedback_panel.patch_margin_top = 28
+	_feedback_panel.patch_margin_right = 70
+	_feedback_panel.patch_margin_bottom = 28
+	_feedback_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_feedback_overlay.add_child(_feedback_panel)
+	_configure_feedback_layout(false)
 
 	var feedback_margin := MarginContainer.new()
 	feedback_margin.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -127,7 +125,7 @@ func _build_skeleton() -> void:
 	feedback_margin.add_theme_constant_override("margin_right", 24)
 	feedback_margin.add_theme_constant_override("margin_bottom", 5)
 	feedback_margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	feedback_panel.add_child(feedback_margin)
+	_feedback_panel.add_child(feedback_margin)
 
 	var feedback_vbox := VBoxContainer.new()
 	feedback_vbox.add_theme_constant_override("separation", -2)
@@ -140,7 +138,7 @@ func _build_skeleton() -> void:
 	_feedback.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_feedback.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	_feedback.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_feedback.add_theme_font_size_override("font_size", 18)
+	_feedback.add_theme_font_size_override("font_size", FEEDBACK_FONT_SIZE)
 	_feedback.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	feedback_vbox.add_child(_feedback)
 
@@ -224,7 +222,17 @@ func _build_prompt(prompt: Dictionary, question_type: String) -> void:
 				_prompt_box.add_child(_make_placeholder_box("音乐片段：" + ContentDB.label_for_path(audio), Vector2(480, 180)))
 				_prompt_box.add_child(_make_audio_button("播放音乐", audio))
 		else:
-			_prompt_box.add_child(_make_audio_button("播放读音", audio))
+			var audio_row := HBoxContainer.new()
+			audio_row.alignment = BoxContainer.ALIGNMENT_CENTER
+			audio_row.add_theme_constant_override("separation", 12)
+			audio_row.add_child(_make_audio_button("播放读音", audio))
+			if question_type == "image_to_text":
+				var pronunciation_hint := Label.new()
+				pronunciation_hint.text = "请注意每个字的读音，下一关是听音认字"
+				pronunciation_hint.add_theme_font_size_override("font_size", INSTRUCTION_FONT_SIZE)
+				pronunciation_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				audio_row.add_child(pronunciation_hint)
+			_prompt_box.add_child(audio_row)
 
 
 func _build_options(options: Array) -> void:
@@ -364,11 +372,43 @@ func show_feedback(feedback: Dictionary, play_feedback_sfx: bool = false) -> voi
 
 	var msg := "回答正确！" if correct else "答错了。"
 	var expl := str(feedback.get("explanation", ""))
+	_configure_feedback_layout(_is_mnemonic_explanation(expl))
 	if expl != "":
 		msg += "\n" + expl
 	_feedback.text = msg
 	_feedback_overlay.visible = true
 	_awaiting_continue = true
+
+
+func _is_mnemonic_explanation(explanation: String) -> bool:
+	for prefix: String in ["人：xi", "山：ju", "水：ji", "火：mi", "太阳：ni mei"]:
+		if explanation.begins_with(prefix):
+			return true
+	return false
+
+
+func _configure_feedback_layout(showing_mnemonic: bool) -> void:
+	_feedback_panel.anchor_left = 0.5
+	_feedback_panel.anchor_right = 0.5
+	if showing_mnemonic:
+		# The large mnemonic card intentionally overlays the options while keeping
+		# both the card and its wrapped text centered in the available quiz area.
+		_feedback_panel.anchor_top = 0.5
+		_feedback_panel.anchor_bottom = 0.5
+		_feedback_panel.offset_left = -600.0
+		_feedback_panel.offset_top = -260.0
+		_feedback_panel.offset_right = 600.0
+		_feedback_panel.offset_bottom = 260.0
+		_feedback.add_theme_font_size_override("font_size", MNEMONIC_FEEDBACK_FONT_SIZE)
+	else:
+		_feedback_panel.anchor_top = 1.0
+		_feedback_panel.anchor_bottom = 1.0
+		_feedback_panel.offset_left = -419.0
+		_feedback_panel.offset_top = -226.0
+		_feedback_panel.offset_right = 419.0
+		_feedback_panel.offset_bottom = -118.0
+		if _feedback != null:
+			_feedback.add_theme_font_size_override("font_size", FEEDBACK_FONT_SIZE)
 
 
 ## After feedback is shown, a click anywhere (or Enter/advance key) proceeds.

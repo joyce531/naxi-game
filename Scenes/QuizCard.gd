@@ -108,7 +108,8 @@ func _build_skeleton() -> void:
 	feedback_panel.anchor_right = 0.5
 	feedback_panel.anchor_bottom = 1.0
 	feedback_panel.offset_left = -419.0
-	feedback_panel.offset_top = -226.0
+	# Leave enough room for the longer pronunciation and mnemonic explanations.
+	feedback_panel.offset_top = -330.0
 	feedback_panel.offset_right = 419.0
 	feedback_panel.offset_bottom = -118.0
 	feedback_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
@@ -224,7 +225,17 @@ func _build_prompt(prompt: Dictionary, question_type: String) -> void:
 				_prompt_box.add_child(_make_placeholder_box("音乐片段：" + ContentDB.label_for_path(audio), Vector2(480, 180)))
 				_prompt_box.add_child(_make_audio_button("播放音乐", audio))
 		else:
-			_prompt_box.add_child(_make_audio_button("播放读音", audio))
+			var audio_row := HBoxContainer.new()
+			audio_row.alignment = BoxContainer.ALIGNMENT_CENTER
+			audio_row.add_theme_constant_override("separation", 12)
+			audio_row.add_child(_make_audio_button("播放读音", audio))
+			if question_type == "image_to_text":
+				var pronunciation_hint := Label.new()
+				pronunciation_hint.text = "请注意每个字的读音，下一关是听音认字"
+				pronunciation_hint.add_theme_font_size_override("font_size", 20)
+				pronunciation_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				audio_row.add_child(pronunciation_hint)
+			_prompt_box.add_child(audio_row)
 
 
 func _build_options(options: Array) -> void:

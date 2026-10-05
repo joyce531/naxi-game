@@ -8,8 +8,8 @@ extends Control
 signal answered(index: int)
 signal continue_pressed
 
-const SFX_CORRECT := "res://Assets/music/stingers/stinger_win_baisha.ogg"
-const SFX_WRONG := "res://Assets/music/stingers/stinger_fail_dongjing.ogg"
+const SFX_CORRECT := "res://Assets/music/stingers/stinger_fail_dongjing.ogg"
+const SFX_WRONG := "res://Assets/music/stingers/stinger_win_baisha.ogg"
 const AUDIO_PLAY_ICON: Texture2D = preload("res://Assets/vn/UI/quiz/quiz_audio/quiz_audio_play_icon_texture.tres")
 const FEEDBACK_PANEL_TEXTURE: Texture2D = preload("res://Assets/vn/UI/quiz/quiz_feedback_panel_texture.tres")
 
@@ -224,7 +224,23 @@ func _build_prompt(prompt: Dictionary, question_type: String) -> void:
 				_prompt_box.add_child(_make_placeholder_box("音乐片段：" + ContentDB.label_for_path(audio), Vector2(480, 180)))
 				_prompt_box.add_child(_make_audio_button("播放音乐", audio))
 		else:
-			_prompt_box.add_child(_make_audio_button("播放读音", audio))
+			var audio_button := _make_audio_button("播放读音", audio)
+			if question_type == "image_to_text":
+				var audio_row := HBoxContainer.new()
+				audio_row.alignment = BoxContainer.ALIGNMENT_CENTER
+				audio_row.add_theme_constant_override("separation", 18)
+				audio_row.add_child(audio_button)
+
+				var audio_hint := Label.new()
+				audio_hint.text = "请注意每个字的读音，下一关是听音认字"
+				audio_hint.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+				audio_hint.add_theme_font_size_override("font_size", 22)
+				audio_hint.add_theme_color_override("font_color", Color(0.42, 0.31, 0.21, 1.0))
+				audio_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				audio_row.add_child(audio_hint)
+				_prompt_box.add_child(audio_row)
+			else:
+				_prompt_box.add_child(audio_button)
 
 
 func _build_options(options: Array) -> void:

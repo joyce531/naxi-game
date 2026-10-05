@@ -4,7 +4,7 @@ extends Control
 ## With a save, "继续旅程" resumes the saved flow step and "重新开始" starts over.
 
 const BUTTON_SIZE := Vector2(560.0, 160.0)
-const BUTTON_Y := 650.0
+const BUTTON_Y := 720.0
 const SINGLE_BUTTON_X := 680.0
 const CONTINUE_BUTTON_X := 376.0
 const RESTART_BUTTON_X := 984.0

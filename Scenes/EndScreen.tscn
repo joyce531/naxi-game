@@ -87,7 +87,7 @@ offset_top = 30.0
 offset_right = 848.0
 offset_bottom = 142.0
 theme_override_font_sizes/font_size = 88
-text = "纳西文化之旅"
+text = "纳西文化体验之旅"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -98,18 +98,18 @@ offset_top = 166.0
 offset_right = 760.0
 offset_bottom = 242.0
 theme_override_font_sizes/font_size = 56
-text = "暂告一段落"
+text = "暂时告一段落，"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ThanksLabel" type="Label" parent="TitleFrame" unique_id=2019875275]
 layout_mode = 0
-offset_left = 224.0
+offset_left = 120.0
 offset_top = 246.0
-offset_right = 736.0
+offset_right = 840.0
 offset_bottom = 306.0
-theme_override_font_sizes/font_size = 38
-text = "感谢体验东巴文字与纳西古乐"
+theme_override_font_sizes/font_size = 32
+text = "感谢体验本游戏，请返回微信继续填写问卷！"
 horizontal_alignment = 1
 vertical_alignment = 1
 

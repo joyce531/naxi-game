@@ -1,4 +1,4 @@
-[background arg="res://Assets/vn/backgrounds/bg_in_the_room.png"]
+[background arg="res://Assets/vn/backgrounds/bg_in_the_room.png" fade="0.0"]
 join tourist (default) left
 join host (default) right
 host: 你有没有发现，刚才答题的时候，不同结果播放的音乐不一样？

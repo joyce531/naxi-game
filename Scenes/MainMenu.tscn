@@ -31,9 +31,9 @@ stretch_mode = 6
 [node name="TitleFrame" type="Control" parent="." unique_id=471781483]
 anchors_preset = 0
 offset_left = 480.0
-offset_top = 252.0
+offset_top = 170.0
 offset_right = 1440.0
-offset_bottom = 588.0
+offset_bottom = 630.0
 mouse_filter = 2
 theme = ExtResource("6_screen_theme")
 
@@ -94,11 +94,22 @@ vertical_alignment = 1
 [node name="Subtitle" type="Label" parent="TitleFrame" unique_id=1540236132]
 layout_mode = 0
 offset_left = 200.0
-offset_top = 240.0
+offset_top = 232.0
 offset_right = 760.0
-offset_bottom = 304.0
-theme_override_font_sizes/font_size = 38
-text = "东巴文字 • 纳西古乐"
+offset_bottom = 288.0
+theme_override_font_sizes/font_size = 32
+text = "东巴文字 纳西古乐 密瀑纳西美"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="Label" parent="TitleFrame"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 300.0
+offset_right = 880.0
+offset_bottom = 388.0
+theme_override_font_sizes/font_size = 30
+text = "制作人：北京理工大学 赵雨姣 罗晨菲 常婧萱\n指导教师：张祥（教授）"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -115,18 +126,18 @@ theme = ExtResource("6_screen_theme")
 visible = false
 layout_mode = 0
 offset_left = 376.0
-offset_top = 650.0
+offset_top = 720.0
 offset_right = 936.0
-offset_bottom = 810.0
+offset_bottom = 880.0
 theme_type_variation = &"ScreenPrimaryButton"
 text = "继续旅程"
 
 [node name="StartButton" type="Button" parent="ButtonLayer" unique_id=1663748811]
 layout_mode = 0
 offset_left = 680.0
-offset_top = 650.0
+offset_top = 720.0
 offset_right = 1240.0
-offset_bottom = 810.0
+offset_bottom = 880.0
 theme_type_variation = &"ScreenPrimaryButton"
 text = "开始旅程"
 

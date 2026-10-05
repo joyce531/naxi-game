@@ -86,8 +86,8 @@ offset_left = 112.0
 offset_top = 30.0
 offset_right = 848.0
 offset_bottom = 142.0
-theme_override_font_sizes/font_size = 72
-text = "纳西文化体验之旅"
+theme_override_font_sizes/font_size = 88
+text = "纳西文化之旅"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -98,7 +98,7 @@ offset_top = 166.0
 offset_right = 760.0
 offset_bottom = 242.0
 theme_override_font_sizes/font_size = 56
-text = "暂时告一段落"
+text = "暂告一段落"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -109,7 +109,7 @@ offset_top = 246.0
 offset_right = 736.0
 offset_bottom = 306.0
 theme_override_font_sizes/font_size = 38
-text = "感谢体验本游戏"
+text = "感谢体验东巴文字与纳西古乐"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -129,7 +129,6 @@ offset_top = 744.0
 offset_right = 1240.0
 offset_bottom = 904.0
 theme_type_variation = &"ScreenPrimaryButton"
-theme_override_font_sizes/font_size = 34
-text = "返回微信继续填写问卷！"
+text = "返回主菜单"
 
 [connection signal="pressed" from="ButtonLayer/BackButton" to="." method="_on_back_pressed"]

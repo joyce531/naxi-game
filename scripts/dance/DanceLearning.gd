@@ -4,6 +4,11 @@ extends Control
 ## Data/content.json; this scene never treats key presses as rhythm scores.
 
 const DANCE_ID := "datiao_01"
+const DETAIL_FONT_SIZE := 72
+const CUE_FONT_SIZE := 66
+const ARRANGE_BUTTON_FONT_SIZE := 48
+const ARRANGE_BUTTON_MINIMUM_SIZE := Vector2(132, 82)
+const FEEDBACK_FONT_SIZE := 60
 enum Phase { OVERVIEW, LESSON, CUE_ARRANGE, COMPLETE }
 
 var _dance: Dictionary = {}
@@ -84,7 +89,9 @@ func _build_ui() -> void:
 	info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	info.add_theme_constant_override("separation", 8)
 	root.add_child(info)
-	_detail = _label(24)
+	# This label presents the overview instruction, lesson name, and arrangement
+	# instruction. Keep all three phase-specific texts equally prominent.
+	_detail = _label(DETAIL_FONT_SIZE)
 	_detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_detail.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	info.add_child(_detail)
@@ -96,18 +103,18 @@ func _build_ui() -> void:
 	_answer_box = FlowContainer.new()
 	_answer_box.alignment = FlowContainer.ALIGNMENT_CENTER
 	_answer_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_answer_box.custom_minimum_size = Vector2(0, 58)
+	_answer_box.custom_minimum_size = Vector2(0, ARRANGE_BUTTON_MINIMUM_SIZE.y)
 	_answer_box.add_theme_constant_override("h_separation", 8)
 	_answer_box.add_theme_constant_override("v_separation", 6)
 	info.add_child(_answer_box)
 	_token_source = FlowContainer.new()
 	_token_source.alignment = FlowContainer.ALIGNMENT_CENTER
 	_token_source.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_token_source.custom_minimum_size = Vector2(0, 58)
+	_token_source.custom_minimum_size = Vector2(0, ARRANGE_BUTTON_MINIMUM_SIZE.y)
 	_token_source.add_theme_constant_override("h_separation", 8)
 	_token_source.add_theme_constant_override("v_separation", 6)
 	info.add_child(_token_source)
-	_feedback = _label(20)
+	_feedback = _label(FEEDBACK_FONT_SIZE)
 	_feedback.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_feedback.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	info.add_child(_feedback)
@@ -222,14 +229,16 @@ func _refresh_tokens() -> void:
 	for token: Dictionary in _available_tokens:
 		var button := Button.new()
 		button.theme_type_variation = &"QuizOptionButton"
-		button.custom_minimum_size = Vector2(96, 58)
+		button.custom_minimum_size = ARRANGE_BUTTON_MINIMUM_SIZE
+		button.add_theme_font_size_override("font_size", ARRANGE_BUTTON_FONT_SIZE)
 		button.text = str(token.get("cue", ""))
 		button.pressed.connect(func() -> void: _choose_token(token))
 		_token_source.add_child(button)
 	for token: Dictionary in _answer_tokens:
 		var button := Button.new()
 		button.theme_type_variation = &"QuizOptionButton"
-		button.custom_minimum_size = Vector2(96, 58)
+		button.custom_minimum_size = ARRANGE_BUTTON_MINIMUM_SIZE
+		button.add_theme_font_size_override("font_size", ARRANGE_BUTTON_FONT_SIZE)
 		button.text = str(token.get("cue", ""))
 		button.pressed.connect(func() -> void: _remove_token(token))
 		_answer_box.add_child(button)
@@ -296,7 +305,7 @@ func _build_cue_list(actions: Array) -> void:
 	for node in _cue_list.get_children():
 		node.queue_free()
 	for action: Dictionary in actions:
-		var label := _label(22)
+		var label := _label(CUE_FONT_SIZE)
 		label.text = str(action.get("cue", ""))
 		label.add_theme_color_override("font_color", Color("#6b3d20"))
 		_cue_list.add_child(label)
